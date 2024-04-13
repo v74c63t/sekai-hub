@@ -12,11 +12,44 @@
   text-rendering: optimizeLegibility;
 
   --vs-color: #00cdba;
+  --miku-color: #33CCBA;
+  --rin-color: #FFCC11;
+  --len-color: #FFEE12;
+  --kagamine-color: #FFDD12; /* A mix of the Kagamine's individual colors */
+  --luka-color: #FFBACC;
+  --meiko-color: #DE4444;
+  --kaito-color: #3367CD;
+
   --ln-color: #4455DD;
+  --ichika-color: #33AAEE;
+  --saki-color: #FFDD45;
+  --honami-color: #EE6666;
+  --shiho-color:  #BBDE22;
+
   --mmj-color: #6CCB20;
+  --minori-color: #FFCDAC;
+  --haruka-color:  #99CDFF;
+  --airi-color:  #FFA9CC;
+  --shizuku-color:  #9AEEDE;
+
   --vbs-color: #EE1166;
+  --kohane-color: #FF679A;
+  --an-color: #00BBDC;
+  --akito-color: #FF7721;
+  --touya-color: #0077DD;
+
   --wxs-color: #FF9900;
+  --tsukasa-color: #FFBB00;
+  --emu-color: #FF66BC;
+  --nene-color: #34DD9A;
+  --rui-color: #BB88ED;
+
   --n25-color: #884499;
+  --kanade-color: #BB6588;
+  --mafuyu-color: #8889CC;
+  --ena-color: #CCAA87;
+  --mizuki-color: #E4A8CA;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
