@@ -5,6 +5,23 @@
   text-align: center;
 }
 
+.no-posts {
+  color: black;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.create-link{
+  color: blue;
+  text-decoration: none;
+}
+
+.create-link:hover {
+  color: rgb(69, 69, 69);
+}
+
 /* .logo {
   height: 6em;
   padding: 1.5em;
