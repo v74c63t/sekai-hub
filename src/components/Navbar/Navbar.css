@@ -1,0 +1,51 @@
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.nav-bar {
+  display: flex;
+  flex-direction: row;
+  padding: 1rem;
+  margin: auto;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--n25-color);
+  color: white;
+}
+
+.nav-bar-list {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  list-style-type: none;
+  margin: 0;
+  color: white;
+}
+
+.header-link, .link {
+  color: white;
+  text-decoration: none;
+}
+
+.link:hover {
+  color: rgb(69, 69, 69);
+}
+
+.header {
+  padding: 0;
+  margin: 0;
+}
+
+.search {
+  padding: 0.5rem;
+  width: 25%;
+  border-radius: 0.5rem;
+  margin: 0;
+}
+
+.page {
+  margin-top: 3.5rem;
+}
