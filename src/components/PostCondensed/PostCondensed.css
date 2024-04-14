@@ -24,3 +24,8 @@
 .upvotes {
   font-size: 0.9rem;
 }
+
+.post-link {
+  text-decoration: none;
+  color: black;
+}
