@@ -1,22 +1,31 @@
 import './Navbar.css'
 import { Link, Outlet } from 'react-router-dom'
+import { nanoid } from 'nanoid'
+import { useEffect, useState } from 'react'
+import { Icon } from '@iconify/react/dist/iconify.js'
 
 const NavBar = () => {
+  const [UID, setUID] = useState(nanoid(12))
+
   return (
     <div>
       <div className="container">
         <nav className='nav-bar'>
-          <Link className='header-link' to="/">
-            <h2 className='header'>Sekai Hub</h2>
-          </Link>
-          <input className='search' type="text" placeholder="Search.." />
           <div className="nav-bar-list">
+            <Link className='header-link' to="/">
+              <h2 className='header'>Sekai Hub</h2>
+            </Link>
             <Link className='link' to="/">
               Home
             </Link>
             <Link className='link' to="/create">
               Create New Post
             </Link>
+          </div>
+          <input className='search' type="text" placeholder="Search.." />
+          <div className="user-info">
+            <p className='uid'>@{UID}</p>
+            <Icon className='settings-icon' icon="fluent:text-grammar-settings-24-filled" />
           </div>
         </nav>
       </div>

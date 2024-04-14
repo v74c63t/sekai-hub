@@ -23,6 +23,7 @@
   list-style-type: none;
   margin: 0;
   color: white;
+  align-items: center;
 }
 
 .header-link, .link {
@@ -30,22 +31,51 @@
   text-decoration: none;
 }
 
-.link:hover {
+.link {
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.link:hover, .settings-icon:hover {
   color: rgb(69, 69, 69);
 }
 
 .header {
   padding: 0;
   margin: 0;
+  font-size: 1.6rem;
+  font-weight: bold;
 }
 
 .search {
   padding: 0.5rem;
-  width: 25%;
+  width: 45%;
   border-radius: 0.5rem;
   margin: 0;
+  border: 0.1rem solid black;
+}
+
+.user-info {
+  font-weight: 600;
+  font-size: 1.2rem;
+  display: flex;
+  flex-direction: row;
+  gap: 1.2rem;
+  align-items: center;
+}
+
+.uid {
+  padding: 0;
+  margin: 0;
+  width: 11rem;
+  text-align: right;
+}
+
+.settings-icon {
+  font-size: 2rem;
+  cursor: pointer;
 }
 
 .page {
-  margin-top: 3.5rem;
+  margin-top: 3.8rem;
 }
