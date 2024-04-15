@@ -29,3 +29,35 @@
   text-decoration: none;
   color: black;
 }
+
+/* .post-title-container {
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+  margin: 0.8rem 0;
+} */
+
+.flair {
+  padding: 0.1rem 0.7rem;
+  margin-left: 0.3rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  color: white;
+  text-shadow: 0 0 0.1rem black, 0 0 0.07rem black;
+}
+
+.Discussion {
+  background-color: var(--kagamine-color);
+}
+
+.Achievements {
+  background-color: var(--luka-color);
+}
+
+.Question {
+  background-color: var(--meiko-color);
+}
+
+.Gameplay {
+  background-color: var(--kaito-color);
+}
