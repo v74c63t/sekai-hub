@@ -16,7 +16,9 @@ function App() {
       "content": "",
       "url": "",
       "upvotes": 3,
-      "comments": ["America!!!"]
+      "comments": ["America!!!"],
+      "flair": "Discussion",
+      "uid": "8YF1ziS3PUPW"
     },
     {
       "id": 73,
@@ -25,7 +27,9 @@ function App() {
       "content": "It's holy, Roman, and an empire",
       "url": "",
       "upvotes": 23,
-      "comments": ["Very true", "Haha!"]
+      "comments": ["Very true", "Haha!"],
+      "flair": "Achievements",
+      "uid": "tw-dl3nCe_6t"
     },
     {
       "id": 87,
@@ -34,7 +38,9 @@ function App() {
       "content": "Mine is Thomas Jefferson! What about you?",
       "url": "https://i.imgur.com/0QpthJU.jpg",
       "upvotes": 3,
-      "comments": ["It's gotta be George Washington!", "Did you forget about Ben Franklin?"]
+      "comments": ["It's gotta be George Washington!", "Did you forget about Ben Franklin?"],
+      "flair": "Question",
+      "uid": "kOdN4Ns53PP9"
     },
     {
       "id": 59,
@@ -43,7 +49,9 @@ function App() {
       "content": "",
       "url": "https://i.imgur.com/wzk9rEB.jpg",
       "upvotes": 2,
-      "comments": []
+      "comments": [],
+      "flair": "Gameplay",
+      "uid": "mwlNu_9-TGK0"
     }
   ]
 
