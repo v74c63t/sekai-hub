@@ -61,3 +61,7 @@
 .Gameplay {
   background-color: var(--kaito-color);
 }
+
+.uid {
+  color: var(--vs-color);
+}
