@@ -24,7 +24,7 @@ const NavBar = () => {
           </div>
           <input className='search' type="text" placeholder="Search.." />
           <div className="user-info">
-            <p className='uid'>@{UID}</p>
+            <p className='navbar-uid'>@{UID}</p>
             <Icon className='settings-icon' icon="fluent:text-grammar-settings-24-filled" />
           </div>
         </nav>

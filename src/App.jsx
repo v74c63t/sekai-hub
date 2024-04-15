@@ -58,11 +58,13 @@ function App() {
   return (
     <>
       {posts.length !== 0 ? (
-        posts.map((post, i) => {
-          return (
-            <PostCondensed key={i} post={post} />
-          )
-        })
+        <div className='posts-container'>
+          {posts.map((post, i) => {
+            return (
+              <PostCondensed key={i} post={post} />
+            )
+          })}
+        </div>
       ) :
       <div className='no-posts'>
         <p>There are no posts currently.</p>
