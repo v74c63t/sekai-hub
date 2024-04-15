@@ -1,7 +1,7 @@
 import './Navbar.css'
 import { Link, Outlet } from 'react-router-dom'
 import { nanoid } from 'nanoid'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Icon } from '@iconify/react/dist/iconify.js'
 
 const NavBar = () => {
@@ -30,7 +30,8 @@ const NavBar = () => {
         </nav>
       </div>
       <div className="page">
-        <Outlet />
+        {/* <img src="/src/assets/vs-logo.jpg" alt="group logo" height={60} width={'auto'} /> */}
+        <Outlet context={[UID]} />
       </div>
     </div>
   )

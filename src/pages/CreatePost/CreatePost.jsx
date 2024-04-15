@@ -1,7 +1,13 @@
+import { useOutletContext } from "react-router-dom";
 
 const CreatePost = () => {
+  const [UID] = useOutletContext()
+
   return (
-    <div>Create Post</div>
+    <div>
+      <div>Create Post</div>
+      <div>UID: @{UID}</div>
+    </div>
   )
 }
 

@@ -2,8 +2,11 @@ import { useState } from 'react'
 import './App.css'
 import { Link } from 'react-router-dom'
 import PostCondensed from './components/PostCondensed/PostCondensed'
+import { useOutletContext } from "react-router-dom";
 
 function App() {
+
+  const [UID] = useOutletContext()
 
   const posts = [
     {
