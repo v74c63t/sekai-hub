@@ -20,11 +20,26 @@
   --meiko-color: #DE4444;
   --kaito-color: #3367CD;
 
+  --vs-color-dark: #1faea1;
+  --miku-color-dark: #4ab5a8;
+  --rin-color-dark: #dbb835;
+  --len-color-dark: #dbd036;
+  --kagamine-color-dark: #dbc436; /* A mix of the Kagamine's individual colors */
+  --luka-color-dark: #f5c4d1;
+  --meiko-color-dark: #c75b5b;
+  --kaito-color-dark: #4a6eb6;
+
   --ln-color: #4455DD;
   --ichika-color: #33AAEE;
   --saki-color: #FFDD45;
   --honami-color: #EE6666;
   --shiho-color:  #BBDE22;
+
+  --ln-color-dark: #5b67c6;
+  --ichika-color-dark: #4fa2d2;
+  --saki-color-dark: #e3cb61;
+  --honami-color-dark: #da7a7a;
+  --shiho-color-dark:  #a9c23e;
 
   --mmj-color: #6CCB20;
   --minori-color: #FFCDAC;
@@ -32,11 +47,23 @@
   --airi-color:  #FFA9CC;
   --shizuku-color:  #9AEEDE;
 
+  --mmj-color-dark: #6fb13a;
+  --minori-color-dark: #f3d0b8;
+  --haruka-color-dark:  #a8cdf0;
+  --airi-color-dark:  #f2b6ce;
+  --shizuku-color-dark:  #a7e1d6;
+
   --vbs-color: #EE1166;
   --kohane-color: #FF679A;
   --an-color: #00BBDC;
   --akito-color: #FF7721;
   --touya-color: #0077DD;
+
+  --vbs-color-dark: #cd326e;
+  --kohane-color-dark: #e87ea1;
+  --an-color-dark: #21a4bb;
+  --akito-color-dark: #de7e42;
+  --touya-color-dark: #2174bc;
 
   --wxs-color: #FF9900;
   --tsukasa-color: #FFBB00;
@@ -44,11 +71,23 @@
   --nene-color: #34DD9A;
   --rui-color: #BB88ED;
 
+  --wxs-color-dark: #d99126;
+  --tsukasa-color-dark: #d9a926;
+  --emu-color-dark: #e87db9;
+  --nene-color-dark: #4dc495;
+  --rui-color-dark: #bb97de;
+
   --n25-color: #884499;
   --kanade-color: #BB6588;
   --mafuyu-color: #8889CC;
   --ena-color: #CCAA87;
   --mizuki-color: #E4A8CA;
+
+  --n25-color-dark: #80518c;
+  --kanade-color-dark: #ae728a;
+  --mafuyu-color-dark: #9293c2;
+  --ena-color-dark: #c2aa91;
+  --mizuki-color-dark: #dbb1c9;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
