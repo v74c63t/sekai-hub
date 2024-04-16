@@ -57,6 +57,20 @@ function App() {
 
   return (
     <>
+      <div className='sort-filter'>
+        <div className='sort-container'>
+          <h3 className='sort'>Sort By:</h3>
+          <h4 className='sort-flair active'>Newest</h4>
+          <h4 className='sort-flair'>Most Popular</h4>
+        </div>
+        <div className='filter-container'>
+          <h3 className='filter'>Filter By:</h3>
+          <h4 className='filter-flair discussion'>Discussion</h4>
+          <h4 className='filter-flair achievements'>Achievements</h4>
+          <h4 className='filter-flair question'>Question</h4>
+          <h4 className='filter-flair gameplay'>Gameplay</h4>
+        </div>
+      </div>
       {posts.length !== 0 ? (
         <div className='posts-container'>
           {posts.map((post, i) => {

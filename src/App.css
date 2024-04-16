@@ -31,6 +31,130 @@
   margin: 0;
 }
 
+.sort-filter {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  padding: 0;
+  margin-bottom: 0.3rem;
+}
+
+.sort-container, .filter-container {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.sort, .filter {
+  padding: 0;
+  margin: 0;
+  font-size: 1rem;
+}
+
+.sort-flair, .filter-flair {
+  padding: 0 0.7rem;
+  /* margin-left: 0.3rem; */
+  margin: 0;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  color: white;
+  text-shadow: 0 0 0.1rem black, 0 0 0.07rem black;
+  /* background-color: var(--miku-color); */
+  /* background-color: var(--ln-color); */
+  /* background-color: var(--mmj-color); */
+  /* background-color: var(--vbs-color); */
+  /* background-color: var(--wxs-color); */
+  background-color: var(--n25-color);
+  cursor: pointer;
+}
+
+.sort-flair.active {
+  /* background-color: var(--miku-color-dark); */
+  /* background-color: var(--ln-color-dark); */
+  /* background-color: var(--mmj-color-dark); */
+  /* background-color: var(--vbs-color-dark); */
+  /* background-color: var(--wxs-color-dark); */
+  background-color: var(--n25-color-dark);
+}
+
+.discussion {
+  /* background-color: var(--kagamine-color); */
+  /* background-color: var(--ichika-color); */
+  /* background-color: var(--minori-color); */
+  /* background-color: var(--kohane-color); */
+  /* background-color: var(--tsukasa-color); */
+  background-color: var(--kanade-color);
+}
+
+.achievements {
+  /* background-color: var(--luka-color); */
+  /* background-color: var(--saki-color); */
+  /* background-color: var(--haruka-color); */
+  /* background-color: var(--an-color); */
+  /* background-color: var(--emu-color); */
+  background-color: var(--mafuyu-color);
+}
+
+.question {
+  /* background-color: var(--meiko-color); */
+  /* background-color: var(--honami-color); */
+  /* background-color: var(--airi-color); */
+  /* background-color: var(--akito-color); */
+  /* background-color: var(--nene-color); */
+  background-color: var(--ena-color);
+}
+
+.gameplay {
+  /* background-color: var(--kaito-color); */
+  /* background-color: var(--shiho-color); */
+  /* background-color: var(--shizuku-color); */
+  /* background-color: var(--touya-color); */
+  /* background-color: var(--rui-color); */
+  background-color: var(--mizuki-color);
+}
+
+.discussion.active {
+  /* background-color: var(--kagamine-color-dark); */
+  /* background-color: var(--ichika-color-dark); */
+  /* background-color: var(--minori-color-dark); */
+  /* background-color: var(--kohane-color-dark); */
+  /* background-color: var(--tsukasa-color-dark); */
+  background-color: var(--kanade-color-dark);
+}
+
+.achievements.active {
+  /* background-color: var(--luka-color-dark); */
+  /* background-color: var(--saki-color-dark); */
+  /* background-color: var(--haruka-color-dark); */
+  /* background-color: var(--an-color-dark); */
+  /* background-color: var(--emu-color-dark); */
+  background-color: var(--mafuyu-color-dark);
+}
+
+.question.active {
+  /* background-color: var(--meiko-color-dark); */
+  /* background-color: var(--honami-color-dark); */
+  /* background-color: var(--airi-color-dark); */
+  /* background-color: var(--akito-color-dark); */
+  /* background-color: var(--nene-color-dark); */
+  background-color: var(--ena-color-dark);
+}
+
+.gameplay.active {
+  /* background-color: var(--kaito-color-dark); */
+  /* background-color: var(--shiho-color-dark); */
+  /* background-color: var(--shizuku-color-dark); */
+  /* background-color: var(--touya-color-dark); */
+  /* background-color: var(--rui-color-dark); */
+  background-color: var(--mizuki-color-dark);
+}
+
+.active {
+  color: rgb(211, 211, 211);
+  cursor: default;
+}
+
 /* .logo {
   height: 6em;
   padding: 1.5em;
