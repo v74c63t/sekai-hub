@@ -114,6 +114,11 @@
   background-color: var(--mizuki-color);
 }
 
+.active {
+  color: rgb(211, 211, 211);
+  cursor: default;
+}
+
 .discussion.active {
   /* background-color: var(--kagamine-color-dark); */
   /* background-color: var(--ichika-color-dark); */
@@ -121,6 +126,7 @@
   /* background-color: var(--kohane-color-dark); */
   /* background-color: var(--tsukasa-color-dark); */
   background-color: var(--kanade-color-dark);
+  cursor: pointer;
 }
 
 .achievements.active {
@@ -130,6 +136,7 @@
   /* background-color: var(--an-color-dark); */
   /* background-color: var(--emu-color-dark); */
   background-color: var(--mafuyu-color-dark);
+  cursor: pointer;
 }
 
 .question.active {
@@ -139,6 +146,7 @@
   /* background-color: var(--akito-color-dark); */
   /* background-color: var(--nene-color-dark); */
   background-color: var(--ena-color-dark);
+  cursor: pointer;
 }
 
 .gameplay.active {
@@ -148,11 +156,7 @@
   /* background-color: var(--touya-color-dark); */
   /* background-color: var(--rui-color-dark); */
   background-color: var(--mizuki-color-dark);
-}
-
-.active {
-  color: rgb(211, 211, 211);
-  cursor: default;
+  cursor: pointer;
 }
 
 /* .logo {

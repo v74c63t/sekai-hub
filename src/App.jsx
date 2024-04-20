@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 import { Link } from 'react-router-dom'
 import PostCondensed from './components/PostCondensed/PostCondensed'
@@ -8,7 +8,13 @@ function App() {
 
   const [UID] = useOutletContext()
 
-  const posts = [
+  const [posts, setPosts] = useState([])
+
+  const [sortByFilter, setSortByFilter] = useState('newest')
+
+  const [filterByFilter, setFilterByFilter] = useState(null)
+
+  var initial = [
     {
       "id": 65,
       "created_at": "2023-04-10 04:45:54.471979+00",
@@ -55,20 +61,50 @@ function App() {
     }
   ]
 
+  useEffect(() => {
+    setPosts(initial)
+  }, [])
+
+  const handleSort = (event) => {
+    if(sortByFilter !== event.target.id) {
+      setSortByFilter(event.target.id)
+      if(event.target.id === 'newest') {
+        initial.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
+        setPosts(initial)
+      }
+      else if(event.target.id === 'most-popular') {
+        initial.sort((a, b) => a.upvotes > b.upvotes ? -1 : 1)
+        setPosts(initial)
+      }
+      console.log(initial)
+    }
+  }
+
+  const handleFilter = (event) => {
+    if(filterByFilter !== event.target.id) {
+      setFilterByFilter(event.target.id)
+      setPosts(initial.filter((post) => post.flair.toLowerCase() === event.target.id))
+    }
+    else {
+      setFilterByFilter(null)
+      setPosts(initial)
+    }
+  }
+
   return (
     <>
       <div className='sort-filter'>
         <div className='sort-container'>
           <h3 className='sort'>Sort By:</h3>
-          <h4 className='sort-flair active'>Newest</h4>
-          <h4 className='sort-flair'>Most Popular</h4>
+          <h4 id='newest' className={sortByFilter === 'newest' ? 'sort-flair active' : 'sort-flair'} onClick={handleSort}>Newest</h4>
+          <h4 id='most-popular' className={sortByFilter === 'most-popular' ? 'sort-flair active' : 'sort-flair'} onClick={handleSort}>Most Popular</h4>
         </div>
         <div className='filter-container'>
           <h3 className='filter'>Filter By:</h3>
-          <h4 className='filter-flair discussion'>Discussion</h4>
-          <h4 className='filter-flair achievements'>Achievements</h4>
-          <h4 className='filter-flair question'>Question</h4>
-          <h4 className='filter-flair gameplay'>Gameplay</h4>
+          <h4 id='discussion' className={filterByFilter !== null && filterByFilter === 'discussion' ? 'filter-flair discussion active' : 'filter-flair discussion'} onClick={handleFilter}>Discussion</h4>
+          <h4 id='achievements' className={filterByFilter !== null && filterByFilter === 'achievements' ? 'filter-flair achievements active' : 'filter-flair achievements'} onClick={handleFilter}>Achievements</h4>
+          <h4 id='question' className={filterByFilter !== null && filterByFilter === 'question' ? 'filter-flair question active' : 'filter-flair question'} onClick={handleFilter}>Question</h4>
+          <h4 id='gameplay' className={filterByFilter !== null && filterByFilter === 'gameplay' ? 'filter-flair gameplay active' : 'filter-flair gameplay'} onClick={handleFilter}>Gameplay</h4>
         </div>
       </div>
       {posts.length !== 0 ? (
