@@ -3,6 +3,7 @@ import './App.css'
 import { Link } from 'react-router-dom'
 import PostCondensed from './components/PostCondensed/PostCondensed'
 import { useOutletContext } from "react-router-dom";
+import { supabase } from './config/Client';
 
 function App() {
 
@@ -63,6 +64,13 @@ function App() {
 
   useEffect(() => {
     setPosts(initial)
+    // const fetchPosts = async() => {
+    //   const {data} = await supabase
+                          // .from('posts')
+                          // .select()
+                          // .order('created_at', {ascending: false})
+    //   setPosts(data)
+    // }
   }, [])
 
   const handleSort = (event) => {
@@ -71,23 +79,45 @@ function App() {
       if(event.target.id === 'newest') {
         initial.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
         setPosts(initial)
+        // const {data} = await supabase
+        //                       .from('posts')
+        //                       .select()
+        //                       .order('created_at', {ascending: false})
+        // setPosts(data)
+
       }
       else if(event.target.id === 'most-popular') {
         initial.sort((a, b) => a.upvotes > b.upvotes ? -1 : 1)
         setPosts(initial)
+        // const {data} = await supabase
+        //                       .from('posts')
+        //                       .select()
+        //                       .order('upvotes', {ascending: false})
+        // setPosts(data)
       }
-      console.log(initial)
     }
   }
 
   const handleFilter = (event) => {
+    // const order = sortByFilter === 'newest' ? 'created_at' : 'upvotes'
     if(filterByFilter !== event.target.id) {
       setFilterByFilter(event.target.id)
       setPosts(initial.filter((post) => post.flair.toLowerCase() === event.target.id))
+      // const {data} = await supabase
+      //                       .from('posts')
+      //                       .select()
+      //                       .eq('flair', (event.target.id.charAt(0).toUpperCase() + event.target.id.slice(1)))
+      //                       .order(order, {ascending: false})
+      // setPosts(data)
     }
     else {
       setFilterByFilter(null)
       setPosts(initial)
+      // const {data} = await supabase
+      //                       .from('posts')
+      //                       .select()
+      //                       .order(order, {ascending: false})
+      // setPosts(data)
     }
   }
 
