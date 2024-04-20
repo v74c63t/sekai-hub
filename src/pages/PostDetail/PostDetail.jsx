@@ -22,7 +22,7 @@ const PostDetail = () => {
       "content": "",
       "url": "",
       "upvotes": 3,
-      "comments": ["America!!!"],
+      "comments": [{"user_id": "tw-dl3nCe_6t", "comment": "America!!!"}],
       "flair": "Discussion",
       "uid": "8YF1ziS3PUPW"
     },
@@ -33,7 +33,7 @@ const PostDetail = () => {
       "content": "It's holy, Roman, and an empire",
       "url": "",
       "upvotes": 23,
-      "comments": ["Very true", "Haha!"],
+      "comments": [{"user_id": "8YF1ziS3PUPW", "comment": "Very true"}, {"user_id": "kOdN4Ns53PP9", "comment": "Haha!"}],
       "flair": "Achievements",
       "uid": "tw-dl3nCe_6t"
     },
@@ -44,7 +44,7 @@ const PostDetail = () => {
       "content": "Mine is Thomas Jefferson! What about you?",
       "url": "https://i.imgur.com/0QpthJU.jpg",
       "upvotes": 3,
-      "comments": ["It's gotta be George Washington!", "Did you forget about Ben Franklin?"],
+      "comments": [{"user_id": "8YF1ziS3PUPW", "comment": "It's gotta be George Washington!"}, {"user_id": "tw-dl3nCe_6t", "comment": "Did you forget about Ben Franklin?"}],
       "flair": "Question",
       "uid": "kOdN4Ns53PP9"
     },
@@ -86,7 +86,7 @@ const PostDetail = () => {
   const handleSubmit = (event) => {
     if(event.key === 'Enter') {
       if(userComment.replace(/\s/g, '') !== '') {
-        setComments([...comments, userComment])
+        setComments([...comments, {"user_id": UID, "comment": userComment}])
         // const {data} = await supabase
         //                       .from('comments')
         //                       .insert({'post_id': id, 'comment': userComment, 'user_id': UID })
@@ -109,7 +109,7 @@ const PostDetail = () => {
           {
             comments.map((comment, i) => {
               return (
-                <div key={i}>{comment}</div>
+                <div key={i}><strong>{comment.user_id}:</strong> {comment.comment}</div>
               )
             })
           }
