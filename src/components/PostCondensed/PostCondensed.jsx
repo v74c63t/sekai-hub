@@ -1,7 +1,7 @@
 import './PostCondensed.css'
 import { Link } from 'react-router-dom'
 
-const PostCondensed = ({post, uid}) => {
+const PostCondensed = ({post}) => {
 
   return (
     <div className='post'>
