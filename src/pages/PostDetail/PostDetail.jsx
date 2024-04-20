@@ -3,10 +3,13 @@ import './PostDetail.css'
 import { useEffect, useState } from 'react'
 import { supabase } from '../../config/Client'
 import { useOutletContext } from "react-router-dom";
+import { Icon } from '@iconify/react/dist/iconify.js';
+import { useNavigate } from 'react-router-dom';
 
 const PostDetail = () => {
   const {id} = useParams()
   const [UID] = useOutletContext()
+  const navigate = useNavigate();
 
   const [post, setPost] = useState(null)
 
@@ -96,6 +99,27 @@ const PostDetail = () => {
     }
   }
 
+  const handleUpvote = () => {
+    // await supabase
+    //         .from('posts')
+    //         .update({'upvotes': posts.upvotes + 1})
+    //         .eq('id', id)
+    setPost((prev)=>({...prev, 'upvotes': post.upvotes + 1}))
+  }
+
+  const handleUpdate = () => {
+    //TODO
+    console.log('prompt for secret key')
+    console.log('redirect to update page')
+    navigate(`/update/${id}`)
+  }
+
+  const handleDelete = () => {
+    //TODO
+    console.log('prompt for secret key')
+    console.log('delete post')
+  }
+
   return (
     <>
       {post !== null ? (
@@ -104,7 +128,16 @@ const PostDetail = () => {
           <div>{post.title} <span>{post.flair}</span></div>
           <div>{post.content}</div>
           {post.url !== "" ? <img src={post.url} alt="" /> : ""}
-          <div>Upvotes: {post.upvotes}</div>
+          <div className='post-btns'>
+            <div className="upvote-container">
+              <Icon className="upvotes-icon" icon={"bxs:upvote"} width={'1.5rem'} height={'1.5rem'} onClick={handleUpvote}></Icon>
+              <div><strong>Upvotes:</strong> {post.upvotes}</div>
+            </div>
+            <div className="post-update-container">
+              <Icon icon="bxs:edit" width="1.7rem" height="1.7rem" onClick={handleUpdate} />
+              <Icon className='delete-icon' icon="material-symbols:delete-outline" width="1.8rem" height="1.8rem" onClick={handleDelete} />
+            </div>
+          </div>
           <div>Comments</div>
           {
             comments.map((comment, i) => {

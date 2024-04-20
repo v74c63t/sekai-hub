@@ -3,3 +3,31 @@
   padding: 2rem 5rem;
   border-radius: 1rem;
 }
+
+.post-btns {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.upvote-container, .post-update-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.upvotes-icon {
+  cursor: pointer;
+  /* color: var(--miku-color); */
+  /* color: var(--ln-color); */
+  /* color: var(--mmj-color); */
+  /* color: var(--vbs-color); */
+  /* color: var(--wxs-color); */
+  color: var(--n25-color);
+}
+
+.delete-icon {
+  color: red;
+}
