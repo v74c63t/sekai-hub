@@ -9,7 +9,7 @@ const NavBar = () => {
 
   return (
     <div>
-      <div className="container">
+      <div className="nav-bar-container">
         <nav className='nav-bar'>
           <div className="nav-bar-list">
             <Link className='header-link' to="/">
