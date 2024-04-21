@@ -8,6 +8,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import 'ldrs/dotSpinner'
 
 
 const UpdatePost = () => {
@@ -18,6 +19,8 @@ const UpdatePost = () => {
   const [postFlair, setPostFlair] = useState(null)
   const [postContent, setPostContent] = useState('')
   const [postURL, setPostURL] = useState('')
+
+  const [loading, setLoading] = useState(false)
 
   const [open, setOpen] = useState(false)
 
@@ -87,29 +90,19 @@ const UpdatePost = () => {
 
   const handleUpdatePost = (event) => {
     event.preventDefault()
+    setLoading(true)
     setOpen(true)
     console.log(postFlair)
     console.log(postTitle)
     console.log(postContent)
     console.log(postURL)
     console.log('update')
+    setLoading(false)
   }
 
   const handleClose = () => {
     setOpen(false)
   }
-
-  const modalStyle = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'background.paper',
-    borderRadius: '1rem',
-    boxShadow: 24,
-    p: 4,
-  };
 
   return (
     <div className="update-post-form">
@@ -147,20 +140,40 @@ const UpdatePost = () => {
           fullWidth
           maxWidth='xs'
         >
-          <DialogTitle id="alert-dialog-title" className="dialog-title">
-            Success!
-          </DialogTitle>
-          <DialogContent dividers>
-            <DialogContentText id="alert-dialog-description" className="dialog-content">
-              Post was updated successfully! View the updated post or return home.
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions className="dialog-actions">
-            <div className="dialog-btns-container">
-              <div className="dialog-btns" onClick={()=>navigate('/')}>Back to Home</div>
-              <div className="dialog-btns" onClick={handleClose}>View Post</div>
-            </div>
-          </DialogActions>
+          {loading ? (
+            <>
+              <DialogTitle id="alert-dialog-title" className="dialog-title-loading">
+                Loading
+              </DialogTitle>
+              <DialogContent>
+                <div className="spinner-container">
+                  <l-dot-spinner
+                    size="50"
+                    speed="0.9"
+                    color={'gray'}
+                  ></l-dot-spinner>
+                </div>
+              </DialogContent>
+            </>
+          ):
+          (
+            <>
+              <DialogTitle id="alert-dialog-title" className="dialog-title">
+                Success!
+              </DialogTitle>
+              <DialogContent dividers>
+                <DialogContentText id="alert-dialog-description" className="dialog-content">
+                  Post was updated successfully! View the updated post or return home.
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions className="dialog-actions">
+                <div className="dialog-btns-container">
+                  <div className="dialog-btns" onClick={()=>navigate('/')}>Back to Home</div>
+                  <div className="dialog-btns" onClick={()=>navigate(`/post/${id}`)}>View Post</div>
+                </div>
+              </DialogActions>
+            </>
+          )}
         </Dialog>
       </Box>
     </div>

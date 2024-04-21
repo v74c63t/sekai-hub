@@ -8,6 +8,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import 'ldrs/dotSpinner'
 
 const CreatePost = () => {
   const [UID] = useOutletContext()
@@ -16,27 +17,27 @@ const CreatePost = () => {
   const [postFlair, setPostFlair] = useState(null)
   const [postContent, setPostContent] = useState('')
   const [postURL, setPostURL] = useState('')
+  const [postID, setPostID] = useState(0)
+
+  const [loading, setLoading] = useState(false)
 
   const [open, setOpen] = useState(false)
 
   const handleCreatePost = (event) => {
     event.preventDefault()
+    setLoading(true)
     setOpen(true)
     console.log(postFlair)
     console.log(postTitle)
     console.log(postContent)
     console.log(postURL)
     console.log('create')
+    setLoading(false)
   }
 
   const handleClose = () => {
     setOpen(false)
   }
-
-  // const modalBtnStyle = {
-  //   textTransform: 'none',
-  //   backgroundColor:
-  // };
 
   return (
     <div className="create-post-form">
@@ -74,20 +75,46 @@ const CreatePost = () => {
           fullWidth
           maxWidth='xs'
         >
-          <DialogTitle id="alert-dialog-title" className="dialog-title">
-            Success!
-          </DialogTitle>
-          <DialogContent dividers>
-            <DialogContentText id="alert-dialog-description" className="dialog-content">
-              Post was created successfully! View the newly created post or return home.
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions className="dialog-actions">
-            <div className="dialog-btns-container">
-              <div className="dialog-btns" onClick={()=>navigate('/')}>Back to Home</div>
-              <div className="dialog-btns" onClick={handleClose}>View Post</div>
-            </div>
-          </DialogActions>
+          {loading ? (
+            <>
+              <DialogTitle id="alert-dialog-title" className="dialog-title-loading">
+                Loading
+              </DialogTitle>
+              <DialogContent>
+                <div className="spinner-container">
+                  <l-dot-spinner
+                    size="50"
+                    speed="0.9"
+                    color={'gray'}
+                  ></l-dot-spinner>
+                </div>
+              </DialogContent>
+              {/* <DialogActions className="dialog-actions">
+                <div className="dialog-btns-container">
+                  <div className="dialog-btns" onClick={()=>navigate('/')}>Back to Home</div>
+                  <div className="dialog-btns" onClick={()=>navigate(`/post/${postID}`)}>View Post</div>
+                </div>
+              </DialogActions> */}
+            </>
+          ):
+          (
+            <>
+              <DialogTitle id="alert-dialog-title" className="dialog-title">
+                Success!
+              </DialogTitle>
+              <DialogContent dividers>
+                <DialogContentText id="alert-dialog-description" className="dialog-content">
+                  Post was created successfully! View the newly created post or return home.
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions className="dialog-actions">
+                <div className="dialog-btns-container">
+                  <div className="dialog-btns" onClick={()=>navigate('/')}>Back to Home</div>
+                  <div className="dialog-btns" onClick={()=>navigate(`/post/${postID}`)}>View Post</div>
+                </div>
+              </DialogActions>
+            </>
+          )}
         </Dialog>
       </Box>
     </div>

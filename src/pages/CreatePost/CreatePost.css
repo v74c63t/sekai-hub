@@ -95,3 +95,19 @@
   font-weight: bold !important;
   font-size: 1.2rem !important;
 }
+
+.spinner-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.dialog-title-loading {
+  text-align: center;
+  font-weight: bolder !important;
+  font-size: 2rem !important;
+  padding: 0.8rem !important;
+  margin-top: 1rem !important;
+}
