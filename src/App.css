@@ -159,6 +159,47 @@
   cursor: pointer;
 }
 
+.fab-container {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin: 1.5rem;
+}
+
+.fab {
+  /* background-color: var(--miku-color); */
+  /* background-color: var(--ln-color); */
+  /* background-color: var(--mmj-color); */
+  /* background-color: var(--vbs-color); */
+  /* background-color: var(--wxs-color); */
+  background-color: var(--n25-color);
+  border-radius: 100%;
+  border: none;
+  padding: 0.9rem 1rem;
+  cursor: pointer;
+}
+
+.fab:hover {
+  /* background-color: var(--miku-color-dark); */
+  /* background-color: var(--ln-color-dark); */
+  /* background-color: var(--mmj-color-dark); */
+  /* background-color: var(--vbs-color-dark); */
+  /* background-color: var(--wxs-color-dark); */
+  background-color: var(--n25-color-dark);
+  border-radius: 100%;
+  border: none;
+  padding: 0.9rem 1rem;
+  cursor: pointer;
+}
+
+.fab-icon {
+  color: white;
+}
+
+.fab-icon:hover {
+  color: rgb(211, 211, 211);
+}
+
 /* .logo {
   height: 6em;
   padding: 1.5em;

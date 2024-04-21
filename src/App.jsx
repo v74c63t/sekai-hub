@@ -2,12 +2,16 @@ import { useState, useEffect } from 'react'
 import './App.css'
 import { Link } from 'react-router-dom'
 import PostCondensed from './components/PostCondensed/PostCondensed'
-import { useOutletContext } from "react-router-dom";
+import { useOutletContext, useNavigate } from "react-router-dom";
 import { supabase } from './config/Client';
+import Fab from '@mui/material/Fab';
+import AddIcon from '@mui/icons-material/Add';
 
 function App() {
 
   const [UID] = useOutletContext()
+  
+  const navigate = useNavigate()
 
   const [posts, setPosts] = useState([])
 
@@ -151,6 +155,11 @@ function App() {
         <p>Get started on contributing by <Link className="create-link" to="/create">creating a new post</Link>!</p>
       </div>
       }
+      <div className='fab-container'>
+        <button className='fab' onClick={()=>navigate('/create')}>
+          <AddIcon sx={{ fontSize: 30 }} className='fab-icon' />
+        </button>
+      </div>
     </>
   )
 }
