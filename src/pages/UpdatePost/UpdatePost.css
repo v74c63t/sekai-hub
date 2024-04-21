@@ -1,0 +1,21 @@
+.update-post-form {
+  background-color: white;
+  border-radius: 1rem;
+  padding: 2rem 2rem;
+  width: 40rem;
+  height: 40rem;
+}
+
+.update-post-btn {
+  padding: 0.8rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1.1rem;
+  color: white;
+  /* background-color: var(--miku-color); */
+  /* background-color: var(--ln-color); */
+  /* background-color: var(--mmj-color); */
+  /* background-color: var(--vbs-color); */
+  /* background-color: var(--wxs-color); */
+  background-color: var(--n25-color);
+}
