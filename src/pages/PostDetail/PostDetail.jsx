@@ -5,6 +5,7 @@ import { supabase } from '../../config/Client'
 import { useOutletContext } from "react-router-dom";
 import { Icon } from '@iconify/react/dist/iconify.js';
 import { useNavigate } from 'react-router-dom';
+import Comment from '../../components/Comment/Comment';
 
 const PostDetail = () => {
   const {id} = useParams()
@@ -142,7 +143,7 @@ const PostDetail = () => {
           {
             comments.map((comment, i) => {
               return (
-                <div key={i}><strong>{comment.user_id}:</strong> {comment.comment}</div>
+                <Comment key={i} comment={comment} />
               )
             })
           }
