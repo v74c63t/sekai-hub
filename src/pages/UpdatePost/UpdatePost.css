@@ -18,4 +18,5 @@
   /* background-color: var(--vbs-color); */
   /* background-color: var(--wxs-color); */
   background-color: var(--n25-color);
+  cursor: pointer;
 }

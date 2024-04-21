@@ -45,4 +45,53 @@
   /* background-color: var(--vbs-color); */
   /* background-color: var(--wxs-color); */
   background-color: var(--n25-color);
+  cursor: pointer;
+}
+
+/* .dialog-actions {
+  text-transform: none;
+  display: flex;
+  justify-content: space-between;
+} */
+
+.dialog-btns-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0;
+}
+
+.dialog-btns{
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border: none;
+  /* border: 0.1rem black solid; */
+  border-radius: 0.3rem;
+  /* background-color: var(--miku-color); */
+  /* background-color: var(--ln-color); */
+  /* background-color: var(--mmj-color); */
+  /* background-color: var(--vbs-color); */
+  /* background-color: var(--wxs-color); */
+  background-color: var(--n25-color);
+  color: white;
+  padding: 0.4rem;
+}
+
+.dialog-title {
+  text-align: center;
+  font-weight: bolder !important;
+  font-size: 1.7rem !important;
+  padding: 0 !important;
+  margin: 0.5rem !important;
+}
+
+.dialog-content {
+  text-align: center;
+  font-weight: bold !important;
+  font-size: 1.2rem !important;
 }

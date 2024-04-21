@@ -1,16 +1,25 @@
 import './UpdatePost.css'
-import { useOutletContext, useParams } from "react-router-dom";
+import { useOutletContext, useParams, useNavigate } from "react-router-dom";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { useState, useEffect } from "react";
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+
 
 const UpdatePost = () => {
   const {id} = useParams()
   const [UID] = useOutletContext()
+  const navigate = useNavigate()
   const [postTitle, setPostTitle] = useState('')
   const [postFlair, setPostFlair] = useState(null)
   const [postContent, setPostContent] = useState('')
   const [postURL, setPostURL] = useState('')
+
+  const [open, setOpen] = useState(false)
 
   const posts = [
     {
@@ -78,12 +87,29 @@ const UpdatePost = () => {
 
   const handleUpdatePost = (event) => {
     event.preventDefault()
+    setOpen(true)
     console.log(postFlair)
     console.log(postTitle)
     console.log(postContent)
     console.log(postURL)
     console.log('update')
   }
+
+  const handleClose = () => {
+    setOpen(false)
+  }
+
+  const modalStyle = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    borderRadius: '1rem',
+    boxShadow: 24,
+    p: 4,
+  };
 
   return (
     <div className="update-post-form">
@@ -113,6 +139,29 @@ const UpdatePost = () => {
           onChange={(event)=>setPostContent(event.target.value)} />
         <TextField className="form-text-field" placeholder={'Image URL (Optional)'} value={postURL} onChange={(event)=>setPostURL(event.target.value)} />
         <button className="update-post-btn" type="submit" onClick={handleUpdatePost}>Update Post</button>
+        <Dialog
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+          fullWidth
+          maxWidth='xs'
+        >
+          <DialogTitle id="alert-dialog-title" className="dialog-title">
+            Success!
+          </DialogTitle>
+          <DialogContent dividers>
+            <DialogContentText id="alert-dialog-description" className="dialog-content">
+              Post was updated successfully! View the updated post or return home.
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions className="dialog-actions">
+            <div className="dialog-btns-container">
+              <div className="dialog-btns" onClick={()=>navigate('/')}>Back to Home</div>
+              <div className="dialog-btns" onClick={handleClose}>View Post</div>
+            </div>
+          </DialogActions>
+        </Dialog>
       </Box>
     </div>
   )

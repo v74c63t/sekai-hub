@@ -1,24 +1,42 @@
-import { useOutletContext } from "react-router-dom";
+import { useOutletContext, useNavigate } from "react-router-dom";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import './CreatePost.css'
 import { useState, useEffect } from "react";
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
 const CreatePost = () => {
   const [UID] = useOutletContext()
+  const navigate = useNavigate()
   const [postTitle, setPostTitle] = useState('')
   const [postFlair, setPostFlair] = useState(null)
   const [postContent, setPostContent] = useState('')
   const [postURL, setPostURL] = useState('')
 
+  const [open, setOpen] = useState(false)
+
   const handleCreatePost = (event) => {
     event.preventDefault()
+    setOpen(true)
     console.log(postFlair)
     console.log(postTitle)
     console.log(postContent)
     console.log(postURL)
     console.log('create')
   }
+
+  const handleClose = () => {
+    setOpen(false)
+  }
+
+  // const modalBtnStyle = {
+  //   textTransform: 'none',
+  //   backgroundColor:
+  // };
 
   return (
     <div className="create-post-form">
@@ -48,6 +66,29 @@ const CreatePost = () => {
           onChange={(event)=>setPostContent(event.target.value)} />
         <TextField className="form-text-field" placeholder={'Image URL (Optional)'} value={postURL} onChange={(event)=>setPostURL(event.target.value)} />
         <button className="create-post-btn" type="submit" onClick={handleCreatePost}>Create Post</button>
+        <Dialog
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+          fullWidth
+          maxWidth='xs'
+        >
+          <DialogTitle id="alert-dialog-title" className="dialog-title">
+            Success!
+          </DialogTitle>
+          <DialogContent dividers>
+            <DialogContentText id="alert-dialog-description" className="dialog-content">
+              Post was created successfully! View the newly created post or return home.
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions className="dialog-actions">
+            <div className="dialog-btns-container">
+              <div className="dialog-btns" onClick={()=>navigate('/')}>Back to Home</div>
+              <div className="dialog-btns" onClick={handleClose}>View Post</div>
+            </div>
+          </DialogActions>
+        </Dialog>
       </Box>
     </div>
   )
