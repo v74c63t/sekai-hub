@@ -152,7 +152,7 @@ function App() {
       ) :
       <div className='no-posts'>
         <p>There are no posts currently.</p>
-        <p>Get started on contributing by <Link className="create-link" to="/create">creating a new post</Link>!</p>
+        <p>Get started on contributing by <Link className={`${theme} create-link`} to="/create">creating a new post</Link>!</p>
       </div>
       }
       <div className='fab-container'>
