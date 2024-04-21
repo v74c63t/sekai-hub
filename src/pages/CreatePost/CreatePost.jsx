@@ -2,7 +2,7 @@ import { useOutletContext } from "react-router-dom";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import './CreatePost.css'
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const CreatePost = () => {
   const [UID] = useOutletContext()
@@ -13,6 +13,7 @@ const CreatePost = () => {
 
   const handleCreatePost = (event) => {
     event.preventDefault()
+    console.log(postFlair)
     console.log(postTitle)
     console.log(postContent)
     console.log(postURL)
