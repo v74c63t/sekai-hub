@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 const PostDetail = () => {
   const {id} = useParams()
-  const [UID] = useOutletContext()
+  const [UID, theme] = useOutletContext()
   const navigate = useNavigate();
 
   const [post, setPost] = useState(null)
@@ -130,11 +130,11 @@ const PostDetail = () => {
           {post.url !== "" ? <img src={post.url} alt="" /> : ""}
           <div className='post-btns'>
             <div className="upvote-container">
-              <Icon className="upvotes-icon" icon={"bxs:upvote"} width={'1.5rem'} height={'1.5rem'} onClick={handleUpvote}></Icon>
+              <Icon className={`${theme} upvotes-icon`} icon={"bxs:upvote"} width={'1.5rem'} height={'1.5rem'} onClick={handleUpvote}></Icon>
               <div><strong>Upvotes:</strong> {post.upvotes}</div>
             </div>
             <div className="post-update-container">
-              <Icon icon="bxs:edit" width="1.7rem" height="1.7rem" onClick={handleUpdate} />
+              <Icon className={theme} icon="bxs:edit" width="1.7rem" height="1.7rem" onClick={handleUpdate} />
               <Icon className='delete-icon' icon="material-symbols:delete-outline" width="1.8rem" height="1.8rem" onClick={handleDelete} />
             </div>
           </div>
