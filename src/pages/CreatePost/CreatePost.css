@@ -3,7 +3,7 @@
   border-radius: 1rem;
   padding: 2rem 2rem;
   width: 40rem;
-  height: 40rem;
+  height: 45rem;
 }
 
 .form-container {
@@ -30,7 +30,7 @@
 
 .form-text-field {
   background-color: rgb(238, 238, 238);
-  width: 95%;
+  width: 100%;
 }
 
 .create-post-btn {

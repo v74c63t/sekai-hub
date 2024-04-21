@@ -9,6 +9,10 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import 'ldrs/dotSpinner'
+import Tab from '@mui/material/Tab';
+import TabContext from '@mui/lab/TabContext';
+import TabList from '@mui/lab/TabList';
+import TabPanel from '@mui/lab/TabPanel';
 
 
 const UpdatePost = () => {
@@ -23,6 +27,12 @@ const UpdatePost = () => {
   const [loading, setLoading] = useState(false)
 
   const [open, setOpen] = useState(false)
+
+  const [tabVal, setTabVal] = useState('1')
+
+  const handleChange = (event, newValue) => {
+    setTabVal(newValue);
+  };
 
   const posts = [
     {
@@ -130,7 +140,23 @@ const UpdatePost = () => {
           placeholder={'Content (Optional)'}
           value={postContent}
           onChange={(event)=>setPostContent(event.target.value)} />
-        <TextField className="form-text-field" placeholder={'Image URL (Optional)'} value={postURL} onChange={(event)=>setPostURL(event.target.value)} />
+        {/* <TextField className="form-text-field" placeholder={'Image URL (Optional)'} value={postURL} onChange={(event)=>setPostURL(event.target.value)} /> */}
+        <Box sx={{ width: '100%', typography: 'body1' }}>
+          <TabContext value={tabVal}>
+            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+              <TabList onChange={handleChange}>
+                <Tab label="Image" value="1" />
+                <Tab label="Video" value="2" />
+              </TabList>
+            </Box>
+            <TabPanel value="1">
+              <TextField className="form-text-field" placeholder={'URL (Optional)'} value={postURL} onChange={(event)=>setPostURL(event.target.value)} />
+            </TabPanel>
+            <TabPanel value="2">
+              <TextField className="form-text-field" placeholder={'YouTube URL (Optional)'} value={postURL} onChange={(event)=>setPostURL(event.target.value)} />
+            </TabPanel>
+          </TabContext>
+        </Box>
         <button className={`${theme}-bg update-post-btn`} type="submit" onClick={handleUpdatePost}>Update Post</button>
         <Dialog
           open={open}
