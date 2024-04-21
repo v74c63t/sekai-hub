@@ -93,6 +93,270 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.vs-bg {
+  background-color: var(--miku-color);
+}
+
+.ln-bg {
+  background-color: var(--ln-color);
+}
+
+.mmj-bg {
+  background-color: var(--mmj-color);
+}
+
+.vbs-bg {
+  background-color: var(--vbs-color);
+}
+
+.wxs-bg {
+  background-color: var(--wxs-color);
+}
+
+.n25-bg {
+  background-color: var(--n25-color);
+}
+
+.vs-bg.active, .vs-bg.fab:hover {
+  background-color: var(--miku-color-dark);
+}
+
+.ln-bg.active, .ln-bg.fab:hover {
+  background-color: var(--ln-color-dark);
+}
+
+.mmj-bg.active, .mmj-bg.fab:hover {
+  background-color: var(--mmj-color-dark);
+}
+
+.vbs-bg.active, .vbs-bg.fab:hover {
+  background-color: var(--vbs-color-dark);
+}
+
+.wxs-bg.active, .wxs-bg.fab:hover {
+  background-color: var(--wxs-color-dark);
+}
+
+.n25-bg.active, .n25-bg.fab:hover {
+  background-color: var(--n25-color-dark);
+}
+
+.vs {
+  color: var(--miku-color);
+}
+
+.ln {
+  color: var(--ln-color);
+}
+
+.mmj {
+  color: var(--mmj-color);
+}
+
+.vbs {
+  color: var(--vbs-color);
+}
+
+.wxs {
+  color: var(--wxs-color);
+}
+
+.n25 {
+  color: var(--n25-color);
+}
+
+.vs-bg.discussion {
+  background-color: var(--kagamine-color);
+}
+
+.vs-bg.discussion.active {
+  background-color: var(--kagamine-color-dark); 
+}
+
+.vs-bg.achievements {
+  background-color: var(--luka-color);
+}
+
+.vs-bg.achievements.active {
+  background-color: var(--luka-color-dark);
+}
+
+.vs-bg.question {
+  background-color: var(--meiko-color);
+}
+
+.vs-bg.question.active {
+  background-color: var(--meiko-color-dark);
+}
+
+.vs-bg.gameplay {
+  background-color: var(--kaito-color);
+}
+
+.vs-bg.gameplay.active {
+  background-color: var(--kaito-color-dark);
+}
+
+.ln-bg.discussion {
+  background-color: var(--ichika-color);
+}
+
+.ln-bg.discussion.active {
+  background-color: var(--ichika-color-dark); 
+}
+
+.ln-bg.achievements {
+  background-color: var(--saki-color);
+}
+
+.ln-bg.achievements.active {
+  background-color: var(--saki-color-dark);
+}
+
+.ln-bg.question {
+  background-color: var(--honami-color);
+}
+
+.ln-bg.question.active {
+  background-color: var(--honami-color-dark);
+}
+
+.ln-bg.gameplay {
+  background-color: var(--shiho-color);
+}
+
+.ln-bg.gameplay.active {
+  background-color: var(--shiho-color-dark);
+}
+
+.mmj-bg.discussion {
+  background-color: var(--minori-color);
+}
+
+.mmj-bg.discussion.active {
+  background-color: var(--minori-color-dark); 
+}
+
+.mmj-bg.achievements {
+  background-color: var(--haruka-color);
+}
+
+.mmj-bg.achievements.active {
+  background-color: var(--haruka-color-dark);
+}
+
+.mmj-bg.question {
+  background-color: var(--airi-color);
+}
+
+.mmj-bg.question.active {
+  background-color: var(--airi-color-dark);
+}
+
+.mmj-bg.gameplay {
+  background-color: var(--shizuku-color);
+}
+
+.mmj-bg.gameplay.active {
+  background-color: var(--shizuku-color-dark);
+}
+
+.vbs-bg.discussion {
+  background-color: var(--kohane-color);
+}
+
+.vbs-bg.discussion.active {
+  background-color: var(--kohane-color-dark); 
+}
+
+.vbs-bg.achievements {
+  background-color: var(--an-color);
+}
+
+.vbs-bg.achievements.active {
+  background-color: var(--an-color-dark);
+}
+
+.vbs-bg.question {
+  background-color: var(--akito-color);
+}
+
+.vbs-bg.question.active {
+  background-color: var(--akito-color-dark);
+}
+
+.vbs-bg.gameplay {
+  background-color: var(--touya-color);
+}
+
+.vbs-bg.achievements.active {
+  background-color: var(--touya-color-dark);
+}
+
+.wxs-bg.discussion {
+  background-color: var(--tsukasa-color);
+}
+
+.wxs-bg.discussion.active {
+  background-color: var(--tsukasa-color-dark); 
+}
+
+.wxs-bg.achievements {
+  background-color: var(--emu-color);
+}
+
+.wxs-bg.achievements.active {
+  background-color: var(--emu-color-dark);
+}
+
+.wxs-bg.question {
+  background-color: var(--nene-color);
+}
+
+.wxs-bg.question.active {
+  background-color: var(--nene-color-dark);
+}
+
+.wxs-bg.gameplay {
+  background-color: var(--rui-color);
+}
+
+.wxs-bg.gameplay.active {
+  background-color: var(--rui-color-dark);
+}
+
+.n25-bg.discussion {
+  background-color: var(--kanade-color);
+}
+
+.n25-bg.discussion.active {
+  background-color: var(--kanade-color-dark); 
+}
+
+.n25-bg.achievements {
+  background-color: var(--mafuyu-color);
+}
+
+.n25-bg.achievements.active {
+  background-color: var(--mafuyu-color-dark);
+}
+
+.n25-bg.question {
+  background-color: var(--ena-color);
+}
+
+.n25-bg.question.active {
+  background-color: var(--ena-color-dark);
+}
+
+.n25-bg.gameplay {
+  background-color: var(--mizuki-color);
+}
+
+.n25-bg.gameplay.active {
+  background-color: var(--mizuki-color-dark);
+}
+
 /* a {
   font-weight: 500;
   color: #646cff;

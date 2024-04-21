@@ -9,7 +9,7 @@ import AddIcon from '@mui/icons-material/Add';
 
 function App() {
 
-  const [UID] = useOutletContext()
+  const [UID, theme] = useOutletContext()
   
   const navigate = useNavigate()
 
@@ -130,15 +130,15 @@ function App() {
       <div className='sort-filter'>
         <div className='sort-container'>
           <h3 className='sort'>Sort By:</h3>
-          <h4 id='newest' className={sortByFilter === 'newest' ? 'sort-flair active' : 'sort-flair'} onClick={handleSort}>Newest</h4>
-          <h4 id='most-popular' className={sortByFilter === 'most-popular' ? 'sort-flair active' : 'sort-flair'} onClick={handleSort}>Most Popular</h4>
+          <h4 id='newest' className={sortByFilter === 'newest' ? `sort-flair ${theme}-bg active` : `sort-flair ${theme}-bg`} onClick={handleSort}>Newest</h4>
+          <h4 id='most-popular' className={sortByFilter === 'most-popular' ? `sort-flair ${theme}-bg active` : `sort-flair ${theme}-bg`} onClick={handleSort}>Most Popular</h4>
         </div>
         <div className='filter-container'>
           <h3 className='filter'>Filter By:</h3>
-          <h4 id='discussion' className={filterByFilter !== null && filterByFilter === 'discussion' ? 'filter-flair discussion active' : 'filter-flair discussion'} onClick={handleFilter}>Discussion</h4>
-          <h4 id='achievements' className={filterByFilter !== null && filterByFilter === 'achievements' ? 'filter-flair achievements active' : 'filter-flair achievements'} onClick={handleFilter}>Achievements</h4>
-          <h4 id='question' className={filterByFilter !== null && filterByFilter === 'question' ? 'filter-flair question active' : 'filter-flair question'} onClick={handleFilter}>Question</h4>
-          <h4 id='gameplay' className={filterByFilter !== null && filterByFilter === 'gameplay' ? 'filter-flair gameplay active' : 'filter-flair gameplay'} onClick={handleFilter}>Gameplay</h4>
+          <h4 id='discussion' className={filterByFilter !== null && filterByFilter === 'discussion' ? `filter-flair ${theme}-bg discussion active` : `filter-flair ${theme}-bg discussion`} onClick={handleFilter}>Discussion</h4>
+          <h4 id='achievements' className={filterByFilter !== null && filterByFilter === 'achievements' ? `filter-flair ${theme}-bg achievements active` : `filter-flair ${theme}-bg achievements`} onClick={handleFilter}>Achievements</h4>
+          <h4 id='question' className={filterByFilter !== null && filterByFilter === 'question' ? `filter-flair ${theme}-bg question active` : `filter-flair ${theme}-bg question`} onClick={handleFilter}>Question</h4>
+          <h4 id='gameplay' className={filterByFilter !== null && filterByFilter === 'gameplay' ? `filter-flair ${theme}-bg gameplay active` : `filter-flair ${theme}-bg gameplay`} onClick={handleFilter}>Gameplay</h4>
         </div>
       </div>
       {posts.length !== 0 ? (
@@ -156,7 +156,7 @@ function App() {
       </div>
       }
       <div className='fab-container'>
-        <button className='fab' onClick={()=>navigate('/create')}>
+        <button className={`${theme}-bg fab`} onClick={()=>navigate('/create')}>
           <AddIcon sx={{ fontSize: 30 }} className='fab-icon' />
         </button>
       </div>

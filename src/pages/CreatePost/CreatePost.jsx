@@ -11,7 +11,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import 'ldrs/dotSpinner'
 
 const CreatePost = () => {
-  const [UID] = useOutletContext()
+  const [UID, theme] = useOutletContext()
   const navigate = useNavigate()
   const [postTitle, setPostTitle] = useState('')
   const [postFlair, setPostFlair] = useState(null)
@@ -52,10 +52,10 @@ const CreatePost = () => {
       >
         <div className='flair-container'>
           <h3 className='flair-header'>Post Flair:</h3>
-          <h4 id='discussion' className={postFlair !== null && postFlair === 'discussion' ? 'filter-flair discussion active' : 'filter-flair discussion'} onClick={() => setPostFlair('discussion')}>Discussion</h4>
-          <h4 id='achievements' className={postFlair !== null && postFlair === 'achievements' ? 'filter-flair achievements active' : 'filter-flair achievements'} onClick={() => setPostFlair('achievements')}>Achievements</h4>
-          <h4 id='question' className={postFlair !== null && postFlair === 'question' ? 'filter-flair question active' : 'filter-flair question'} onClick={() => setPostFlair('question')}>Question</h4>
-          <h4 id='gameplay' className={postFlair !== null && postFlair === 'gameplay' ? 'filter-flair gameplay active' : 'filter-flair gameplay'} onClick={() => setPostFlair('gameplay')}>Gameplay</h4>
+          <h4 id='discussion' className={postFlair !== null && postFlair === 'discussion' ? `filter-flair ${theme}-bg discussion active` : `filter-flair ${theme}-bg discussion`} onClick={() => setPostFlair('discussion')}>Discussion</h4>
+          <h4 id='achievements' className={postFlair !== null && postFlair === 'achievements' ? `filter-flair ${theme}-bg achievements active` : `filter-flair ${theme}-bg achievements`} onClick={() => setPostFlair('achievements')}>Achievements</h4>
+          <h4 id='question' className={postFlair !== null && postFlair === 'question' ? `filter-flair ${theme}-bg question active` : `filter-flair ${theme}-bg question`} onClick={() => setPostFlair('question')}>Question</h4>
+          <h4 id='gameplay' className={postFlair !== null && postFlair === 'gameplay' ? `filter-flair ${theme}-bg gameplay active` : `filter-flair ${theme}-bg gameplay`} onClick={() => setPostFlair('gameplay')}>Gameplay</h4>
         </div>
         <TextField className="form-text-field" placeholder={'Title'} value={postTitle} onChange={(event)=>setPostTitle(event.target.value)} />
         <TextField 
@@ -66,7 +66,7 @@ const CreatePost = () => {
           value={postContent}
           onChange={(event)=>setPostContent(event.target.value)} />
         <TextField className="form-text-field" placeholder={'Image URL (Optional)'} value={postURL} onChange={(event)=>setPostURL(event.target.value)} />
-        <button className="create-post-btn" type="submit" onClick={handleCreatePost}>Create Post</button>
+        <button className={`${theme}-bg create-post-btn`} type="submit" onClick={handleCreatePost}>Create Post</button>
         <Dialog
           open={open}
           onClose={handleClose}
@@ -109,8 +109,8 @@ const CreatePost = () => {
               </DialogContent>
               <DialogActions className="dialog-actions">
                 <div className="dialog-btns-container">
-                  <div className="dialog-btns" onClick={()=>navigate('/')}>Back to Home</div>
-                  <div className="dialog-btns" onClick={()=>navigate(`/post/${postID}`)}>View Post</div>
+                  <div className={`${theme}-bg dialog-btns`} onClick={()=>navigate('/')}>Back to Home</div>
+                  <div className={`${theme}-bg dialog-btns`} onClick={()=>navigate(`/post/${postID}`)}>View Post</div>
                 </div>
               </DialogActions>
             </>

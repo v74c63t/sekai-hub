@@ -23,7 +23,7 @@ const NavBar = () => {
   return (
     <div>
       <div className="nav-bar-container">
-        <nav className={`nav-bar ${theme}`}>
+        <nav className={`nav-bar ${theme}-bg`}>
           <div className="nav-bar-list">
             <Link className='header-link' to="/">
               <h2 className='header'>Sekai Hub</h2>
@@ -50,7 +50,7 @@ const NavBar = () => {
               }}
               sx={{borderRadius: '1rem', marginTop: '1.5rem'}}
             >
-              <h3 className={`theme-settings-header ${theme}`}>Theme</h3>
+              <h3 className={`theme-settings-header ${theme}-bg`}>Theme</h3>
               <MenuItem onClick={() => {setTheme('vs'); handleClose()}} selected={theme === 'vs'}><img src="/src/assets/vs-logo.jpg" alt="virtual singer logo" height={50} width={'auto'} /></MenuItem>
               <MenuItem onClick={() => {setTheme('ln'); handleClose()}} selected={theme === 'ln'}><img src="/src/assets/ln-logo.jpg" alt="leo/need logo" height={50} width={'auto'} /></MenuItem>
               <MenuItem onClick={() => {setTheme('mmj'); handleClose()}} selected={theme === 'mmj'}><img src="/src/assets/mmj-logo.jpg" alt="more more jump logo" height={50} width={'auto'} /></MenuItem>

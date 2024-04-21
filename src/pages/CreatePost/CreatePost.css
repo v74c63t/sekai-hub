@@ -44,7 +44,7 @@
   /* background-color: var(--mmj-color); */
   /* background-color: var(--vbs-color); */
   /* background-color: var(--wxs-color); */
-  background-color: var(--n25-color);
+  /* background-color: var(--n25-color); */
   cursor: pointer;
 }
 
@@ -77,7 +77,7 @@
   /* background-color: var(--mmj-color); */
   /* background-color: var(--vbs-color); */
   /* background-color: var(--wxs-color); */
-  background-color: var(--n25-color);
+  /* background-color: var(--n25-color); */
   color: white;
   padding: 0.4rem;
 }
