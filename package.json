@@ -13,6 +13,7 @@
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
     "@iconify/react": "^4.1.1",
+    "@mui/icons-material": "^5.15.15",
     "@mui/material": "^5.15.15",
     "@supabase/supabase-js": "^2.42.3",
     "nanoid": "^5.0.7",
