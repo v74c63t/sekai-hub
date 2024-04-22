@@ -22,44 +22,44 @@ const PostDetail = () => {
     {
       "id": 65,
       "created_at": "2023-04-10 04:45:54.471979+00",
-      "title": "Which is better? American Revolution or French Revolution?",
-      "content": "",
-      "url": "",
+      "title": "Who is your favorite character?",
+      "content": "Mine is Kohane!",
+      "url": "https://static.miraheze.org/projectsekaiwiki/c/c6/Kohane_22_art.png",
       "upvotes": 3,
-      "comments": [{"user_id": "tw-dl3nCe_6t", "comment": "America!!!"}],
+      "comments": [{"user_id": "tw-dl3nCe_6t", "comment": "Mizuki!!!"}],
       "flair": "Discussion",
       "uid": "8YF1ziS3PUPW"
     },
     {
       "id": 73,
       "created_at": "2023-04-10 09:20:57.187388+00",
-      "title": "I'm obsessed with the Holy Roman Empire",
-      "content": "It's holy, Roman, and an empire",
+      "title": "FC",
+      "content": "This took forever",
       "url": "",
       "upvotes": 23,
-      "comments": [{"user_id": "8YF1ziS3PUPW", "comment": "Very true"}, {"user_id": "kOdN4Ns53PP9", "comment": "Haha!"}],
+      "comments": [{"user_id": "8YF1ziS3PUPW", "comment": "Congrats!"}, {"user_id": "kOdN4Ns53PP9", "comment": "Good job!"}],
       "flair": "Achievements",
       "uid": "tw-dl3nCe_6t"
     },
     {
       "id": 87,
       "created_at": "2023-04-14 23:53:31.127016+00",
-      "title": "Who is your favorite Founding Father?",
-      "content": "Mine is Thomas Jefferson! What about you?",
+      "title": "Broken Game UI",
+      "content": "UI suddenly got messed up. How can I fix it?",
       "url": "https://i.imgur.com/0QpthJU.jpg",
       "upvotes": 3,
-      "comments": [{"user_id": "8YF1ziS3PUPW", "comment": "It's gotta be George Washington!"}, {"user_id": "tw-dl3nCe_6t", "comment": "Did you forget about Ben Franklin?"}],
+      "comments": [{"user_id": "8YF1ziS3PUPW", "comment": "Just restart the game and it should be fine"}, {"user_id": "tw-dl3nCe_6t", "comment": "I hate when it does that"}],
       "flair": "Question",
       "uid": "kOdN4Ns53PP9"
     },
     {
       "id": 59,
       "created_at": "2023-04-08 01:19:55.739826+00",
-      "title": "I love history!",
-      "content": "",
+      "title": "I hate this game",
+      "content": ":D",
       "url": "https://i.imgur.com/wzk9rEB.jpg",
       "upvotes": 2,
-      "comments": [],
+      "comments": [{"user_id": "kOdN4Ns53PP9", "comment": "oof"}],
       "flair": "Gameplay",
       "uid": "mwlNu_9-TGK0"
     }
@@ -125,29 +125,31 @@ const PostDetail = () => {
     <>
       {post !== null ? (
         <div className='post-detail'>
-          <div>Posted by <span>@{post.uid}</span> on {post.created_at}</div>
-          <div>{post.title} <span>{post.flair}</span></div>
-          <div>{post.content}</div>
-          {post.url !== "" ? <img src={post.url} alt="" /> : ""}
+          <h4 className='timestamp'>Posted by <span className={theme}>@{post.uid}</span> on {post.created_at}</h4>
+          <h3 className='post-detail-title'>{post.title} <span className={`flair ${theme}-bg ${post.flair.toLowerCase()}`}>{post.flair}</span></h3>
+          <p className='post-content'>{post.content}</p>
+          {post.url !== "" ? <img src={post.url} alt="post image" width={'55%'} height={'auto'} /> : ""}
           <div className='post-btns'>
             <div className="upvote-container">
               <Icon className={`${theme} upvotes-icon`} icon={"bxs:upvote"} width={'1.5rem'} height={'1.5rem'} onClick={handleUpvote}></Icon>
-              <div><strong>Upvotes:</strong> {post.upvotes}</div>
+              <p className='post-detail-upvotes'><strong>Upvotes:</strong> {post.upvotes}</p>
             </div>
             <div className="post-update-container">
-              <Icon className={theme} icon="bxs:edit" width="1.7rem" height="1.7rem" onClick={handleUpdate} />
+              <Icon className={`${theme} edit-icon`} icon="bxs:edit" width="1.7rem" height="1.7rem" onClick={handleUpdate} />
               <Icon className='delete-icon' icon="material-symbols:delete-outline" width="1.8rem" height="1.8rem" onClick={handleDelete} />
             </div>
           </div>
-          <div>Comments</div>
-          {
-            comments.map((comment, i) => {
-              return (
-                <Comment key={i} comment={comment} />
-              )
-            })
-          }
-          <input type="text" placeholder='Comment...' value={userComment} onChange={(event)=>setUserComment(event.target.value)} onKeyDown={handleSubmit} />
+          <div className='comments-container'>
+            <h4 className='comment-header'>Comments</h4>
+            {
+              comments.map((comment, i) => {
+                return (
+                  <Comment key={i} comment={comment} />
+                )
+              })
+            }
+            <input className='add-comment' type="text" placeholder='Comment...' value={userComment} onChange={(event)=>setUserComment(event.target.value)} onKeyDown={handleSubmit} />
+          </div>
         </div>
       ) : ""}
     </>

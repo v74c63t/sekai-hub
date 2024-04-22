@@ -1,7 +1,14 @@
 .post-detail {
   background-color: white;
-  padding: 2rem 5rem;
+  padding: 2rem 4rem;
   border-radius: 1rem;
+  width: 70rem;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin: 0 auto;
+  gap: 0.7rem;
 }
 
 .post-btns {
@@ -9,6 +16,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 0.1rem;
 }
 
 .upvote-container, .post-update-container {
@@ -18,16 +26,61 @@
   gap: 0.5rem;
 }
 
-.upvotes-icon {
+.edit-icon, .delete-icon, .upvotes-icon {
   cursor: pointer;
-  /* color: var(--miku-color); */
-  /* color: var(--ln-color); */
-  /* color: var(--mmj-color); */
-  /* color: var(--vbs-color); */
-  /* color: var(--wxs-color); */
-  /* color: var(--n25-color); */
 }
 
 .delete-icon {
   color: red;
+  /* cursor: pointer; */
+}
+
+.timestamp {
+  font-weight: 400;
+  font-size: 0.9rem;
+  padding: 0;
+  margin: 0;
+}
+
+.post-detail-title{
+  font-weight: 700;
+  font-size: 1.5rem;
+  padding: 0;
+  margin: 0;
+}
+
+.post-content {
+  font-weight: 500;
+  font-size: 1.1rem;
+  padding: 0;
+  margin: 0;
+}
+
+.post-detail-upvotes{
+  font-weight: 400;
+  font-size: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+.comments-container {
+  background-color: rgb(238, 238, 238);
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.3rem;
+}
+
+.comment-header {
+  padding: 0;
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.add-comment {
+  margin-top: 0.3rem;
+  padding: 0.4rem;
+  font-size: 1rem;
 }
