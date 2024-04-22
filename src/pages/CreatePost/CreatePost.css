@@ -3,7 +3,7 @@
   border-radius: 1rem;
   padding: 2rem 2rem;
   width: 40rem;
-  height: 45rem;
+  height: auto;
 }
 
 .form-container {
@@ -110,4 +110,18 @@
   font-size: 2rem !important;
   padding: 0.8rem !important;
   margin-top: 1rem !important;
+}
+
+.url-tab-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.no-url-message {
+  padding: 0;
+  margin: 0;
+  font-size: 1rem;
 }

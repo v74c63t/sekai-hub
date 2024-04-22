@@ -13,6 +13,10 @@ import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import ReactPlayer from 'react-player'
 
 const CreatePost = () => {
   const [UID, theme] = useOutletContext()
@@ -31,6 +35,12 @@ const CreatePost = () => {
 
   const handleChange = (event, newValue) => {
     setTabVal(newValue);
+  };
+
+  const [urlType, setURLType] = useState('image');
+  
+  const handleSelectChange = (event) => {
+    setURLType(event.target.value);
   };
 
   const handleCreatePost = (event) => {
@@ -71,7 +81,7 @@ const CreatePost = () => {
         <TextField 
           className="form-text-field" 
           multiline
-          rows={15}
+          rows={10}
           placeholder={'Content (Optional)'}
           value={postContent}
           onChange={(event)=>setPostContent(event.target.value)} />
@@ -80,15 +90,49 @@ const CreatePost = () => {
           <TabContext value={tabVal}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
               <TabList onChange={handleChange}>
-                <Tab label="Image" value="1" />
-                <Tab label="Video" value="2" />
+                <Tab label="URL" value="1" />
+                <Tab label="Preview" value="2" />
               </TabList>
             </Box>
-            <TabPanel value="1">
-              <TextField className="form-text-field" placeholder={'URL (Optional)'} value={postURL} onChange={(event)=>setPostURL(event.target.value)} />
+            <TabPanel value="1" sx={{ p: 0.5 }}>
+              <div className="url-tab-container">
+                <FormControl sx={{ m: 1, minWidth: 100 }}>
+                  <Select
+                    value={urlType}
+                    onChange={handleSelectChange}
+                  >
+                    <MenuItem value={'image'}>Image</MenuItem>
+                    <MenuItem value={'video'}>Video</MenuItem>
+                  </Select>
+                </FormControl>
+                <TextField 
+                  className="form-text-field" 
+                  placeholder={'Image or Video URL (Optional)'} 
+                  value={postURL} 
+                  onChange={(event)=>setPostURL(event.target.value)} />
+              </div>
             </TabPanel>
-            <TabPanel value="2">
-              <TextField className="form-text-field" placeholder={'YouTube URL (Optional)'} value={postURL} onChange={(event)=>setPostURL(event.target.value)} />
+            <TabPanel value="2" sx={{ p: 1.5 }}>
+              {
+                postURL.replace(/\s/g, '') === '' ? (
+                  <p className="no-url-message">There is nothing to be previewed currently. Please input a url in the previous tab.</p>
+                )
+                :
+                urlType === 'image' ? (
+                  <img 
+                    src={postURL}
+                    alt="There was an issue with displaying the previewed image. Please input a different URL if this problem persists." 
+                    width={'100%'} 
+                    height={'auto'}
+                     />
+                ) 
+                : 
+                urlType === 'video' ? (
+                  <ReactPlayer url={postURL} controls width={'100%'} />
+                )
+                : ""
+              }
+              {/* <TextField className="form-text-field" placeholder={'YouTube URL (Optional)'} value={postURL} onChange={(event)=>setPostURL(event.target.value)} /> */}
             </TabPanel>
           </TabContext>
         </Box>
