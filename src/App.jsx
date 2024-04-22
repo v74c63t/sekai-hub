@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import PostCondensed from './components/PostCondensed/PostCondensed'
 import { useOutletContext, useNavigate } from "react-router-dom";
 import { supabase } from './config/Client';
-import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import data from './data/data.json'
 
@@ -37,8 +36,9 @@ function App() {
     if(sortByFilter !== event.target.id) {
       setSortByFilter(event.target.id)
       if(event.target.id === 'newest') {
-        initial.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
-        setPosts(initial)
+        var sortedPosts = posts
+        sortedPosts.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
+        setPosts(sortedPosts)
         // const {data} = await supabase
         //                       .from('posts')
         //                       .select()
@@ -47,8 +47,9 @@ function App() {
 
       }
       else if(event.target.id === 'most-popular') {
-        initial.sort((a, b) => a.upvotes > b.upvotes ? -1 : 1)
-        setPosts(initial)
+        var sortedPosts = posts
+        sortedPosts.sort((a, b) => a.upvotes > b.upvotes ? -1 : 1)
+        setPosts(sortedPosts)
         // const {data} = await supabase
         //                       .from('posts')
         //                       .select()
