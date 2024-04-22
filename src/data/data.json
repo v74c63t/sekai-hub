@@ -1,0 +1,88 @@
+{
+  "posts": [
+    {
+      "id": 65,
+      "created_at": "2023-04-10 04:45:54.471979+00",
+      "title": "Who is your favorite character?",
+      "content": "Mine is Kohane!",
+      "url": "https://static.miraheze.org/projectsekaiwiki/c/c6/Kohane_22_art.png",
+      "upvotes": 3,
+      "comments": [{"user_id": "tw-dl3nCe_6t", "comment": "Mizuki!!!"}],
+      "flair": "Discussion",
+      "uid": "8YF1ziS3PUPW",
+      "video": false
+    },
+    {
+      "id": 66,
+      "created_at": "2023-04-22 02:45:54.471979+00",
+      "title": "What's your favorite commission song?",
+      "content": "",
+      "url": "https://www.youtube.com/watch?v=WjOOm4SAeHI",
+      "upvotes": 3,
+      "comments": [{"user_id": "cia9csx9JZ96", "comment": "Tondemo Wonderz!!!"}, {"user_id": "G3r9oSPd5Btq", "comment": "Regulus sounded amazing!"}],
+      "flair": "Discussion",
+      "uid": "8YF1ziS3PUPW",
+      "video": true
+    },
+    {
+      "id": 73,
+      "created_at": "2023-04-10 09:20:57.187388+00",
+      "title": "EGOIST Expert FC",
+      "content": "The part with all the flicks near the end was scary",
+      "url": "https://www.youtube.com/watch?v=25fAtjGQch0",
+      "upvotes": 27,
+      "comments": [{"user_id": "8YF1ziS3PUPW", "comment": "Congrats!!!"}, {"user_id": "kOdN4Ns53PP9", "comment": "Now try the master :D"}],
+      "flair": "Gameplay",
+      "uid": "cia9csx9JZ96",
+      "video": true
+    },
+    {
+      "id": 74,
+      "created_at": "2023-04-11 09:20:57.187388+00",
+      "title": "Lonely Universe Master FC",
+      "content": "Took multiple tries b/c of those hold notes and flicks",
+      "url": "https://www.youtube.com/watch?v=YmPAYtNNlj8",
+      "upvotes": 14,
+      "comments": [{"user_id": "mwlNu_9-TGK0", "comment": "Good job!"}],
+      "flair": "Gameplay",
+      "uid": "cia9csx9JZ96",
+      "video": true
+    },
+    {
+      "id": 75,
+      "created_at": "2023-04-15 09:20:57.187388+00",
+      "title": "First T100",
+      "content": "Haven't slept in over 30 hours :)",
+      "url": "/src/assets/images/IMG_3607.PNG",
+      "upvotes": 140,
+      "comments": [{"user_id": "mwlNu_9-TGK0", "comment": "Congrats!"}, {"user_id": "YsEIlXbVawhL", "comment": "I could never"}, {"user_id": "fr4CJLKJy_lE", "comment": "Please go to sleep"}],
+      "flair": "Achievements",
+      "uid": "cia9csx9JZ96",
+      "video": false
+    },
+    {
+      "id": 87,
+      "created_at": "2023-04-14 23:53:31.127016+00",
+      "title": "Broken Game UI",
+      "content": "UI suddenly got messed up. How can I fix it?",
+      "url": "/src/assets/images/IMG_4850.PNG",
+      "upvotes": 3,
+      "comments": [{"user_id": "8YF1ziS3PUPW", "comment": "Just restart the game and it should be fine"}, {"user_id": "tw-dl3nCe_6t", "comment": "I hate when it does that"}],
+      "flair": "Question",
+      "uid": "kOdN4Ns53PP9",
+      "video": false
+    },
+    {
+      "id": 59,
+      "created_at": "2023-04-08 01:19:55.739826+00",
+      "title": "I love this game",
+      "content": ":D",
+      "url": "/src/assets/images/IMG_4443.PNG",
+      "upvotes": 2,
+      "comments": [{"user_id": "kOdN4Ns53PP9", "comment": "oof"}],
+      "flair": "Gameplay",
+      "uid": "mwlNu_9-TGK0",
+      "video": false
+    }
+  ]
+}
