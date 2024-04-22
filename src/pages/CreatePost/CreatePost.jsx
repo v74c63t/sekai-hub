@@ -17,6 +17,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import ReactPlayer from 'react-player'
+import { Icon } from "@iconify/react/dist/iconify.js";
 
 const CreatePost = () => {
   const [UID, theme] = useOutletContext()
@@ -26,8 +27,11 @@ const CreatePost = () => {
   const [postContent, setPostContent] = useState('')
   const [postURL, setPostURL] = useState('')
   const [postID, setPostID] = useState(0)
+  const [message, setMessage] = useState('')
 
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(false)
+  const [success, setSuccess] = useState(false)
 
   const [open, setOpen] = useState(false)
 
@@ -47,16 +51,47 @@ const CreatePost = () => {
     event.preventDefault()
     setLoading(true)
     setOpen(true)
-    console.log(postFlair)
-    console.log(postTitle)
-    console.log(postContent)
-    console.log(postURL)
-    console.log('create')
-    setLoading(false)
+    if(postTitle === '') {
+      var errorMessage = 'Please enter a title for the post'
+      if(postFlair === null) {
+        errorMessage += ' and assign a flair to the post'
+      }
+      errorMessage += '.'
+      setMessage(errorMessage)
+      setError(true)
+      setLoading(false)
+    }
+    else if(postFlair === null) {
+      setMessage('Please assign a flair to the post.')
+      setError(true)
+      setLoading(false)
+    }
+    else {
+      console.log(postFlair)
+      console.log(postTitle)
+      console.log(postContent)
+      console.log(postURL)
+      console.log('create')
+      setSuccess(true)
+      setLoading(false)
+    }
   }
 
   const handleClose = () => {
     setOpen(false)
+    if(error) {
+      setError(false)
+      setMessage('')
+    }
+    if(success) {
+      setSuccess(false)
+      setPostTitle('')
+      setPostFlair(null)
+      setPostContent('')
+      setPostURL('')
+      setURLType('image')
+      setTabVal('1')
+    }
   }
 
   return (
@@ -166,8 +201,29 @@ const CreatePost = () => {
                 </div>
               </DialogActions> */}
             </>
-          ):
-          (
+          )
+          :
+          error ? (
+            <>
+              <DialogTitle id="alert-dialog-title" className="dialog-title">
+                Error!
+                <Icon className={`${theme} close-icon`} icon="mdi:close" width={'2rem'} height={'2rem'} onClick={handleClose} />
+              </DialogTitle>
+              <DialogContent dividers>
+                <DialogContentText id="alert-dialog-description" className="dialog-content">
+                  {message}
+                </DialogContentText>
+              </DialogContent>
+              {/* <DialogActions className="dialog-actions">
+                <div className="dialog-btns-container">
+                  <div className={`${theme}-bg dialog-btns`} onClick={()=>navigate('/')}>Back to Home</div>
+                  <div className={`${theme}-bg dialog-btns`} onClick={()=>navigate(`/post/${postID}`)}>View Post</div>
+                </div>
+              </DialogActions> */}
+            </>
+          )
+          :
+          success ? (
             <>
               <DialogTitle id="alert-dialog-title" className="dialog-title">
                 Success!
@@ -184,7 +240,7 @@ const CreatePost = () => {
                 </div>
               </DialogActions>
             </>
-          )}
+          ):""}
         </Dialog>
       </Box>
     </div>

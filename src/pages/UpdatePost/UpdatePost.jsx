@@ -17,6 +17,8 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import ReactPlayer from 'react-player'
+import { Icon } from "@iconify/react/dist/iconify.js";
+import data from '../../data/data.json'
 
 
 const UpdatePost = () => {
@@ -27,8 +29,12 @@ const UpdatePost = () => {
   const [postFlair, setPostFlair] = useState(null)
   const [postContent, setPostContent] = useState('')
   const [postURL, setPostURL] = useState('')
+  const [postID, setPostID] = useState(0)
+  const [message, setMessage] = useState('')
 
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(false)
+  const [success, setSuccess] = useState(false)
 
   const [open, setOpen] = useState(false)
 
@@ -44,52 +50,7 @@ const UpdatePost = () => {
     setURLType(event.target.value);
   };
 
-  const posts = [
-    {
-      "id": 65,
-      "created_at": "2023-04-10 04:45:54.471979+00",
-      "title": "Which is better? American Revolution or French Revolution?",
-      "content": "",
-      "url": "",
-      "upvotes": 3,
-      "comments": [{"user_id": "tw-dl3nCe_6t", "comment": "America!!!"}],
-      "flair": "Discussion",
-      "uid": "8YF1ziS3PUPW"
-    },
-    {
-      "id": 73,
-      "created_at": "2023-04-10 09:20:57.187388+00",
-      "title": "I'm obsessed with the Holy Roman Empire",
-      "content": "It's holy, Roman, and an empire",
-      "url": "",
-      "upvotes": 23,
-      "comments": [{"user_id": "8YF1ziS3PUPW", "comment": "Very true"}, {"user_id": "kOdN4Ns53PP9", "comment": "Haha!"}],
-      "flair": "Achievements",
-      "uid": "tw-dl3nCe_6t"
-    },
-    {
-      "id": 87,
-      "created_at": "2023-04-14 23:53:31.127016+00",
-      "title": "Who is your favorite Founding Father?",
-      "content": "Mine is Thomas Jefferson! What about you?",
-      "url": "https://i.imgur.com/0QpthJU.jpg",
-      "upvotes": 3,
-      "comments": [{"user_id": "8YF1ziS3PUPW", "comment": "It's gotta be George Washington!"}, {"user_id": "tw-dl3nCe_6t", "comment": "Did you forget about Ben Franklin?"}],
-      "flair": "Question",
-      "uid": "kOdN4Ns53PP9"
-    },
-    {
-      "id": 59,
-      "created_at": "2023-04-08 01:19:55.739826+00",
-      "title": "I love history!",
-      "content": "",
-      "url": "https://i.imgur.com/wzk9rEB.jpg",
-      "upvotes": 2,
-      "comments": [],
-      "flair": "Gameplay",
-      "uid": "mwlNu_9-TGK0"
-    }
-  ]
+  const posts = data.posts
 
   useEffect(() => {
     const res = posts.filter((post) => post.id === parseInt(id))
@@ -112,16 +73,47 @@ const UpdatePost = () => {
     event.preventDefault()
     setLoading(true)
     setOpen(true)
-    console.log(postFlair)
-    console.log(postTitle)
-    console.log(postContent)
-    console.log(postURL)
-    console.log('update')
-    setLoading(false)
+    if(postTitle === '') {
+      var errorMessage = 'Please enter a title for the post'
+      if(postFlair === null) {
+        errorMessage += ' and assign a flair to the post'
+      }
+      errorMessage += '.'
+      setMessage(errorMessage)
+      setError(true)
+      setLoading(false)
+    }
+    else if(postFlair === null) {
+      setMessage('Please assign a flair to the post.')
+      setError(true)
+      setLoading(false)
+    }
+    else {
+      console.log(postFlair)
+      console.log(postTitle)
+      console.log(postContent)
+      console.log(postURL)
+      console.log('create')
+      setSuccess(true)
+      setLoading(false)
+    }
   }
 
   const handleClose = () => {
     setOpen(false)
+    if(error) {
+      setError(false)
+      setMessage('')
+    }
+    if(success) {
+      setSuccess(false)
+      setPostTitle('')
+      setPostFlair(null)
+      setPostContent('')
+      setPostURL('')
+      setURLType('image')
+      setTabVal('1')
+    }
   }
 
   return (
@@ -225,8 +217,29 @@ const UpdatePost = () => {
                 </div>
               </DialogContent>
             </>
-          ):
-          (
+          )
+          :
+          error ? (
+            <>
+              <DialogTitle id="alert-dialog-title" className="dialog-title">
+                Error!
+                <Icon className={`${theme} close-icon`} icon="mdi:close" width={'2rem'} height={'2rem'} onClick={handleClose} />
+              </DialogTitle>
+              <DialogContent dividers>
+                <DialogContentText id="alert-dialog-description" className="dialog-content">
+                  {message}
+                </DialogContentText>
+              </DialogContent>
+              {/* <DialogActions className="dialog-actions">
+                <div className="dialog-btns-container">
+                  <div className={`${theme}-bg dialog-btns`} onClick={()=>navigate('/')}>Back to Home</div>
+                  <div className={`${theme}-bg dialog-btns`} onClick={()=>navigate(`/post/${postID}`)}>View Post</div>
+                </div>
+              </DialogActions> */}
+            </>
+          )
+          :
+          success ? (
             <>
               <DialogTitle id="alert-dialog-title" className="dialog-title">
                 Success!
@@ -243,7 +256,7 @@ const UpdatePost = () => {
                 </div>
               </DialogActions>
             </>
-          )}
+          ): ""}
         </Dialog>
       </Box>
     </div>
