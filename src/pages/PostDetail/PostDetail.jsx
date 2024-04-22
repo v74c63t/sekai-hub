@@ -87,11 +87,11 @@ const PostDetail = () => {
           <p className='post-content'>{post.content}</p>
           {
             post.url !== "" && post.video === false ? (
-              <img src={post.url} alt="post image" width={'55%'} height={'auto'} />
+              <img src={post.url} alt="post image" width={'60%'} height={'auto'} />
             )
             :
             post.url !== "" & post.video ? (
-              <ReactPlayer url={post.url} controls width={'55%'} />
+              <ReactPlayer url={post.url} controls width={'60%'} />
             ): ""
           }
           <div className='post-btns'>
