@@ -1,17 +1,18 @@
 import { useState, useEffect } from 'react'
-import './App.css'
-import { Link } from 'react-router-dom'
-import PostCondensed from './components/PostCondensed/PostCondensed'
+import { Link, useParams } from 'react-router-dom'
+import PostCondensed from '../../components/PostCondensed/PostCondensed'
 import { useOutletContext, useNavigate } from "react-router-dom";
-import { supabase } from './config/Client';
+import { supabase } from '../../config/Client';
 import AddIcon from '@mui/icons-material/Add';
-import data from './data/data.json'
+import data from '../../data/data.json'
 import 'ldrs/ring2'
 
-function App() {
+function Search() {
 
   const [UID, theme] = useOutletContext()
   const navigate = useNavigate()
+
+  const {query} = useParams()
 
   const [posts, setPosts] = useState([])
 
@@ -20,8 +21,6 @@ function App() {
   const [filterByFilter, setFilterByFilter] = useState(null)
 
   const [loading, setLoading] = useState(true)
-
-  const [query, setQuery] = useState('')
 
   // var initial = data.posts
 
@@ -33,12 +32,13 @@ function App() {
       const {data} = await supabase
                           .from('posts')
                           .select('id, created_at, title, upvotes, user_id, flair')
+                          .ilike('title', `%${query}%`)
                           .order('created_at', {ascending: false})
       setPosts(data)
       setLoading(false)
     }
     fetchPosts()
-  }, [])
+  }, [query])
 
   const handleSort = async (event) => {
     if(sortByFilter !== event.target.id) {
@@ -53,17 +53,17 @@ function App() {
                               .from('posts')
                               .select('id, created_at, title, upvotes, user_id, flair')
                               .eq('flair', (filterByFilter.charAt(0).toUpperCase() + filterByFilter.slice(1)))
+                              .ilike('title', `%${query}%`)
                               .order('created_at', {ascending: false})
-          // setPosts(data)
-          filterPosts(data)
+          setPosts(data)
         }
         else {
           const {data} = await supabase
                               .from('posts')
                               .select('id, created_at, title, upvotes, user_id, flair')
+                              .ilike('title', `%${query}%`)
                               .order('created_at', {ascending: false})
-          // setPosts(data)
-          filterPosts(data)
+          setPosts(data)
         }
       }
       else if(event.target.id === 'most-popular') {
@@ -75,20 +75,19 @@ function App() {
                               .from('posts')
                               .select('id, created_at, title, upvotes, user_id, flair')
                               .eq('flair', (filterByFilter.charAt(0).toUpperCase() + filterByFilter.slice(1)))
+                              .ilike('title', `%${query}%`)
                               .order('upvotes', {ascending: false})
-          // setPosts(data)
-          filterPosts(data)
+          setPosts(data)
         }
         else {
           const {data} = await supabase
                               .from('posts')
                               .select('id, created_at, title, upvotes, user_id, flair')
+                              .ilike('title', `%${query}%`)
                               .order('upvotes', {ascending: false})
-          // setPosts(data)
-          filterPosts(data)
+          setPosts(data)
         }
       }
-      // filterPosts()
       setLoading(false)
     }
   }
@@ -103,9 +102,9 @@ function App() {
                             .from('posts')
                             .select('id, created_at, title, upvotes, user_id, flair')
                             .eq('flair', (event.target.id.charAt(0).toUpperCase() + event.target.id.slice(1)))
+                            .ilike('title', `%${query}%`)
                             .order(order, {ascending: false})
-      // setPosts(data)
-      filterPosts(data)
+      setPosts(data)
     }
     else {
       setFilterByFilter(null)
@@ -113,38 +112,22 @@ function App() {
       const {data} = await supabase
                             .from('posts')
                             .select('id, created_at, title, upvotes, user_id, flair')
+                            .ilike('title', `%${query}%`)
                             .order(order, {ascending: false})
-      // setPosts(data)
-      filterPosts(data)
-    }
-    // filterPosts()
-    setLoading(false)
-  }
-
-  const handleSearch = (event) => {
-    if(event.key == 'Enter') {
-      filterPosts(posts)
-    }
-  }
-
-  const filterPosts = (data) => {
-    if(query.replace(/\s/g, '') !== '' || data.length !== 0 || data !== null) {
-      setPosts(data.filter((post)=>post.title.includes(query)))
-    }
-    else {
       setPosts(data)
     }
+    setLoading(false)
   }
 
   return (
     <>
+      <h2>Search Results for '{query}'</h2>
       <div className='sort-filter'>
         <div className='sort-container'>
           <h3 className='sort'>Sort By:</h3>
           <h4 id='newest' className={sortByFilter === 'newest' ? `sort-flair ${theme}-bg active` : `sort-flair ${theme}-bg`} onClick={handleSort}>Newest</h4>
           <h4 id='most-popular' className={sortByFilter === 'most-popular' ? `sort-flair ${theme}-bg active` : `sort-flair ${theme}-bg`} onClick={handleSort}>Most Popular</h4>
         </div>
-        <input className='search-test' type="text" placeholder="Search..." value={query} onChange={(event)=>setQuery(event.target.value)} onKeyDown={handleSearch} />
         <div className='filter-container'>
           <h3 className='filter'>Filter By:</h3>
           <h4 id='discussion' className={filterByFilter !== null && filterByFilter === 'discussion' ? `filter-flair ${theme}-bg discussion active` : `filter-flair ${theme}-bg discussion`} onClick={handleFilter}>Discussion</h4>
@@ -152,6 +135,10 @@ function App() {
           <h4 id='question' className={filterByFilter !== null && filterByFilter === 'question' ? `filter-flair ${theme}-bg question active` : `filter-flair ${theme}-bg question`} onClick={handleFilter}>Question</h4>
           <h4 id='gameplay' className={filterByFilter !== null && filterByFilter === 'gameplay' ? `filter-flair ${theme}-bg gameplay active` : `filter-flair ${theme}-bg gameplay`} onClick={handleFilter}>Gameplay</h4>
         </div>
+        {/* <div className='search-container'>
+          <h3 className='search-header'>Search: </h3>
+          <h4 className={`${theme}-bg query`}>{query}</h4>
+        </div> */}
       </div>
       {
         loading ? (
@@ -178,7 +165,7 @@ function App() {
           </div>
         ) :
         <div className='no-posts'>
-          <p>There are no posts currently.</p>
+          <p>There are no posts that can be found.</p>
           <p>Get started on contributing by <Link className={`${theme} create-link`} to="/create">creating a new post</Link>!</p>
         </div>
       }
@@ -191,4 +178,4 @@ function App() {
   )
 }
 
-export default App
+export default Search

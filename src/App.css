@@ -65,8 +65,17 @@
   /* background-color: var(--mmj-color); */
   /* background-color: var(--vbs-color); */
   /* background-color: var(--wxs-color); */
-  background-color: var(--n25-color);
+  /* background-color: var(--n25-color); */
   cursor: pointer;
+}
+
+.search-test {
+  padding: 0.5rem;
+  width: 25.25rem;
+  border-radius: 0.5rem;
+  margin: 0;
+  /* border: 0.1rem solid black; */
+  border: none;
 }
 
 /* .sort-flair.active {

@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import UpdatePost from './pages/UpdatePost/UpdatePost.jsx';
 import PostDetail from './pages/PostDetail/PostDetail.jsx';
 import CreatePost from './pages/CreatePost/CreatePost.jsx';
+import Search from './pages/Search/Search.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -18,6 +19,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route index={false} path="/update/:id"  element={<UpdatePost />} />
         <Route index={false} path="/post/:id"  element={<PostDetail />} />
         <Route index={false} path="/create"  element={<CreatePost />} />
+        <Route index={false} path="/search/:query"  element={<Search />} />
         <Route
           path="*"
           element={

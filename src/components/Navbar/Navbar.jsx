@@ -1,10 +1,11 @@
 import './Navbar.css'
-import { Link, Outlet } from 'react-router-dom'
+import { Link, Outlet, useNavigate } from 'react-router-dom'
 import { nanoid } from 'nanoid'
 import { useState } from 'react'
 import { Icon } from '@iconify/react/dist/iconify.js'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
+import { supabase } from '../../config/Client'
 
 const NavBar = () => {
   const [UID, setUID] = useState(nanoid(12))
@@ -12,6 +13,11 @@ const NavBar = () => {
   const [theme, setTheme] = useState('n25')
 
   const [anchorEl, setAnchorEl] = useState(null);
+
+  const [query, setQuery] = useState('')
+
+  const navigate = useNavigate()
+
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -19,6 +25,59 @@ const NavBar = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const handleSearch = (event) => {
+    if(event.key === 'Enter') {
+      navigate(`/search/${query}`)
+      setQuery('')
+      // setSearch(true)
+      // if(window.location.pathname !== '/') {
+      //   navigate('/')
+      // }
+      // setPosts(posts.filter((post) => post.title.includes(query.toLowerCase())))
+      // setQuery('')
+    }
+  }
+
+  // const handleSearch = async (event) => {
+  //   if(event.key === 'Enter') {
+  //     if(query.replace(/\s/g, '') !== '') {
+  //       setLoading(true)
+  //       if(window.location.pathname !== '/') {
+  //         navigate('/')
+  //       }
+  //       const order = sortByFilter === 'newest' ? 'created_at' : 'upvotes'
+  //       console.log(order)
+  //       console.log(filterByFilter)
+  //       if(filterByFilter !== null) {
+  //         const {data} = await supabase
+  //                             .from('posts')
+  //                             .select('id, created_at, title, upvotes, user_id, flair')
+  //                             .eq('flair', (filterByFilter.charAt(0).toUpperCase() + filterByFilter.slice(1)))
+  //                             .ilike('title', `%${query}%`)
+  //                             .order(order, {ascending: false})
+  //         // console.log(data)
+  //         setPosts(data)
+  //         setLoading(false)
+  //       }
+  //       else {
+  //         const {data} = await supabase
+  //                             .from('posts')
+  //                             .select('id, created_at, title, upvotes, user_id, flair')
+  //                             .ilike('title', `%${query}%`)
+  //                             .order(order, {ascending: false})
+  //         // console.log(data)
+  //         setPosts(data)
+  //         setLoading(false)
+  //       }
+  //       // const {data, error} = await supabase
+  //       //                 .from('posts')
+  //       //                 .select('id, created_at, title, upvotes, user_id, flair')
+  //       //                 .ilike('title', `%${query}%`)
+  //       // setPosts(data)
+  //     }
+  //   }
+  // }
 
   return (
     <div>
@@ -35,7 +94,7 @@ const NavBar = () => {
               Create New Post
             </Link>
           </div>
-          <input className='search' type="text" placeholder="Search.." />
+          <input className='search' type="text" placeholder="Search..." value={query} onChange={(event)=>setQuery(event.target.value)} onKeyDown={handleSearch} />
           <div className="user-info">
             <p className='navbar-uid'>@{UID}</p>
             <Icon className='settings-icon' icon="fluent:text-grammar-settings-24-filled" onClick={handleClick} />
