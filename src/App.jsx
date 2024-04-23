@@ -6,6 +6,7 @@ import { useOutletContext, useNavigate } from "react-router-dom";
 import { supabase } from './config/Client';
 import AddIcon from '@mui/icons-material/Add';
 import data from './data/data.json'
+import 'ldrs/ring2'
 
 function App() {
 
@@ -19,10 +20,14 @@ function App() {
 
   const [filterByFilter, setFilterByFilter] = useState(null)
 
+  const [loading, setLoading] = useState(false)
+
   var initial = data.posts
 
   useEffect(() => {
+    setLoading(true)
     setPosts(initial)
+    setLoading(false)
     // const fetchPosts = async() => {
     //   const {data} = await supabase
                           // .from('posts')
@@ -34,6 +39,7 @@ function App() {
 
   const handleSort = (event) => {
     if(sortByFilter !== event.target.id) {
+      setLoading(true)
       setSortByFilter(event.target.id)
       if(event.target.id === 'newest') {
         var sortedPosts = posts
@@ -56,10 +62,12 @@ function App() {
         //                       .order('upvotes', {ascending: false})
         // setPosts(data)
       }
+      setLoading(false)
     }
   }
 
   const handleFilter = (event) => {
+    setLoading(true)
     // const order = sortByFilter === 'newest' ? 'created_at' : 'upvotes'
     if(filterByFilter !== event.target.id) {
       setFilterByFilter(event.target.id)
@@ -80,6 +88,7 @@ function App() {
       //                       .order(order, {ascending: false})
       // setPosts(data)
     }
+    setLoading(false)
   }
 
   return (
@@ -98,19 +107,34 @@ function App() {
           <h4 id='gameplay' className={filterByFilter !== null && filterByFilter === 'gameplay' ? `filter-flair ${theme}-bg gameplay active` : `filter-flair ${theme}-bg gameplay`} onClick={handleFilter}>Gameplay</h4>
         </div>
       </div>
-      {posts.length !== 0 ? (
-        <div className='posts-container'>
-          {posts.map((post, i) => {
-            return (
-              <PostCondensed key={i} post={post} />
-            )
-          })}
+      {
+        loading ? (
+          <div className='loading'>
+            <h1>Loading</h1>
+            <l-ring-2
+              size="40"
+              speed="0.8"
+              bg-opacity={0.3}
+              stroke={5}
+              stroke-length={0.25}
+              color={'gray'}
+            ></l-ring-2>
+          </div>
+        )
+        :
+        posts.length !== 0 ? (
+          <div className='posts-container'>
+            {posts.map((post, i) => {
+              return (
+                <PostCondensed key={i} post={post} />
+              )
+            })}
+          </div>
+        ) :
+        <div className='no-posts'>
+          <p>There are no posts currently.</p>
+          <p>Get started on contributing by <Link className={`${theme} create-link`} to="/create">creating a new post</Link>!</p>
         </div>
-      ) :
-      <div className='no-posts'>
-        <p>There are no posts currently.</p>
-        <p>Get started on contributing by <Link className={`${theme} create-link`} to="/create">creating a new post</Link>!</p>
-      </div>
       }
       <div className='fab-container'>
         <button className={`${theme}-bg fab`} onClick={()=>navigate('/create')}>

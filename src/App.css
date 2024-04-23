@@ -5,7 +5,7 @@
   text-align: center;
 }
 
-.no-posts {
+.no-posts, .loading {
   color: black;
   position: absolute;
   top: 50%;
