@@ -1,0 +1,39 @@
+.search-header {
+  padding: 0;
+  margin: 0;
+  font-size: 1rem;
+}
+
+/* .query {
+  padding: 0;
+  margin: 0;
+  font-size: 0.9rem;
+} */
+
+.search-container {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.query {
+  padding: 0 0.7rem;
+  /* margin-left: 0.3rem; */
+  margin: 0;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  color: white;
+  text-shadow: 0 0 0.1rem black, 0 0 0.07rem black;
+  text-overflow: ellipsis;
+  overflow:hidden;
+  white-space:nowrap;
+  max-width: 21rem;
+  /* background-color: var(--miku-color); */
+  /* background-color: var(--ln-color); */
+  /* background-color: var(--mmj-color); */
+  /* background-color: var(--vbs-color); */
+  /* background-color: var(--wxs-color); */
+  /* background-color: var(--n25-color); */
+  /* cursor: pointer; */
+}
