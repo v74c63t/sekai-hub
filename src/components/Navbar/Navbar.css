@@ -42,6 +42,10 @@
   font-size: 1.2rem;
 }
 
+.settings-icon {
+  user-select: none;
+}
+
 .link:hover, .settings-icon:hover {
   color: rgb(69, 69, 69);
 }

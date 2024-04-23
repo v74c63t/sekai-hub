@@ -28,6 +28,7 @@
 
 .edit-icon, .delete-icon, .upvotes-icon {
   cursor: pointer;
+  user-select: none;
 }
 
 .delete-icon {

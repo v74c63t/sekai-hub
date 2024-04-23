@@ -131,4 +131,5 @@
   right: 3%;
   position: absolute;
   cursor: pointer;
+  user-select: none;
 }
