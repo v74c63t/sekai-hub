@@ -51,12 +51,12 @@ const NavBar = () => {
               sx={{borderRadius: '1rem', marginTop: '1.5rem'}}
             >
               <h3 className={`theme-settings-header ${theme}-bg`}>Theme</h3>
-              <MenuItem onClick={() => {setTheme('vs'); handleClose()}} selected={theme === 'vs'}><img src="/src/assets/vs-logo.jpg" alt="virtual singer logo" height={50} width={'auto'} /></MenuItem>
-              <MenuItem onClick={() => {setTheme('ln'); handleClose()}} selected={theme === 'ln'}><img src="/src/assets/ln-logo.jpg" alt="leo/need logo" height={50} width={'auto'} /></MenuItem>
-              <MenuItem onClick={() => {setTheme('mmj'); handleClose()}} selected={theme === 'mmj'}><img src="/src/assets/mmj-logo.jpg" alt="more more jump logo" height={50} width={'auto'} /></MenuItem>
-              <MenuItem onClick={() => {setTheme('vbs'); handleClose()}} selected={theme === 'vbs'}><img src="/src/assets/vbs-logo.jpg" alt="vivid bad squad logo" height={50} width={'auto'} /></MenuItem>
-              <MenuItem onClick={() => {setTheme('wxs'); handleClose()}} selected={theme === 'wxs'}><img src="/src/assets/wxs-logo-jp.jpg" alt="wonderlands x showtime logo" height={50} width={'auto'} /></MenuItem>
-              <MenuItem onClick={() => {setTheme('n25'); handleClose()}} selected={theme === 'n25'}><img src="/src/assets/n25-logo-jp.jpg" alt="nightcord logo" height={50} width={'auto'} /></MenuItem>
+              <MenuItem onClick={() => {setTheme('vs'); handleClose()}} selected={theme === 'vs'}><img src="/assets/vs-logo.jpg" alt="virtual singer logo" height={50} width={'auto'} /></MenuItem>
+              <MenuItem onClick={() => {setTheme('ln'); handleClose()}} selected={theme === 'ln'}><img src="/assets/ln-logo.jpg" alt="leo/need logo" height={50} width={'auto'} /></MenuItem>
+              <MenuItem onClick={() => {setTheme('mmj'); handleClose()}} selected={theme === 'mmj'}><img src="/assets/mmj-logo.jpg" alt="more more jump logo" height={50} width={'auto'} /></MenuItem>
+              <MenuItem onClick={() => {setTheme('vbs'); handleClose()}} selected={theme === 'vbs'}><img src="/assets/vbs-logo.jpg" alt="vivid bad squad logo" height={50} width={'auto'} /></MenuItem>
+              <MenuItem onClick={() => {setTheme('wxs'); handleClose()}} selected={theme === 'wxs'}><img src="/assets/wxs-logo-jp.jpg" alt="wonderlands x showtime logo" height={50} width={'auto'} /></MenuItem>
+              <MenuItem onClick={() => {setTheme('n25'); handleClose()}} selected={theme === 'n25'}><img src="/assets/n25-logo-jp.jpg" alt="nightcord logo" height={50} width={'auto'} /></MenuItem>
             </Menu>
           </div>
         </nav>
