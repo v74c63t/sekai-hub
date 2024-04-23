@@ -19,6 +19,7 @@ import Select from '@mui/material/Select';
 import ReactPlayer from 'react-player'
 import { Icon } from "@iconify/react/dist/iconify.js";
 import data from '../../data/data.json'
+import { supabase } from '../../config/Client';
 
 
 const UpdatePost = () => {
@@ -29,7 +30,7 @@ const UpdatePost = () => {
   const [postFlair, setPostFlair] = useState(null)
   const [postContent, setPostContent] = useState('')
   const [postURL, setPostURL] = useState('')
-  const [postID, setPostID] = useState(0)
+  // const [postID, setPostID] = useState(0)
   const [message, setMessage] = useState('')
 
   const [loading, setLoading] = useState(false)
@@ -53,23 +54,31 @@ const UpdatePost = () => {
   const posts = data.posts
 
   useEffect(() => {
-    const res = posts.filter((post) => post.id === parseInt(id))
-    if(res.length !== 0) {
-      setPostTitle(res[0].title)
-      setPostFlair(res[0].flair.toLowerCase())
-      setPostContent(res[0].content)
-      setPostURL(res[0].url)
-    }
-    // const fetchPost = () => {
-    //   const {data} = await supabase
-    //                         .from('posts')
-    //                         .select()
-    //                         .eq('id', id)
-    //   setPost(data)
+    // const res = posts.filter((post) => post.id === parseInt(id))
+    // if(res.length !== 0) {
+    //   setPostTitle(res[0].title)
+    //   setPostFlair(res[0].flair.toLowerCase())
+    //   setPostContent(res[0].content)
+    //   setPostURL(res[0].url)
     // }
+    const fetchPost = async () => {
+      const {data} = await supabase
+                            .from('posts')
+                            .select()
+                            .eq('id', id)
+                            .single()
+      setPostTitle(data.title)
+      setPostFlair(data.flair.toLowerCase())
+      setPostContent(data.content)
+      setPostURL(data.url)
+      if(data.video) {
+        setURLType('video')
+      }
+    }
+    fetchPost()
   }, [])
 
-  const handleUpdatePost = (event) => {
+  const handleUpdatePost = async (event) => {
     event.preventDefault()
     setLoading(true)
     setOpen(true)
@@ -89,13 +98,32 @@ const UpdatePost = () => {
       setLoading(false)
     }
     else {
-      console.log(postFlair)
-      console.log(postTitle)
-      console.log(postContent)
-      console.log(postURL)
-      console.log('create')
-      setSuccess(true)
-      setLoading(false)
+      const {data, error} = await supabase
+                                    .from('posts')
+                                    .update({'title': postTitle, 
+                                            'content': postContent, 
+                                            'url': postURL, 
+                                            'video': urlType === 'video', 
+                                            'flair': (postFlair.charAt(0).toUpperCase() + postFlair.slice(1))})
+                                    .select()
+                                    .eq('id', id)
+                                    .single()
+      if(error) {
+        setError(true)
+        setMessage('There was an error with updating the post. Please try again.')
+        setLoading(false)
+      }
+      else {
+        setSuccess(true)
+        setLoading(false)
+      }
+      // console.log(postFlair)
+      // console.log(postTitle)
+      // console.log(postContent)
+      // console.log(postURL)
+      // console.log('create')
+      // setSuccess(true)
+      // setLoading(false)
     }
   }
 

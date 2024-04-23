@@ -20,48 +20,51 @@ const PostDetail = () => {
 
   const [userComment, setUserComment] = useState('')
 
-  const posts = data.posts
+  // const posts = data.posts
 
   useEffect(() => {
-    const res = posts.filter((post) => post.id === parseInt(id))
-    if(res.length !== 0) {
-      setPost(res[0])
-      setComments(res[0].comments)
+    // const res = posts.filter((post) => post.id === parseInt(id))
+    // if(res.length !== 0) {
+    //   setPost(res[0])
+    //   setComments(res[0].comments)
+    // }
+    const fetchPost = async () => {
+      const {data} = await supabase
+                            .from('posts')
+                            .select()
+                            .eq('id', id)
+                            .single()
+      setPost(data)
     }
-    // const fetchPost = () => {
-    //   const {data} = await supabase
-    //                         .from('posts')
-    //                         .select()
-    //                         .eq('id', id)
-    //   setPost(data)
-    // }
-    // const fetchPostComments = () => {
-    //   const {data} = await supabase
-    //                         .from('comments')
-    //                         .select()
-    //                         .eq('post_id', id)
-    //   setComments(data)
-    // }
+    const fetchPostComments = async () => {
+      const {data} = await supabase
+                            .from('comments')
+                            .select()
+                            .eq('post_id', id)
+      setComments(data)
+    }
+    fetchPost()
+    fetchPostComments()
   }, [])
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     if(event.key === 'Enter') {
       if(userComment.replace(/\s/g, '') !== '') {
         setComments([...comments, {"user_id": UID, "comment": userComment}])
-        // const {data} = await supabase
-        //                       .from('comments')
-        //                       .insert({'post_id': id, 'comment': userComment, 'user_id': UID })
-        //                       .select()
+        await supabase
+                .from('comments')
+                .insert({'post_id': id, 'comment': userComment, 'user_id': UID })
+                .select()
         setUserComment('')
       }
     }
   }
 
-  const handleUpvote = () => {
-    // await supabase
-    //         .from('posts')
-    //         .update({'upvotes': posts.upvotes + 1})
-    //         .eq('id', id)
+  const handleUpvote = async () => {
+    await supabase
+            .from('posts')
+            .update({'upvotes': post.upvotes + 1})
+            .eq('id', id)
     setPost((prev)=>({...prev, 'upvotes': post.upvotes + 1}))
   }
 
@@ -72,8 +75,13 @@ const PostDetail = () => {
     navigate(`/update/${id}`)
   }
 
-  const handleDelete = () => {
+  const handleDelete = async() => {
     //TODO
+    await supabase
+            .from('posts')
+            .delete()
+            .eq('id', id)
+    navigate('/')
     console.log('prompt for secret key')
     console.log('delete post')
   }
@@ -82,7 +90,7 @@ const PostDetail = () => {
     <>
       {post !== null ? (
         <div className='post-detail'>
-          <h4 className='timestamp'>Posted by <span className={theme}>@{post.uid}</span> on {post.created_at}</h4>
+          <h4 className='timestamp'>Posted by <span className={theme}>@{post.user_id}</span> on {post.created_at}</h4>
           <h3 className='post-detail-title'>{post.title} <span className={`flair ${theme}-bg ${post.flair.toLowerCase()}`}>{post.flair}</span></h3>
           <p className='post-content'>{post.content}</p>
           {

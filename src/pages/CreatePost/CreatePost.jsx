@@ -18,6 +18,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import ReactPlayer from 'react-player'
 import { Icon } from "@iconify/react/dist/iconify.js";
+import { supabase } from "../../config/Client";
 
 const CreatePost = () => {
   const [UID, theme] = useOutletContext()
@@ -47,7 +48,7 @@ const CreatePost = () => {
     setURLType(event.target.value);
   };
 
-  const handleCreatePost = (event) => {
+  const handleCreatePost = async (event) => {
     event.preventDefault()
     setLoading(true)
     setOpen(true)
@@ -67,13 +68,34 @@ const CreatePost = () => {
       setLoading(false)
     }
     else {
-      console.log(postFlair)
-      console.log(postTitle)
-      console.log(postContent)
-      console.log(postURL)
-      console.log('create')
-      setSuccess(true)
-      setLoading(false)
+      const {data, error} = await supabase
+                                    .from('posts')
+                                    .insert({'title': postTitle, 
+                                            'content': postContent, 
+                                            'url': postURL, 
+                                            'user_id': UID, 
+                                            'video': urlType === 'video', 
+                                            'flair': (postFlair.charAt(0).toUpperCase() + postFlair.slice(1))})
+                                    .select()
+                                    .single()
+      if(error) {
+        setError(true)
+        setMessage('There was an error with creating the post. Please try again.')
+        setLoading(false)
+      }
+      else {
+        setPostID(data.id)
+        setSuccess(true)
+        setLoading(false)
+      }
+      
+      // console.log(postFlair)
+      // console.log(postTitle)
+      // console.log(postContent)
+      // console.log(postURL)
+      // console.log('create')
+      // setSuccess(true)
+      // setLoading(false)
     }
   }
 

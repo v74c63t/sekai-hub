@@ -20,73 +20,94 @@ function App() {
 
   const [filterByFilter, setFilterByFilter] = useState(null)
 
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
 
-  var initial = data.posts
+  // var initial = data.posts
 
   useEffect(() => {
     setLoading(true)
-    setPosts(initial)
-    setLoading(false)
-    // const fetchPosts = async() => {
-    //   const {data} = await supabase
-                          // .from('posts')
-                          // .select()
-                          // .order('created_at', {ascending: false})
-    //   setPosts(data)
-    // }
+    // setPosts(initial)
+    // setLoading(false)
+    const fetchPosts = async() => {
+      const {data} = await supabase
+                          .from('posts')
+                          .select()
+                          .order('created_at', {ascending: false})
+      setPosts(data)
+      setLoading(false)
+    }
+    fetchPosts()
   }, [])
 
-  const handleSort = (event) => {
+  const handleSort = async (event) => {
     if(sortByFilter !== event.target.id) {
       setLoading(true)
       setSortByFilter(event.target.id)
       if(event.target.id === 'newest') {
-        var sortedPosts = posts
-        sortedPosts.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
-        setPosts(sortedPosts)
-        // const {data} = await supabase
-        //                       .from('posts')
-        //                       .select()
-        //                       .order('created_at', {ascending: false})
-        // setPosts(data)
-
+        // var sortedPosts = posts
+        // sortedPosts.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
+        // setPosts(sortedPosts)
+        if(filterByFilter !== null) {
+          const {data} = await supabase
+                              .from('posts')
+                              .select()
+                              .eq('flair', (filterByFilter.charAt(0).toUpperCase() + filterByFilter.slice(1)))
+                              .order('created_at', {ascending: false})
+          setPosts(data)
+        }
+        else {
+          const {data} = await supabase
+                              .from('posts')
+                              .select()
+                              .order('created_at', {ascending: false})
+          setPosts(data)
+        }
       }
       else if(event.target.id === 'most-popular') {
-        var sortedPosts = posts
-        sortedPosts.sort((a, b) => a.upvotes > b.upvotes ? -1 : 1)
-        setPosts(sortedPosts)
-        // const {data} = await supabase
-        //                       .from('posts')
-        //                       .select()
-        //                       .order('upvotes', {ascending: false})
-        // setPosts(data)
+        // var sortedPosts = posts
+        // sortedPosts.sort((a, b) => a.upvotes > b.upvotes ? -1 : 1)
+        // setPosts(sortedPosts)
+        if(filterByFilter !== null) {
+          const {data} = await supabase
+                              .from('posts')
+                              .select()
+                              .eq('flair', (filterByFilter.charAt(0).toUpperCase() + filterByFilter.slice(1)))
+                              .order('upvotes', {ascending: false})
+          setPosts(data)
+        }
+        else {
+          const {data} = await supabase
+                              .from('posts')
+                              .select()
+                              .order('upvotes', {ascending: false})
+          setPosts(data)
+        }
       }
       setLoading(false)
     }
   }
 
-  const handleFilter = (event) => {
+  const handleFilter = async(event) => {
     setLoading(true)
-    // const order = sortByFilter === 'newest' ? 'created_at' : 'upvotes'
+    const order = sortByFilter === 'newest' ? 'created_at' : 'upvotes'
     if(filterByFilter !== event.target.id) {
       setFilterByFilter(event.target.id)
-      setPosts(initial.filter((post) => post.flair.toLowerCase() === event.target.id))
-      // const {data} = await supabase
-      //                       .from('posts')
-      //                       .select()
-      //                       .eq('flair', (event.target.id.charAt(0).toUpperCase() + event.target.id.slice(1)))
-      //                       .order(order, {ascending: false})
-      // setPosts(data)
+      // setPosts(initial.filter((post) => post.flair.toLowerCase() === event.target.id))
+      const {data} = await supabase
+                            .from('posts')
+                            .select()
+                            .eq('flair', (event.target.id.charAt(0).toUpperCase() + event.target.id.slice(1)))
+                            .order(order, {ascending: false})
+      setPosts(data)
     }
     else {
       setFilterByFilter(null)
-      setPosts(initial)
-      // const {data} = await supabase
-      //                       .from('posts')
-      //                       .select()
-      //                       .order(order, {ascending: false})
-      // setPosts(data)
+      // setPosts(initial)
+      const {data} = await supabase
+                            .from('posts')
+                            .select()
+                            .order(order, {ascending: false})
+      setPosts(data)
     }
     setLoading(false)
   }
