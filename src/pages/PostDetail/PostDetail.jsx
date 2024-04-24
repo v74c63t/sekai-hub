@@ -19,7 +19,9 @@ const PostDetail = () => {
   const [comments, setComments] = useState([])
 
   const [userComment, setUserComment] = useState('')
-
+  
+  const [loading, setLoading] = useState(true)
+ 
   // const posts = data.posts
 
   useEffect(() => {
@@ -28,23 +30,31 @@ const PostDetail = () => {
     //   setPost(res[0])
     //   setComments(res[0].comments)
     // }
-    const fetchPost = async () => {
-      const {data} = await supabase
+    const fetchPostInfo = async () => {
+      const post = await supabase
                             .from('posts')
                             .select()
                             .eq('id', id)
                             .single()
-      setPost(data)
-    }
-    const fetchPostComments = async () => {
-      const {data} = await supabase
+      const comments = await supabase
                             .from('comments')
                             .select()
                             .eq('post_id', id)
-      setComments(data)
+      setPost(post.data)
+      setComments(comments.data)
+      setLoading(false)
     }
-    fetchPost()
-    fetchPostComments()
+    // const fetchPostComments = async () => {
+    //   const {data} = await supabase
+    //                         .from('comments')
+    //                         .select()
+    //                         .eq('post_id', id)
+    //   setComments(data)
+    //   // setLoading(false)
+    // }
+    fetchPostInfo()
+    // fetchPostComments()
+    // setLoading(false)
   }, [])
 
   const handleSubmit = async (event) => {
@@ -88,11 +98,27 @@ const PostDetail = () => {
 
   return (
     <>
-      {post !== null ? (
+      {loading ? (
+        <div className='loading'>
+          <h1>Loading</h1>
+          <l-ring-2
+            size="40"
+            speed="0.8"
+            bg-opacity={0.3}
+            stroke={5}
+            stroke-length={0.25}
+            color={'gray'}
+          ></l-ring-2>
+        </div>
+      ) 
+      : 
+      post !== null ? (
         <div className='post-detail'>
           <h4 className='timestamp'>Posted by <span className={theme}>@{post.user_id}</span> on {post.created_at}</h4>
           <h3 className='post-detail-title'>{post.title} <span className={`flair ${theme}-bg ${post.flair.toLowerCase()}`}>{post.flair}</span></h3>
-          <p className='post-content'>{post.content}</p>
+          {
+            post.content !== "" ? <p className='post-content'>{post.content}</p> : ""
+          }
           {
             post.url !== "" && post.video === false ? (
               <img src={post.url} alt="post image" width={'60%'} height={'auto'} />
@@ -115,11 +141,13 @@ const PostDetail = () => {
           <div className='comments-container'>
             <h4 className='comment-header'>Comments</h4>
             {
-              comments.map((comment, i) => {
-                return (
-                  <Comment key={i} comment={comment} />
-                )
-              })
+              comments.length !== 0 ? (
+                comments.map((comment, i) => {
+                  return (
+                    <Comment key={i} comment={comment} />
+                  )
+                })
+              ) : <p className='no-comments'>No comments</p>
             }
             <input className='add-comment' type="text" placeholder='Comment...' value={userComment} onChange={(event)=>setUserComment(event.target.value)} onKeyDown={handleSubmit} />
           </div>
