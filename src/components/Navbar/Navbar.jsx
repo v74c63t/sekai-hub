@@ -28,8 +28,11 @@ const NavBar = () => {
 
   const handleSearch = (event) => {
     if(event.key === 'Enter') {
-      navigate(`/search/${query}`)
-      setQuery('')
+      if(query.replace(/\s/g, '') !== '') {
+        navigate(`/search/${query}`)
+        setQuery('')
+      }
+      
       // setSearch(true)
       // if(window.location.pathname !== '/') {
       //   navigate('/')
