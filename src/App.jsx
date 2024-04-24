@@ -104,8 +104,8 @@ function App() {
                             .select('id, created_at, title, upvotes, user_id, flair')
                             .eq('flair', (event.target.id.charAt(0).toUpperCase() + event.target.id.slice(1)))
                             .order(order, {ascending: false})
-      // setPosts(data)
-      filterPosts(data)
+      setPosts(data)
+      // filterPosts(data)
     }
     else {
       setFilterByFilter(null)
@@ -114,27 +114,27 @@ function App() {
                             .from('posts')
                             .select('id, created_at, title, upvotes, user_id, flair')
                             .order(order, {ascending: false})
-      // setPosts(data)
-      filterPosts(data)
+      setPosts(data)
+      // filterPosts(data)
     }
     // filterPosts()
     setLoading(false)
   }
 
-  const handleSearch = (event) => {
-    if(event.key == 'Enter') {
-      filterPosts(posts)
-    }
-  }
+  // const handleSearch = (event) => {
+  //   if(event.key == 'Enter') {
+  //     filterPosts(posts)
+  //   }
+  // }
 
-  const filterPosts = (data) => {
-    if(query.replace(/\s/g, '') !== '' || data.length !== 0 || data !== null) {
-      setPosts(data.filter((post)=>post.title.includes(query)))
-    }
-    else {
-      setPosts(data)
-    }
-  }
+  // const filterPosts = (data) => {
+  //   if(query.replace(/\s/g, '') !== '' || data.length !== 0 || data !== null) {
+  //     setPosts(data.filter((post)=>post.title.includes(query)))
+  //   }
+  //   else {
+  //     setPosts(data)
+  //   }
+  // }
 
   return (
     <>
@@ -144,7 +144,7 @@ function App() {
           <h4 id='newest' className={sortByFilter === 'newest' ? `sort-flair ${theme}-bg active` : `sort-flair ${theme}-bg`} onClick={handleSort}>Newest</h4>
           <h4 id='most-popular' className={sortByFilter === 'most-popular' ? `sort-flair ${theme}-bg active` : `sort-flair ${theme}-bg`} onClick={handleSort}>Most Popular</h4>
         </div>
-        <input className='search-test' type="text" placeholder="Search..." value={query} onChange={(event)=>setQuery(event.target.value)} onKeyDown={handleSearch} />
+        {/* <input className='search-test' type="text" placeholder="Search..." value={query} onChange={(event)=>setQuery(event.target.value)} onKeyDown={handleSearch} /> */}
         <div className='filter-container'>
           <h3 className='filter'>Filter By:</h3>
           <h4 id='discussion' className={filterByFilter !== null && filterByFilter === 'discussion' ? `filter-flair ${theme}-bg discussion active` : `filter-flair ${theme}-bg discussion`} onClick={handleFilter}>Discussion</h4>
