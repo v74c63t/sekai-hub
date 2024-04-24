@@ -125,7 +125,7 @@ function Search() {
       {/* <h2>Search Results for '{query}'</h2> */}
       <div className='sort-filter'>
         <div className='search-container'>
-          <h3 className='search-header'>Query: </h3>
+          <h3 className='search-header'>Search Query: </h3>
           <h4 className={`${theme}-bg query`}>{query}</h4>
         </div>
         <div className='sort-container'>
@@ -171,7 +171,7 @@ function Search() {
         ) :
         <div className='no-posts'>
           <p>There are no posts that can be found for the query "{query}".</p>
-          <p>Get started on contributing by <Link className={`${theme} create-link`} to="/create">creating a new post</Link>!</p>
+          {/* <p>Get started on contributing by <Link className={`${theme} create-link`} to="/create">creating a new post</Link>!</p> */}
         </div>
       }
       <div className='fab-container'>
