@@ -10,7 +10,7 @@ import { supabase } from '../../config/Client'
 const NavBar = () => {
   const [UID, setUID] = useState(nanoid(12))
 
-  const [theme, setTheme] = useState('n25')
+  const [theme, setTheme] = useState('vs')
 
   const [anchorEl, setAnchorEl] = useState(null);
 
