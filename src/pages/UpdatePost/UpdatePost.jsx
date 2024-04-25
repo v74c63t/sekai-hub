@@ -205,97 +205,6 @@ const UpdatePost = () => {
               return
             })
           }
-          // const imgRef = ref(storage, `sekai-hub-images/${v4() + uploadFile.name}`)
-          // uploadBytes(imgRef, uploadFile).then((res) => {
-          //   getDownloadURL(res.ref).then(async (url) => {
-          //     const {data, error} = await supabase
-          //                               .from('posts')
-          //                               .insert({'title': postTitle, 
-          //                                       'content': postContent, 
-          //                                       'url': url, 
-          //                                       'user_id': UID, 
-          //                                       'video': false, 
-          //                                       'flair': (postFlair.charAt(0).toUpperCase() + postFlair.slice(1)),
-          //                                       'uploaded': true})
-          //                               .select()
-          //                               .single()
-          //     if(error) {
-          //       setError(true)
-          //       setMessage('There was an error with creating the post. Please try again.')
-          //       setLoading(false)
-          //     }
-          //     else {
-          //       setPostID(data.id)
-          //       setSuccess(true)
-          //       setLoading(false)
-          //     }
-          //   })
-            // const {data, error} = await supabase
-            //                           .from('posts')
-            //                           .insert({'title': postTitle, 
-            //                                   'content': postContent, 
-            //                                   'url': secureURL, 
-            //                                   'user_id': UID, 
-            //                                   'video': false, 
-            //                                   'flair': (postFlair.charAt(0).toUpperCase() + postFlair.slice(1)),
-            //                                   'uploaded': true})
-            //                           .select()
-            //                           .single()
-            // if(error) {
-            //   setError(true)
-            //   setMessage('There was an error with creating the post. Please try again.')
-            //   setLoading(false)
-            // }
-            // else {
-            //   setPostID(data.id)
-            //   setSuccess(true)
-            //   setLoading(false)
-            // }
-          // })
-          // .catch((error) => {
-          //   setError(true)
-          //   setMessage('There was an error with uploading your image. Please try again.')
-          //   setLoading(false)
-          //   return
-          // })
-          // const formData = new FormData()
-          // const url = import.meta.env.VITE_CLOUDINARY_URL
-          // const cloudname = import.meta.env.VITE_CLOUD_NAME
-          // // const fileType = uploadFile.type.includes('image') ? 'image' : 'video'
-          // formData.append('file', uploadFile)
-          // formData.append('upload_preset', import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET)
-
-          // axios.post(`${url}/${cloudname}/image/upload`, formData)
-          //     .then(async (res) => {
-          //       const secureURL = res.data.secure_url
-          //       const {data, error} = await supabase
-          //                             .from('posts')
-          //                             .insert({'title': postTitle, 
-          //                                     'content': postContent, 
-          //                                     'url': secureURL, 
-          //                                     'user_id': UID, 
-          //                                     'video': false, 
-          //                                     'flair': (postFlair.charAt(0).toUpperCase() + postFlair.slice(1)),
-          //                                     'uploaded': true})
-          //                             .select()
-          //                             .single()
-          //       if(error) {
-          //         setError(true)
-          //         setMessage('There was an error with creating the post. Please try again.')
-          //         setLoading(false)
-          //       }
-          //       else {
-          //         setPostID(data.id)
-          //         setSuccess(true)
-          //         setLoading(false)
-          //       }
-          //     })
-              // .catch((error) => {
-              //   setError(true)
-              //   setMessage('There was an error with uploading your image. Please make sure the uploaded image is not over 10 MB.')
-              //   setLoading(false)
-              //   return
-              // })
         }
       }
       else {
@@ -345,33 +254,7 @@ const UpdatePost = () => {
             setLoading(false)
           }
         }
-        // const {data, error} = await supabase
-        //                             .from('posts')
-        //                             .update({'title': postTitle, 
-        //                                     'content': postContent, 
-        //                                     'url': postURL, 
-        //                                     'video': urlType === 'video', 
-        //                                     'flair': (postFlair.charAt(0).toUpperCase() + postFlair.slice(1))})
-        //                             .select()
-        //                             .eq('id', id)
-        //                             .single()
-        // if(error) {
-        //   setError(true)
-        //   setMessage('There was an error with updating the post. Please try again.')
-        //   setLoading(false)
-        // }
-        // else {
-        //   setSuccess(true)
-        //   setLoading(false)
-        // }
       }
-      // console.log(postFlair)
-      // console.log(postTitle)
-      // console.log(postContent)
-      // console.log(postURL)
-      // console.log('create')
-      // setSuccess(true)
-      // setLoading(false)
     }
   }
 

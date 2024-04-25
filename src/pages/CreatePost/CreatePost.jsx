@@ -121,27 +121,6 @@ const CreatePost = () => {
                 setLoading(false)
               }
             })
-            // const {data, error} = await supabase
-            //                           .from('posts')
-            //                           .insert({'title': postTitle, 
-            //                                   'content': postContent, 
-            //                                   'url': secureURL, 
-            //                                   'user_id': UID, 
-            //                                   'video': false, 
-            //                                   'flair': (postFlair.charAt(0).toUpperCase() + postFlair.slice(1)),
-            //                                   'uploaded': true})
-            //                           .select()
-            //                           .single()
-            // if(error) {
-            //   setError(true)
-            //   setMessage('There was an error with creating the post. Please try again.')
-            //   setLoading(false)
-            // }
-            // else {
-            //   setPostID(data.id)
-            //   setSuccess(true)
-            //   setLoading(false)
-            // }
           })
           .catch((error) => {
             setError(true)
