@@ -8,6 +8,8 @@ import { useNavigate } from 'react-router-dom';
 import Comment from '../../components/Comment/Comment';
 import ReactPlayer from 'react-player'
 import data from '../../data/data.json'
+import { storage } from "../../config/Firebase";
+import { ref, deleteObject } from 'firebase/storage'
 
 const PostDetail = () => {
   const {id} = useParams()
@@ -86,14 +88,35 @@ const PostDetail = () => {
   }
 
   const handleDelete = async() => {
+    if(post.uploaded) {
+      const storageRef = ref(storage, post.url)
+      deleteObject(storageRef).then(async () => {
+        // console.log('file deleted')
+        await supabase
+                .from('posts')
+                .delete()
+                .eq('id', id)
+        navigate('/')
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+    }
+    else {
+      await supabase
+              .from('posts')
+              .delete()
+              .eq('id', id)
+      navigate('/') 
+    }
     //TODO
-    await supabase
-            .from('posts')
-            .delete()
-            .eq('id', id)
-    navigate('/')
-    console.log('prompt for secret key')
-    console.log('delete post')
+    // await supabase
+    //         .from('posts')
+    //         .delete()
+    //         .eq('id', id)
+    // navigate('/')
+    // console.log('prompt for secret key')
+    // console.log('delete post')
   }
 
   return (
