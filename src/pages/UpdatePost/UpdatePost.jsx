@@ -30,8 +30,11 @@ const UpdatePost = () => {
   const [postFlair, setPostFlair] = useState(null)
   const [postContent, setPostContent] = useState('')
   const [postURL, setPostURL] = useState('')
+  const [uploadURL, setUploadURL] = useState('')
   // const [postID, setPostID] = useState(0)
   const [message, setMessage] = useState('')
+  const [uploadFile, setUploadFile] = useState(null)
+  const [filename, setFilename] = useState('')
 
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
@@ -98,7 +101,69 @@ const UpdatePost = () => {
       setLoading(false)
     }
     else {
-      const {data, error} = await supabase
+      if(urlType === 'upload') {
+        if(uploadFile === null) {
+          const {data, error} = await supabase
+                                    .from('posts')
+                                    .insert({'title': postTitle, 
+                                            'content': postContent, 
+                                            'user_id': UID, 
+                                            'flair': (postFlair.charAt(0).toUpperCase() + postFlair.slice(1))})
+                                    .select()
+                                    .single()
+          if(error) {
+            setError(true)
+            setMessage('There was an error with updating the post. Please try again.')
+            setLoading(false)
+          }
+          else {
+            setPostID(data.id)
+            setSuccess(true)
+            setLoading(false)
+          }
+        }
+        else {
+          const formData = new FormData()
+          const url = import.meta.env.VITE_CLOUDINARY_URL
+          const cloudname = import.meta.env.VITE_CLOUD_NAME
+          // const fileType = uploadFile.type.includes('image') ? 'image' : 'video'
+          formData.append('file', uploadFile)
+          formData.append('upload_preset', import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET)
+
+          axios.post(`${url}/${cloudname}/image/upload`, formData)
+              .then(async (res) => {
+                const secureURL = res.data.secure_url
+                const {data, error} = await supabase
+                                      .from('posts')
+                                      .update({'title': postTitle, 
+                                              'content': postContent, 
+                                              'url': secureURL, 
+                                              'video': false, 
+                                              'flair': (postFlair.charAt(0).toUpperCase() + postFlair.slice(1)),
+                                              'uploaded': true})
+                                      .select()
+                                      .single()
+                if(error) {
+                  setError(true)
+                  setMessage('There was an error with updating the post. Please try again.')
+                  setLoading(false)
+                }
+                else {
+                  setPostID(data.id)
+                  setSuccess(true)
+                  setLoading(false)
+                }
+              })
+              .catch((error) => {
+                setError(true)
+                setMessage('There was an error with uploading your image. Please make sure the uploaded image is not over 10 MB.')
+                setLoading(false)
+                return
+              })
+        }
+      }
+      else {
+        const {data, error} = await supabase
                                     .from('posts')
                                     .update({'title': postTitle, 
                                             'content': postContent, 
@@ -108,14 +173,15 @@ const UpdatePost = () => {
                                     .select()
                                     .eq('id', id)
                                     .single()
-      if(error) {
-        setError(true)
-        setMessage('There was an error with updating the post. Please try again.')
-        setLoading(false)
-      }
-      else {
-        setSuccess(true)
-        setLoading(false)
+        if(error) {
+          setError(true)
+          setMessage('There was an error with updating the post. Please try again.')
+          setLoading(false)
+        }
+        else {
+          setSuccess(true)
+          setLoading(false)
+        }
       }
       // console.log(postFlair)
       // console.log(postTitle)
@@ -142,6 +208,29 @@ const UpdatePost = () => {
       setURLType('image')
       setTabVal('1')
     }
+  }
+
+  const handleUpload = (event) => {
+    const file = event.currentTarget.files[0]
+    // console.log(file.type)
+    // console.log(file.type.includes('image'))
+    // console.log(file.type.includes('video'))
+    setUploadFile(file)
+    setFilename(file.name)
+    const reader = new FileReader()
+    reader.onloadend = () => {
+      const buffer = reader.result
+
+      // convert buffer to blob
+      const blob = new Blob([new Uint8Array(buffer)], { type: file.type });
+
+      // get url from blob
+      const url = window.URL.createObjectURL(blob);
+      setUploadURL(url)
+      // setURLType('image')
+    }
+    reader.readAsArrayBuffer(file)
+
   }
 
   return (
@@ -181,26 +270,37 @@ const UpdatePost = () => {
             </Box>
             <TabPanel value="1" sx={{ p: 0.5 }}>
               <div className="url-tab-container">
-                <FormControl sx={{ m: 1, minWidth: 100 }}>
+                <FormControl sx={{ m: 1, minWidth: 150 }}>
                   <Select
                     value={urlType}
                     onChange={handleSelectChange}
                   >
-                    <MenuItem value={'image'}>Image</MenuItem>
-                    <MenuItem value={'video'}>Video</MenuItem>
+                    <MenuItem value={'image'}>Image URL</MenuItem>
+                    <MenuItem value={'video'}>Video URL</MenuItem>
+                    <MenuItem value={'upload'}>Upload Image</MenuItem>
                   </Select>
                 </FormControl>
-                <TextField 
-                  className="form-text-field" 
-                  placeholder={'Image or Video URL (Optional)'} 
-                  value={postURL} 
-                  onChange={(event)=>setPostURL(event.target.value)} />
+                {
+                  urlType === 'upload' ? (
+                    <>
+                      <p className="selected-file">Selected Image: {filename === '' ? 'No file chosen' : filename}</p>
+                      <label htmlFor="file" className={`${theme}-bg upload-btn`}>Select Image</label>
+                      <input className="file-input" type="file" id="file" onChange={handleUpload} accept="image/*" />
+                    </>
+                  )
+                  :
+                  <TextField 
+                    className="form-text-field" 
+                    placeholder={'Image or Video URL (Optional)'} 
+                    value={postURL} 
+                    onChange={(event)=>setPostURL(event.target.value)} />
+                }
               </div>
             </TabPanel>
             <TabPanel value="2" sx={{ p: 1.5 }}>
               {
-                postURL.replace(/\s/g, '') === '' ? (
-                  <p className="no-url-message">There is nothing to be previewed currently. Please input a url in the previous tab.</p>
+                postURL.replace(/\s/g, '') === '' && uploadURL.replace(/\s/g, '') === '' ? (
+                  <p className="no-url-message">There is nothing to be previewed currently. Please input a url or upload an image in the previous tab.</p>
                 )
                 :
                 urlType === 'image' ? (
@@ -215,7 +315,19 @@ const UpdatePost = () => {
                 urlType === 'video' ? (
                   <ReactPlayer url={postURL} controls width={'100%'} />
                 )
+                : 
+                urlType === 'upload' && uploadFile !== null && uploadFile.type.includes('image') ?  (
+                  <img 
+                  src={uploadURL}
+                  alt="There was an issue with displaying the previewed image." 
+                  width={'100%'} 
+                  height={'auto'}
+                    />
+                )
                 : ""
+                // urlType === 'upload' && uploadFile !== null && uploadFile.type.includes('video') ? (
+                //   <ReactPlayer url={uploadURL} controls width={'100%'} />
+                // ) : ""
               }
               {/* <TextField className="form-text-field" placeholder={'YouTube URL (Optional)'} value={postURL} onChange={(event)=>setPostURL(event.target.value)} /> */}
             </TabPanel>

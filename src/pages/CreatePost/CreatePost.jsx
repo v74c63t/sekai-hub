@@ -19,6 +19,7 @@ import Select from '@mui/material/Select';
 import ReactPlayer from 'react-player'
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { supabase } from "../../config/Client";
+import axios from 'axios'
 
 const CreatePost = () => {
   const [UID, theme] = useOutletContext()
@@ -30,7 +31,7 @@ const CreatePost = () => {
   const [uploadURL, setUploadURL] = useState('')
   const [postID, setPostID] = useState(0)
   const [message, setMessage] = useState('')
-  const [uploadVid, setUploadVid] = useState(null)
+  const [uploadFile, setUploadFile] = useState(null)
   const [filename, setFilename] = useState('')
 
   const [loading, setLoading] = useState(false)
@@ -71,7 +72,70 @@ const CreatePost = () => {
       setLoading(false)
     }
     else {
-      const {data, error} = await supabase
+      if(urlType === 'upload') {
+        if(uploadFile === null) {
+          const {data, error} = await supabase
+                                    .from('posts')
+                                    .insert({'title': postTitle, 
+                                            'content': postContent, 
+                                            'user_id': UID, 
+                                            'flair': (postFlair.charAt(0).toUpperCase() + postFlair.slice(1))})
+                                    .select()
+                                    .single()
+          if(error) {
+            setError(true)
+            setMessage('There was an error with creating the post. Please try again.')
+            setLoading(false)
+          }
+          else {
+            setPostID(data.id)
+            setSuccess(true)
+            setLoading(false)
+          }
+        }
+        else {
+          const formData = new FormData()
+          const url = import.meta.env.VITE_CLOUDINARY_URL
+          const cloudname = import.meta.env.VITE_CLOUD_NAME
+          // const fileType = uploadFile.type.includes('image') ? 'image' : 'video'
+          formData.append('file', uploadFile)
+          formData.append('upload_preset', import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET)
+
+          axios.post(`${url}/${cloudname}/image/upload`, formData)
+              .then(async (res) => {
+                const secureURL = res.data.secure_url
+                const {data, error} = await supabase
+                                      .from('posts')
+                                      .insert({'title': postTitle, 
+                                              'content': postContent, 
+                                              'url': secureURL, 
+                                              'user_id': UID, 
+                                              'video': false, 
+                                              'flair': (postFlair.charAt(0).toUpperCase() + postFlair.slice(1)),
+                                              'uploaded': true})
+                                      .select()
+                                      .single()
+                if(error) {
+                  setError(true)
+                  setMessage('There was an error with creating the post. Please try again.')
+                  setLoading(false)
+                }
+                else {
+                  setPostID(data.id)
+                  setSuccess(true)
+                  setLoading(false)
+                }
+              })
+              .catch((error) => {
+                setError(true)
+                setMessage('There was an error with uploading your image. Please make sure the uploaded image is not over 10 MB.')
+                setLoading(false)
+                return
+              })
+        }
+      }
+      else {
+        const {data, error} = await supabase
                                     .from('posts')
                                     .insert({'title': postTitle, 
                                             'content': postContent, 
@@ -81,15 +145,16 @@ const CreatePost = () => {
                                             'flair': (postFlair.charAt(0).toUpperCase() + postFlair.slice(1))})
                                     .select()
                                     .single()
-      if(error) {
-        setError(true)
-        setMessage('There was an error with creating the post. Please try again.')
-        setLoading(false)
-      }
-      else {
-        setPostID(data.id)
-        setSuccess(true)
-        setLoading(false)
+        if(error) {
+          setError(true)
+          setMessage('There was an error with creating the post. Please try again.')
+          setLoading(false)
+        }
+        else {
+          setPostID(data.id)
+          setSuccess(true)
+          setLoading(false)
+        }
       }
       
       // console.log(postFlair)
@@ -124,7 +189,7 @@ const CreatePost = () => {
     // console.log(file.type)
     // console.log(file.type.includes('image'))
     // console.log(file.type.includes('video'))
-    setUploadVid(file)
+    setUploadFile(file)
     setFilename(file.name)
     const reader = new FileReader()
     reader.onloadend = () => {
@@ -179,22 +244,22 @@ const CreatePost = () => {
             </Box>
             <TabPanel value="1" sx={{ p: 0.5 }}>
               <div className="url-tab-container">
-                <FormControl sx={{ m: 1, minWidth: 140 }}>
+                <FormControl sx={{ m: 1, minWidth: 150 }}>
                   <Select
                     value={urlType}
                     onChange={handleSelectChange}
                   >
                     <MenuItem value={'image'}>Image URL</MenuItem>
                     <MenuItem value={'video'}>Video URL</MenuItem>
-                    <MenuItem value={'upload'}>Upload File</MenuItem>
+                    <MenuItem value={'upload'}>Upload Image</MenuItem>
                   </Select>
                 </FormControl>
                 {
                   urlType === 'upload' ? (
                     <>
-                      <p className="selected-file">Selected File: {filename === '' ? 'No file chosen' : filename}</p>
-                      <label htmlFor="file" className={`${theme}-bg upload-btn`}>Select File</label>
-                      <input className="file-input" type="file" id="file" onChange={handleUpload} accept="video/*, image/*" />
+                      <p className="selected-file">Selected Image: {filename === '' ? 'No file chosen' : filename}</p>
+                      <label htmlFor="file" className={`${theme}-bg upload-btn`}>Select Image</label>
+                      <input className="file-input" type="file" id="file" onChange={handleUpload} accept="image/*" />
                     </>
                   )
                   :
@@ -209,7 +274,7 @@ const CreatePost = () => {
             <TabPanel value="2" sx={{ p: 1.5 }}>
               {
                 postURL.replace(/\s/g, '') === '' && uploadURL.replace(/\s/g, '') === '' ? (
-                  <p className="no-url-message">There is nothing to be previewed currently. Please input a url in the previous tab.</p>
+                  <p className="no-url-message">There is nothing to be previewed currently. Please input a url or upload an image in the previous tab.</p>
                 )
                 :
                 urlType === 'image' ? (
@@ -225,7 +290,7 @@ const CreatePost = () => {
                   <ReactPlayer url={postURL} controls width={'100%'} />
                 )
                 : 
-                urlType === 'upload' && uploadVid !== null && uploadVid.type.includes('image') ?  (
+                urlType === 'upload' && uploadFile !== null && uploadFile.type.includes('image') ?  (
                   <img 
                   src={uploadURL}
                   alt="There was an issue with displaying the previewed image." 
@@ -233,10 +298,10 @@ const CreatePost = () => {
                   height={'auto'}
                     />
                 )
-                :
-                urlType === 'upload' && uploadVid !== null && uploadVid.type.includes('video') ? (
-                  <ReactPlayer url={uploadURL} controls width={'100%'} />
-                ) : ""
+                : ""
+                // urlType === 'upload' && uploadFile !== null && uploadFile.type.includes('video') ? (
+                //   <ReactPlayer url={uploadURL} controls width={'100%'} />
+                // ) : ""
               }
               {/* <TextField className="form-text-field" placeholder={'YouTube URL (Optional)'} value={postURL} onChange={(event)=>setPostURL(event.target.value)} /> */}
             </TabPanel>
