@@ -27,8 +27,11 @@ const CreatePost = () => {
   const [postFlair, setPostFlair] = useState(null)
   const [postContent, setPostContent] = useState('')
   const [postURL, setPostURL] = useState('')
+  const [uploadURL, setUploadURL] = useState('')
   const [postID, setPostID] = useState(0)
   const [message, setMessage] = useState('')
+  const [uploadVid, setUploadVid] = useState(null)
+  const [filename, setFilename] = useState('')
 
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
@@ -116,6 +119,29 @@ const CreatePost = () => {
     }
   }
 
+  const handleUpload = (event) => {
+    const file = event.currentTarget.files[0]
+    // console.log(file.type)
+    // console.log(file.type.includes('image'))
+    // console.log(file.type.includes('video'))
+    setUploadVid(file)
+    setFilename(file.name)
+    const reader = new FileReader()
+    reader.onloadend = () => {
+      const buffer = reader.result
+
+      // convert buffer to blob
+      const blob = new Blob([new Uint8Array(buffer)], { type: file.type });
+
+      // get url from blob
+      const url = window.URL.createObjectURL(blob);
+      setUploadURL(url)
+      // setURLType('image')
+    }
+    reader.readAsArrayBuffer(file)
+
+  }
+
   return (
     <div className="create-post-form">
       <Box
@@ -147,31 +173,42 @@ const CreatePost = () => {
           <TabContext value={tabVal}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
               <TabList onChange={handleChange}>
-                <Tab label="Image/Video" value="1" />
+                <Tab label="Image/Video (Optional)" value="1" />
                 <Tab label="Preview" value="2" />
               </TabList>
             </Box>
             <TabPanel value="1" sx={{ p: 0.5 }}>
               <div className="url-tab-container">
-                <FormControl sx={{ m: 1, minWidth: 100 }}>
+                <FormControl sx={{ m: 1, minWidth: 140 }}>
                   <Select
                     value={urlType}
                     onChange={handleSelectChange}
                   >
-                    <MenuItem value={'image'}>Image</MenuItem>
-                    <MenuItem value={'video'}>Video</MenuItem>
+                    <MenuItem value={'image'}>Image URL</MenuItem>
+                    <MenuItem value={'video'}>Video URL</MenuItem>
+                    <MenuItem value={'upload'}>Upload File</MenuItem>
                   </Select>
                 </FormControl>
-                <TextField 
-                  className="form-text-field" 
-                  placeholder={'Image or Video URL (Optional)'} 
-                  value={postURL} 
-                  onChange={(event)=>setPostURL(event.target.value)} />
+                {
+                  urlType === 'upload' ? (
+                    <>
+                      <p className="selected-file">Selected File: {filename === '' ? 'No file chosen' : filename}</p>
+                      <label htmlFor="file" className={`${theme}-bg upload-btn`}>Select File</label>
+                      <input className="file-input" type="file" id="file" onChange={handleUpload} accept="video/*, image/*" />
+                    </>
+                  )
+                  :
+                  <TextField 
+                    className="form-text-field" 
+                    placeholder={'Image or Video URL (Optional)'} 
+                    value={postURL} 
+                    onChange={(event)=>setPostURL(event.target.value)} />
+                }
               </div>
             </TabPanel>
             <TabPanel value="2" sx={{ p: 1.5 }}>
               {
-                postURL.replace(/\s/g, '') === '' ? (
+                postURL.replace(/\s/g, '') === '' && uploadURL.replace(/\s/g, '') === '' ? (
                   <p className="no-url-message">There is nothing to be previewed currently. Please input a url in the previous tab.</p>
                 )
                 :
@@ -187,7 +224,19 @@ const CreatePost = () => {
                 urlType === 'video' ? (
                   <ReactPlayer url={postURL} controls width={'100%'} />
                 )
-                : ""
+                : 
+                urlType === 'upload' && uploadVid !== null && uploadVid.type.includes('image') ?  (
+                  <img 
+                  src={uploadURL}
+                  alt="There was an issue with displaying the previewed image." 
+                  width={'100%'} 
+                  height={'auto'}
+                    />
+                )
+                :
+                urlType === 'upload' && uploadVid !== null && uploadVid.type.includes('video') ? (
+                  <ReactPlayer url={uploadURL} controls width={'100%'} />
+                ) : ""
               }
               {/* <TextField className="form-text-field" placeholder={'YouTube URL (Optional)'} value={postURL} onChange={(event)=>setPostURL(event.target.value)} /> */}
             </TabPanel>
