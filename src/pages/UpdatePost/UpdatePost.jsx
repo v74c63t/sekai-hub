@@ -175,7 +175,7 @@ const UpdatePost = () => {
         <TabContext value={tabVal}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
               <TabList onChange={handleChange}>
-                <Tab label="URL" value="1" />
+                <Tab label="Image/Video (Optional)" value="1" />
                 <Tab label="Preview" value="2" />
               </TabList>
             </Box>
