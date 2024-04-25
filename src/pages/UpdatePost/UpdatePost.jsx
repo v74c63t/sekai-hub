@@ -21,7 +21,7 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import data from '../../data/data.json'
 import { supabase } from '../../config/Client';
 import { storage } from "../../config/Firebase";
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
+import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage'
 import { v4 } from 'uuid'
 
 
@@ -33,7 +33,9 @@ const UpdatePost = () => {
   const [postFlair, setPostFlair] = useState(null)
   const [postContent, setPostContent] = useState('')
   const [postURL, setPostURL] = useState('')
+  const [oldPostURL, setOldPostURL] = useState('')
   const [uploadURL, setUploadURL] = useState('')
+  const [uploaded, setUploaded] = useState(false)
   // const [postID, setPostID] = useState(0)
   const [message, setMessage] = useState('')
   const [uploadFile, setUploadFile] = useState(null)
@@ -77,6 +79,8 @@ const UpdatePost = () => {
       setPostFlair(data.flair.toLowerCase())
       setPostContent(data.content)
       setPostURL(data.url)
+      setOldPostURL(data.url)
+      setUploaded(data.uploaded)
       if(data.video) {
         setURLType('video')
       }
@@ -108,11 +112,12 @@ const UpdatePost = () => {
         if(uploadFile === null) {
           const {data, error} = await supabase
                                     .from('posts')
-                                    .insert({'title': postTitle, 
+                                    .update({'title': postTitle, 
                                             'content': postContent, 
                                             'user_id': UID, 
                                             'flair': (postFlair.charAt(0).toUpperCase() + postFlair.slice(1))})
                                     .select()
+                                    .eq('id', id)
                                     .single()
           if(error) {
             setError(true)
@@ -126,31 +131,105 @@ const UpdatePost = () => {
           }
         }
         else {
-          const imgRef = ref(storage, `sekai-hub-images/${v4() + uploadFile.name}`)
-          uploadBytes(imgRef, uploadFile).then((res) => {
-            getDownloadURL(res.ref).then(async (url) => {
-              const {data, error} = await supabase
-                                        .from('posts')
-                                        .insert({'title': postTitle, 
-                                                'content': postContent, 
-                                                'url': url, 
-                                                'user_id': UID, 
-                                                'video': false, 
-                                                'flair': (postFlair.charAt(0).toUpperCase() + postFlair.slice(1)),
-                                                'uploaded': true})
-                                        .select()
-                                        .single()
-              if(error) {
+          if(uploaded) {
+            const storageRef = ref(storage, postURL)
+            deleteObject(storageRef).then(() => {
+              const imgRef = ref(storage, `sekai-hub-images/${v4() + uploadFile.name}`)
+              uploadBytes(imgRef, uploadFile).then((res) => {
+                getDownloadURL(res.ref).then(async (url) => {
+                  const {data, error} = await supabase
+                                            .from('posts')
+                                            .update({'title': postTitle, 
+                                                    'content': postContent, 
+                                                    'url': url, 
+                                                    'video': false, 
+                                                    'flair': (postFlair.charAt(0).toUpperCase() + postFlair.slice(1)),
+                                                    'uploaded': true})
+                                            .select()
+                                            .eq('id', id)
+                                            .single()
+                  if(error) {
+                    setError(true)
+                    setMessage('There was an error with updating the post. Please try again.')
+                    setLoading(false)
+                  }
+                  else {
+                    setSuccess(true)
+                    setLoading(false)
+                  }
+                })
+              })
+              .catch((error) => {
                 setError(true)
-                setMessage('There was an error with creating the post. Please try again.')
+                setMessage('There was an error with uploading your image. Please try again.')
                 setLoading(false)
-              }
-              else {
-                setPostID(data.id)
-                setSuccess(true)
-                setLoading(false)
-              }
+                return
+              })
             })
+            .catch((error) => {
+              console.error(error)
+            })
+          }
+          else {
+            const imgRef = ref(storage, `sekai-hub-images/${v4() + uploadFile.name}`)
+            uploadBytes(imgRef, uploadFile).then((res) => {
+              console.log(res)
+              getDownloadURL(res.ref).then(async (url) => {
+                console.log(url)
+                const {data, error} = await supabase
+                                          .from('posts')
+                                          .update({'title': postTitle, 
+                                                  'content': postContent, 
+                                                  'url': url, 
+                                                  'video': false, 
+                                                  'flair': (postFlair.charAt(0).toUpperCase() + postFlair.slice(1)),
+                                                  'uploaded': true})
+                                          .select()
+                                          .eq('id', id)
+                                          .single()
+                if(error) {
+                  setError(true)
+                  setMessage('There was an error with updating the post. Please try again.')
+                  setLoading(false)
+                }
+                else {
+                  setSuccess(true)
+                  setLoading(false)
+                }
+              })
+            })
+            .catch((error) => {
+              setError(true)
+              setMessage('There was an error with uploading your image. Please try again.')
+              setLoading(false)
+              return
+            })
+          }
+          // const imgRef = ref(storage, `sekai-hub-images/${v4() + uploadFile.name}`)
+          // uploadBytes(imgRef, uploadFile).then((res) => {
+          //   getDownloadURL(res.ref).then(async (url) => {
+          //     const {data, error} = await supabase
+          //                               .from('posts')
+          //                               .insert({'title': postTitle, 
+          //                                       'content': postContent, 
+          //                                       'url': url, 
+          //                                       'user_id': UID, 
+          //                                       'video': false, 
+          //                                       'flair': (postFlair.charAt(0).toUpperCase() + postFlair.slice(1)),
+          //                                       'uploaded': true})
+          //                               .select()
+          //                               .single()
+          //     if(error) {
+          //       setError(true)
+          //       setMessage('There was an error with creating the post. Please try again.')
+          //       setLoading(false)
+          //     }
+          //     else {
+          //       setPostID(data.id)
+          //       setSuccess(true)
+          //       setLoading(false)
+          //     }
+          //   })
             // const {data, error} = await supabase
             //                           .from('posts')
             //                           .insert({'title': postTitle, 
@@ -172,13 +251,13 @@ const UpdatePost = () => {
             //   setSuccess(true)
             //   setLoading(false)
             // }
-          })
-          .catch((error) => {
-            setError(true)
-            setMessage('There was an error with uploading your image. Please try again.')
-            setLoading(false)
-            return
-          })
+          // })
+          // .catch((error) => {
+          //   setError(true)
+          //   setMessage('There was an error with uploading your image. Please try again.')
+          //   setLoading(false)
+          //   return
+          // })
           // const formData = new FormData()
           // const url = import.meta.env.VITE_CLOUDINARY_URL
           // const cloudname = import.meta.env.VITE_CLOUD_NAME
@@ -220,7 +299,33 @@ const UpdatePost = () => {
         }
       }
       else {
-        const {data, error} = await supabase
+        if(uploaded && (oldPostURL !== postURL)) {
+          const storageRef = ref(storage, oldPostURL)
+          deleteObject(storageRef).then(async () => {
+            const {data, error} = await supabase
+                                    .from('posts')
+                                    .update({'title': postTitle, 
+                                            'content': postContent, 
+                                            'url': postURL, 
+                                            'video': urlType === 'video', 
+                                            'flair': (postFlair.charAt(0).toUpperCase() + postFlair.slice(1)),
+                                            'uploaded': false})
+                                    .select()
+                                    .eq('id', id)
+                                    .single()
+            if(error) {
+              setError(true)
+              setMessage('There was an error with updating the post. Please try again.')
+              setLoading(false)
+            }
+            else {
+              setSuccess(true)
+              setLoading(false)
+            }
+})
+        }
+        else {
+          const {data, error} = await supabase
                                     .from('posts')
                                     .update({'title': postTitle, 
                                             'content': postContent, 
@@ -230,15 +335,35 @@ const UpdatePost = () => {
                                     .select()
                                     .eq('id', id)
                                     .single()
-        if(error) {
-          setError(true)
-          setMessage('There was an error with updating the post. Please try again.')
-          setLoading(false)
+          if(error) {
+            setError(true)
+            setMessage('There was an error with updating the post. Please try again.')
+            setLoading(false)
+          }
+          else {
+            setSuccess(true)
+            setLoading(false)
+          }
         }
-        else {
-          setSuccess(true)
-          setLoading(false)
-        }
+        // const {data, error} = await supabase
+        //                             .from('posts')
+        //                             .update({'title': postTitle, 
+        //                                     'content': postContent, 
+        //                                     'url': postURL, 
+        //                                     'video': urlType === 'video', 
+        //                                     'flair': (postFlair.charAt(0).toUpperCase() + postFlair.slice(1))})
+        //                             .select()
+        //                             .eq('id', id)
+        //                             .single()
+        // if(error) {
+        //   setError(true)
+        //   setMessage('There was an error with updating the post. Please try again.')
+        //   setLoading(false)
+        // }
+        // else {
+        //   setSuccess(true)
+        //   setLoading(false)
+        // }
       }
       // console.log(postFlair)
       // console.log(postTitle)
