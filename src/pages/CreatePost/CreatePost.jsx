@@ -219,10 +219,10 @@ const CreatePost = () => {
       >
         <div className='flair-container'>
           <h3 className='flair-header'>Post Flair:</h3>
-          <h4 id='discussion' className={postFlair !== null && postFlair === 'discussion' ? `filter-flair ${theme}-bg discussion active` : `filter-flair ${theme}-bg discussion`} onClick={() => setPostFlair('discussion')}>Discussion</h4>
-          <h4 id='achievements' className={postFlair !== null && postFlair === 'achievements' ? `filter-flair ${theme}-bg achievements active` : `filter-flair ${theme}-bg achievements`} onClick={() => setPostFlair('achievements')}>Achievements</h4>
-          <h4 id='question' className={postFlair !== null && postFlair === 'question' ? `filter-flair ${theme}-bg question active` : `filter-flair ${theme}-bg question`} onClick={() => setPostFlair('question')}>Question</h4>
-          <h4 id='gameplay' className={postFlair !== null && postFlair === 'gameplay' ? `filter-flair ${theme}-bg gameplay active` : `filter-flair ${theme}-bg gameplay`} onClick={() => setPostFlair('gameplay')}>Gameplay</h4>
+          <h4 id='discussion' className={postFlair !== null && postFlair === 'discussion' ? `filter-flair ${theme}-bg discussion active` : `filter-flair ${theme}-bg discussion ${theme}-bg-hover`} onClick={() => setPostFlair('discussion')}>Discussion</h4>
+          <h4 id='achievements' className={postFlair !== null && postFlair === 'achievements' ? `filter-flair ${theme}-bg achievements active` : `filter-flair ${theme}-bg achievements ${theme}-bg-hover`} onClick={() => setPostFlair('achievements')}>Achievements</h4>
+          <h4 id='question' className={postFlair !== null && postFlair === 'question' ? `filter-flair ${theme}-bg question active` : `filter-flair ${theme}-bg question ${theme}-bg-hover`} onClick={() => setPostFlair('question')}>Question</h4>
+          <h4 id='gameplay' className={postFlair !== null && postFlair === 'gameplay' ? `filter-flair ${theme}-bg gameplay active` : `filter-flair ${theme}-bg gameplay ${theme}-bg-hover`} onClick={() => setPostFlair('gameplay')}>Gameplay</h4>
         </div>
         <TextField className="form-text-field" placeholder={'Title'} value={postTitle} onChange={(event)=>setPostTitle(event.target.value)} />
         <TextField 
@@ -275,7 +275,7 @@ const CreatePost = () => {
                   urlType === 'upload' ? (
                     <>
                       <p className="selected-file">Selected Image: {filename === '' ? 'No file chosen' : filename}</p>
-                      <label htmlFor="file" className={`${theme}-bg upload-btn`}>Select Image</label>
+                      <label htmlFor="file" className={`${theme}-bg upload-btn ${theme}-bg-hover`}>Select Image</label>
                       <input className="file-input" type="file" id="file" onChange={handleUpload} accept="image/*" />
                     </>
                   )
@@ -320,7 +320,7 @@ const CreatePost = () => {
             </TabPanel>
           </TabContext>
         </Box>
-        <button className={`${theme}-bg create-post-btn`} type="submit" onClick={handleCreatePost}>Create Post</button>
+        <button className={`${theme}-bg create-post-btn ${theme}-bg-hover`} type="submit" onClick={handleCreatePost}>Create Post</button>
         <Dialog
           open={open}
           onClose={handleClose}
@@ -372,8 +372,8 @@ const CreatePost = () => {
               </DialogContent>
               <DialogActions className="dialog-actions">
                 <div className="dialog-btns-container">
-                  <div className={`${theme}-bg dialog-btns`} onClick={()=>navigate('/')}>Back to Home</div>
-                  <div className={`${theme}-bg dialog-btns`} onClick={()=>navigate(`/post/${postID}`)}>View Post</div>
+                  <div className={`${theme}-bg dialog-btns ${theme}-bg-hover`} onClick={()=>navigate('/')}>Back to Home</div>
+                  <div className={`${theme}-bg dialog-btns ${theme}-bg-hover`} onClick={()=>navigate(`/post/${postID}`)}>View Post</div>
                 </div>
               </DialogActions>
             </>

@@ -265,8 +265,8 @@ const PostDetail = () => {
                   </DialogContent>
                   <DialogActions className="dialog-actions">
                     <div className="dialog-btns-container">
-                      <div className={`${theme}-bg secret-key-dialog-btns`} onClick={handleCloseDialog}>Cancel</div>
-                      <div className={`${theme}-bg secret-key-dialog-btns`} onClick={checkSecretKey}>Delete</div>
+                      <div className={`${theme}-bg secret-key-dialog-btns ${theme}-bg-hover`} onClick={handleCloseDialog}>Cancel</div>
+                      <div className={`${theme}-bg secret-key-dialog-btns ${theme}-bg-hover`} onClick={checkSecretKey}>Delete</div>
                     </div>
                   </DialogActions>
                 </>

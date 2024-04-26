@@ -117,15 +117,15 @@ function Search() {
         </div>
         <div className='sort-container'>
           <h3 className='sort'>Sort By:</h3>
-          <h4 id='newest' className={sortByFilter === 'newest' ? `sort-flair ${theme}-bg active` : `sort-flair ${theme}-bg`} onClick={handleSort}>Newest</h4>
-          <h4 id='most-popular' className={sortByFilter === 'most-popular' ? `sort-flair ${theme}-bg active` : `sort-flair ${theme}-bg`} onClick={handleSort}>Most Popular</h4>
+          <h4 id='newest' className={sortByFilter === 'newest' ? `sort-flair ${theme}-bg active` : `sort-flair ${theme}-bg ${theme}-bg-hover`} onClick={handleSort}>Newest</h4>
+          <h4 id='most-popular' className={sortByFilter === 'most-popular' ? `sort-flair ${theme}-bg active` : `sort-flair ${theme}-bg ${theme}-bg-hover`} onClick={handleSort}>Most Popular</h4>
         </div>
         <div className='filter-container'>
           <h3 className='filter'>Filter By:</h3>
-          <h4 id='discussion' className={filterByFilter !== null && filterByFilter === 'discussion' ? `filter-flair ${theme}-bg discussion active` : `filter-flair ${theme}-bg discussion`} onClick={handleFilter}>Discussion</h4>
-          <h4 id='achievements' className={filterByFilter !== null && filterByFilter === 'achievements' ? `filter-flair ${theme}-bg achievements active` : `filter-flair ${theme}-bg achievements`} onClick={handleFilter}>Achievements</h4>
-          <h4 id='question' className={filterByFilter !== null && filterByFilter === 'question' ? `filter-flair ${theme}-bg question active` : `filter-flair ${theme}-bg question`} onClick={handleFilter}>Question</h4>
-          <h4 id='gameplay' className={filterByFilter !== null && filterByFilter === 'gameplay' ? `filter-flair ${theme}-bg gameplay active` : `filter-flair ${theme}-bg gameplay`} onClick={handleFilter}>Gameplay</h4>
+          <h4 id='discussion' className={filterByFilter !== null && filterByFilter === 'discussion' ? `filter-flair ${theme}-bg discussion active` : `filter-flair ${theme}-bg discussion ${theme}-bg-hover`} onClick={handleFilter}>Discussion</h4>
+          <h4 id='achievements' className={filterByFilter !== null && filterByFilter === 'achievements' ? `filter-flair ${theme}-bg achievements active` : `filter-flair ${theme}-bg achievements ${theme}-bg-hover`} onClick={handleFilter}>Achievements</h4>
+          <h4 id='question' className={filterByFilter !== null && filterByFilter === 'question' ? `filter-flair ${theme}-bg question active` : `filter-flair ${theme}-bg question ${theme}-bg-hover`} onClick={handleFilter}>Question</h4>
+          <h4 id='gameplay' className={filterByFilter !== null && filterByFilter === 'gameplay' ? `filter-flair ${theme}-bg gameplay active` : `filter-flair ${theme}-bg gameplay ${theme}-bg-hover`} onClick={handleFilter}>Gameplay</h4>
         </div>
         {/* <div className='search-container'>
           <h3 className='search-header'>Search: </h3>
