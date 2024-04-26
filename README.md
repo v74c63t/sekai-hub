@@ -56,6 +56,10 @@ GIF created with [Kap](https://getkap.co/) for macOS
 
 Describe any challenges encountered while building the app.
 
+I had some issues with implementing the search by title functionality most because I decided to place my search bar in the nav bar. Originally, I wanted the posts to update directly on the home page based on the search query that the user inputted, but that ended up causing a lot of issues with some variables as well as sorting and filtering so I just decided to create a separate search result page instead. 
+
+Other than that, I encountered several issues with implementing some of the optional features. At first, I wanted to allow users to upload both images and videos directly from their local machine and I would save those files in Cloudinary, but the free plan I was on restricted it so I am unable to upload video files that are more than 100 MB. Considering the fact that one gameplay video that only contains me playing one song was already significantly over 100 MB, I disgarded that idea and only allowed users to upload images. Afterwards, when I was trying to work out updates and deletions with this, I ran into more problems. Ultimately, I wanted to delete the uploaded image associated with a post if the user intends to delete the post or update the post with a new image/video because it makes sense to free up space if the image is no longer needed. This ended up causing a lot of headaches because I could not find an easy way to delete images that were uploaded to Cloudinary. I looked through their documentation multiple times, but there was not a simple way to do so. I tried using their API, but that required me to generate a signature and I could not figure out how to do so easily. The second way was to use their SDK, but the function they showed just did not work. In the end, I just switched everything over to Firebase, which worked way better.
+
 ## License
 
     Copyright [2024] [Vanessa Tang]
