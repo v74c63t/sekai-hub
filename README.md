@@ -2,11 +2,9 @@
 
 Submitted by: **Vanessa Tang**
 
-This web app: **a forum web app that allows users to post and interact with others about Project SEKAI: Colorful Stage, a mobile rhythm game featuring some Virtual Singers such as Hatsune Miku.**
+This web app: **a forum web app that allows users to post and interact with others about Project SEKAI COLORFUL STAGE, a mobile rhythm game featuring Virtual Singers such as Hatsune Miku.**
 
-Time spent: **X** hours spent in total
-
-so far: 53
+Time spent: **54** hours spent in total
 
 ## Required Features
 
