@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { Icon } from '@iconify/react/dist/iconify.js'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
-import { supabase } from '../../config/Client'
+// import { supabase } from '../../config/Client'
 
 const NavBar = () => {
   const [UID, setUID] = useState(nanoid(12))
@@ -87,6 +87,7 @@ const NavBar = () => {
       <div className="nav-bar-container">
         <nav className={`nav-bar ${theme}-bg`}>
           <div className="nav-bar-list">
+            <img src="/favicon_io/android-chrome-192x192.png" alt="" width={40} />
             <Link className='header-link' to="/">
               <h2 className='header'>Sekai Hub</h2>
             </Link>
