@@ -22,6 +22,11 @@ import { supabase } from "../../config/Client";
 import { storage } from "../../config/Firebase";
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 import { v4 } from 'uuid'
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import InputAdornment from '@mui/material/InputAdornment';
+import IconButton from '@mui/material/IconButton';
+import OutlinedInput from '@mui/material/OutlinedInput';
 
 const CreatePost = () => {
   const [UID, theme] = useOutletContext()
@@ -44,6 +49,9 @@ const CreatePost = () => {
 
   const [tabVal, setTabVal] = useState('1')
 
+  const [secretKey, setSecretKey] = useState('')
+  const [showSecretKey, setShowSecretKey] = useState(false)
+
   const handleChange = (event, newValue) => {
     setTabVal(newValue);
   };
@@ -64,14 +72,23 @@ const CreatePost = () => {
         errorMessage += ' and assign a flair to the post'
       }
       errorMessage += '.'
+      if(secretKey === '') {
+        errorMessage += ' Make sure to also input a secret key for the post.'
+      }
       setMessage(errorMessage)
       setError(true)
       setLoading(false)
     }
     else if(postFlair === null) {
       setMessage('Please assign a flair to the post.')
+      if(secretKey === '') {
+        errorMessage += ' Make sure to also input a secret key for the post.'
+      }
       setError(true)
       setLoading(false)
+    }
+    else if(secretKey === '') {
+      errorMessage += 'Please a secret key for the post.'
     }
     else {
       if(urlType === 'upload') {
@@ -81,7 +98,8 @@ const CreatePost = () => {
                                     .insert({'title': postTitle, 
                                             'content': postContent, 
                                             'user_id': UID, 
-                                            'flair': (postFlair.charAt(0).toUpperCase() + postFlair.slice(1))})
+                                            'flair': (postFlair.charAt(0).toUpperCase() + postFlair.slice(1)),
+                                            'secret_key': secretKey})
                                     .select()
                                     .single()
           if(error) {
@@ -107,6 +125,7 @@ const CreatePost = () => {
                                                 'user_id': UID, 
                                                 'video': false, 
                                                 'flair': (postFlair.charAt(0).toUpperCase() + postFlair.slice(1)),
+                                                'secret_key': secretKey,
                                                 'uploaded': true})
                                         .select()
                                         .single()
@@ -176,7 +195,8 @@ const CreatePost = () => {
                                             'url': postURL, 
                                             'user_id': UID, 
                                             'video': urlType === 'video', 
-                                            'flair': (postFlair.charAt(0).toUpperCase() + postFlair.slice(1))})
+                                            'flair': (postFlair.charAt(0).toUpperCase() + postFlair.slice(1)),
+                                            'secret_key': secretKey})
                                     .select()
                                     .single()
         if(error) {
@@ -267,7 +287,25 @@ const CreatePost = () => {
           placeholder={'Content (Optional)'}
           value={postContent}
           onChange={(event)=>setPostContent(event.target.value)} />
-        {/* <TextField className="form-text-field" placeholder={'Image URL (Optional)'} value={postURL} onChange={(event)=>setPostURL(event.target.value)} /> */}
+        <OutlinedInput 
+          type={showSecretKey ? 'text' : 'password'} 
+          className="form-text-field" 
+          placeholder={'Secret Key'} 
+          value={secretKey} 
+          variant={'outlined'}
+          onChange={(event)=>setSecretKey(event.target.value)} 
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton
+                aria-label="toggle password visibility"
+                onClick={() => {setShowSecretKey(!showSecretKey)}}
+                edge="end"
+              >
+                {showSecretKey ? <VisibilityOff /> : <Visibility />}
+              </IconButton>
+            </InputAdornment>
+          }
+          />
         <Box sx={{ width: '100%', typography: 'body1' }}>
           <TabContext value={tabVal}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
