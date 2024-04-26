@@ -14,9 +14,9 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import 'ldrs/ring2'
-import 'ldrs/dotSpinner'
 import TextField from '@mui/material/TextField';
+import { ring2 } from 'ldrs'
+import { dotSpinner } from 'ldrs'
 
 const PostDetail = () => {
   const {id} = useParams()
@@ -37,6 +37,9 @@ const PostDetail = () => {
   const [secretKeyErr, setSecretKeyErr] = useState(false)
   const [deleteSuccess, setDeleteSuccess] = useState(null)
   const [deleteLoading, setDeleteLoading] = useState(false)
+
+  ring2.register()
+  dotSpinner.register()
 
   useEffect(() => {
     const fetchPostInfo = async () => {

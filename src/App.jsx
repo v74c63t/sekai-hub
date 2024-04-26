@@ -5,7 +5,7 @@ import PostCondensed from './components/PostCondensed/PostCondensed'
 import { useOutletContext, useNavigate } from "react-router-dom";
 import { supabase } from './config/SupabaseClient';
 import AddIcon from '@mui/icons-material/Add';
-import 'ldrs/ring2'
+import { ring2 } from 'ldrs'
 
 function App() {
 
@@ -19,6 +19,8 @@ function App() {
   const [filterByFilter, setFilterByFilter] = useState(null)
 
   const [loading, setLoading] = useState(true)
+
+  ring2.register()
 
   useEffect(() => {
     setLoading(true)

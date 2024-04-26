@@ -8,7 +8,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import 'ldrs/dotSpinner'
+import { dotSpinner } from 'ldrs'
 import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
@@ -51,6 +51,8 @@ const CreatePost = () => {
 
   const [secretKey, setSecretKey] = useState('')
   const [showSecretKey, setShowSecretKey] = useState(false)
+
+  dotSpinner.register()
 
   const handleChange = (event, newValue) => {
     setTabVal(newValue);
