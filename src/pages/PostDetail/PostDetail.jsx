@@ -261,7 +261,7 @@ const PostDetail = () => {
                   </DialogContent>
                   <DialogActions className="delete-dialog-actions">
                     <div className="delete-dialog-btns-container">
-                      <div className={`${theme}-bg delete-dialog-btns`} onClick={checkSecretKey}>Back to Home</div>
+                      <div className={`${theme}-bg delete-dialog-btns`} onClick={()=>navigate('/')}>Back to Home</div>
                     </div>
                   </DialogActions>
                 </>
