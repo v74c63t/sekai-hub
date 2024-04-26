@@ -10,6 +10,14 @@ import ReactPlayer from 'react-player'
 import data from '../../data/data.json'
 import { storage } from "../../config/Firebase";
 import { ref, deleteObject } from 'firebase/storage'
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import 'ldrs/ring2'
+import 'ldrs/dotSpinner'
+import TextField from '@mui/material/TextField';
 
 const PostDetail = () => {
   const {id} = useParams()
@@ -23,6 +31,14 @@ const PostDetail = () => {
   const [userComment, setUserComment] = useState('')
   
   const [loading, setLoading] = useState(true)
+
+  const [dialogPrompt, setDialogPrompt] = useState(false)
+
+  // const [change, setChange] = useState(null)
+  const [secretKey, setSecretKey] = useState('')
+  const [secretKeyErr, setSecretKeyErr] = useState(false)
+  const [deleteSuccess, setDeleteSuccess] = useState(null)
+  const [deleteLoading, setDeleteLoading] = useState(false)
  
   // const posts = data.posts
 
@@ -35,7 +51,7 @@ const PostDetail = () => {
     const fetchPostInfo = async () => {
       const post = await supabase
                             .from('posts')
-                            .select()
+                            .select('id, created_at, title, content, url, upvotes, user_id, video, flair, uploaded')
                             .eq('id', id)
                             .single()
       const comments = await supabase
@@ -82,7 +98,7 @@ const PostDetail = () => {
 
   const handleUpdate = () => {
     //TODO
-    console.log('prompt for secret key')
+    console.log('prompt for secret key in update page instead')
     console.log('redirect to update page')
     navigate(`/update/${id}`)
   }
@@ -96,9 +112,13 @@ const PostDetail = () => {
                 .from('posts')
                 .delete()
                 .eq('id', id)
-        navigate('/')
+        setDeleteLoading(false)
+        setDeleteSuccess(true)
+        // navigate('/')
       })
       .catch((error) => {
+        setDeleteLoading(false)
+        setDeleteSuccess(false)
         console.error(error)
       })
     }
@@ -107,7 +127,9 @@ const PostDetail = () => {
               .from('posts')
               .delete()
               .eq('id', id)
-      navigate('/') 
+      setDeleteLoading(false)
+      setDeleteSuccess(true)
+      // navigate('/') 
     }
     //TODO
     // await supabase
@@ -117,6 +139,31 @@ const PostDetail = () => {
     // navigate('/')
     // console.log('prompt for secret key')
     // console.log('delete post')
+  }
+
+  const handleCloseDialog = () => {
+    setDialogPrompt(false)
+    setSecretKeyErr(false)
+  }
+
+  const checkSecretKey = async () => {
+    setDeleteLoading(true)
+    const { data } = await supabase
+                          .from('posts')
+                          .select('secret_key')
+                          .eq('id', id)
+                          .single()
+    if(secretKey === data.secret_key) {
+      setSecretKeyErr(false)
+      handleDelete()
+    }
+    else {
+      console.log('correct behavior for now')
+      setSecretKeyErr(true)
+      setDeleteLoading(false)
+      // console.log(change)
+      // navigate(`/update/${id}`, {state: {'sk': false}})
+    }
   }
 
   return (
@@ -158,7 +205,7 @@ const PostDetail = () => {
             </div>
             <div className="post-update-container">
               <Icon className={`${theme} edit-icon`} icon="bxs:edit" width="1.7rem" height="1.7rem" onClick={handleUpdate} />
-              <Icon className='delete-icon' icon="material-symbols:delete-outline" width="1.8rem" height="1.8rem" onClick={handleDelete} />
+              <Icon className='delete-icon' icon="material-symbols:delete-outline" width="1.8rem" height="1.8rem" onClick={()=> {setDialogPrompt(true)}} />
             </div>
           </div>
           <div className='comments-container'>
@@ -174,6 +221,105 @@ const PostDetail = () => {
             }
             <input className='add-comment' type="text" placeholder='Comment...' value={userComment} onChange={(event)=>setUserComment(event.target.value)} onKeyDown={handleSubmit} />
           </div>
+          {/* {
+            dialogPrompt ? ( */}
+          <Dialog
+            open={dialogPrompt}
+            onClose={handleCloseDialog}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+            fullWidth
+            maxWidth='xs'>
+            {
+              deleteLoading ? (
+                <>
+                  <DialogTitle id="alert-dialog-title" className="dialog-title-loading">
+                    Loading
+                  </DialogTitle>
+                  <DialogContent>
+                    <div className="spinner-container">
+                      <l-dot-spinner
+                        size="50"
+                        speed="0.9"
+                        color={'gray'}
+                      ></l-dot-spinner>
+                    </div>
+                  </DialogContent>
+                </>
+              )
+              :
+              deleteSuccess === true ? (
+                <>
+                  <DialogTitle id="alert-dialog-title" className="dialog-title">
+                    Success
+                  </DialogTitle>
+                  <DialogContent dividers>
+                    <DialogContentText id="alert-dialog-description" className="dialog-content">
+                      The post was successfully deleted. Click on the button below to return to the home page.
+                    </DialogContentText>
+                    {/* </DialogContentText> */}
+                  </DialogContent>
+                  <DialogActions className="delete-dialog-actions">
+                    <div className="delete-dialog-btns-container">
+                      <div className={`${theme}-bg delete-dialog-btns`} onClick={checkSecretKey}>Back to Home</div>
+                    </div>
+                  </DialogActions>
+                </>
+              )
+              :
+              deleteSuccess === false ? (
+                <>
+                  <DialogTitle id="alert-dialog-title" className="dialog-title">
+                    Error!
+                    <Icon className={`${theme} close-icon`} icon="mdi:close" width={'2rem'} height={'2rem'} onClick={handleCloseDialog} />
+                  </DialogTitle>
+                  <DialogContent dividers>
+                    <DialogContentText id="alert-dialog-description" className="dialog-content">
+                      There was an issue with deleting the post. Please try again.
+                    </DialogContentText>
+                    {/* </DialogContentText> */}
+                  </DialogContent>
+                  {/* <DialogActions className="delete-dialog-actions">
+                    <div className="delete-dialog-btns-container">
+                      <div className={`${theme}-bg delete-dialog-btns`} onClick={handleCloseDialog}>Close</div>
+                    </div>
+                  </DialogActions> */}
+                </>
+              )
+              :
+              (
+                <>
+                  <DialogTitle id="alert-dialog-title" className="secret-key-title">
+                    Are you sure you want to delete this post?
+                  </DialogTitle>
+                  <DialogContent>
+                    <DialogContentText id="alert-dialog-description" className="secret-key-content">
+                      This process cannot be undone. Please enter the post's secret key to confirm.
+                    </DialogContentText>
+                    <TextField
+                      FormHelperTextProps={{ style: { backgroundColor: 'white', padding: 0, margin: 0 }}}
+                      className="secret-key-input" 
+                      placeholder={'Secret Key'} 
+                      value={secretKey} 
+                      onChange={(event)=>setSecretKey(event.target.value)}
+                      type='password'
+                      error={secretKeyErr}
+                      helperText={secretKeyErr ? 'The secret key inputted is incorrect. Please try again.': ''}
+                        />
+                    {/* </DialogContentText> */}
+                  </DialogContent>
+                  <DialogActions className="dialog-actions">
+                    <div className="dialog-btns-container">
+                      <div className={`${theme}-bg secret-key-dialog-btns`} onClick={handleCloseDialog}>Cancel</div>
+                      <div className={`${theme}-bg secret-key-dialog-btns`} onClick={checkSecretKey}>Delete</div>
+                    </div>
+                  </DialogActions>
+                </>
+              )
+            }
+          </Dialog>
+            {/* ) : "" */}
+          {/* } */}
         </div>
       ) : ""}
     </>
