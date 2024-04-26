@@ -1,0 +1,43 @@
+.home-btn {
+  border: none;
+  border-radius: 1rem;
+  padding: 1rem;
+  font-size: 1.2rem;
+  color: white;
+  cursor: pointer;
+}
+
+.header-404 {
+  font-size: 3rem;
+  font-weight: 800;
+  padding: 0;
+  margin: 0;
+}
+
+.page-not-found {
+  font-size: 2.5rem;
+  font-weight: 700;
+  padding: 0;
+  margin: 0;
+}
+
+.page-not-found-message {
+  font-size: 2rem;
+  font-weight: 600;
+  padding: 0;
+  margin: 0;
+}
+
+.not-found-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  gap: 2rem;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
