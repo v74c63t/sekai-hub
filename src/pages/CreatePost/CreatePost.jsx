@@ -2,7 +2,7 @@ import { useOutletContext, useNavigate } from "react-router-dom";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import './CreatePost.css'
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -18,8 +18,8 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import ReactPlayer from 'react-player'
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { supabase } from "../../config/Client";
-import { storage } from "../../config/Firebase";
+import { supabase } from "../../config/SupabaseClient";
+import { storage } from "../../config/FirebaseClient";
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 import { v4 } from 'uuid'
 import Visibility from '@mui/icons-material/Visibility';
@@ -147,44 +147,6 @@ const CreatePost = () => {
             setLoading(false)
             return
           })
-          // const formData = new FormData()
-          // const url = import.meta.env.VITE_CLOUDINARY_URL
-          // const cloudname = import.meta.env.VITE_CLOUD_NAME
-          // // const fileType = uploadFile.type.includes('image') ? 'image' : 'video'
-          // formData.append('file', uploadFile)
-          // formData.append('upload_preset', import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET)
-
-          // axios.post(`${url}/${cloudname}/image/upload`, formData)
-          //     .then(async (res) => {
-          //       const secureURL = res.data.secure_url
-          //       const {data, error} = await supabase
-          //                             .from('posts')
-          //                             .insert({'title': postTitle, 
-          //                                     'content': postContent, 
-          //                                     'url': secureURL, 
-          //                                     'user_id': UID, 
-          //                                     'video': false, 
-          //                                     'flair': (postFlair.charAt(0).toUpperCase() + postFlair.slice(1)),
-          //                                     'uploaded': true})
-          //                             .select()
-          //                             .single()
-          //       if(error) {
-          //         setError(true)
-          //         setMessage('There was an error with creating the post. Please try again.')
-          //         setLoading(false)
-          //       }
-          //       else {
-          //         setPostID(data.id)
-          //         setSuccess(true)
-          //         setLoading(false)
-          //       }
-          //     })
-              // .catch((error) => {
-              //   setError(true)
-              //   setMessage('There was an error with uploading your image. Please make sure the uploaded image is not over 10 MB.')
-              //   setLoading(false)
-              //   return
-              // })
         }
       }
       else {
@@ -210,14 +172,6 @@ const CreatePost = () => {
           setLoading(false)
         }
       }
-      
-      // console.log(postFlair)
-      // console.log(postTitle)
-      // console.log(postContent)
-      // console.log(postURL)
-      // console.log('create')
-      // setSuccess(true)
-      // setLoading(false)
     }
   }
 
@@ -240,9 +194,6 @@ const CreatePost = () => {
 
   const handleUpload = (event) => {
     const file = event.currentTarget.files[0]
-    // console.log(file.type)
-    // console.log(file.type.includes('image'))
-    // console.log(file.type.includes('video'))
     setUploadFile(file)
     setFilename(file.name)
     const reader = new FileReader()
@@ -255,7 +206,6 @@ const CreatePost = () => {
       // get url from blob
       const url = window.URL.createObjectURL(blob);
       setUploadURL(url)
-      // setURLType('image')
     }
     reader.readAsArrayBuffer(file)
 
@@ -266,11 +216,6 @@ const CreatePost = () => {
       <Box
         className="form-container"
         component="form"
-        // sx={{
-        //   '& .MuiTextField-root': { m: 1, width: '25ch' },
-        // }}
-        // noValidate
-        // autoComplete="off"
       >
         <div className='flair-container'>
           <h3 className='flair-header'>Post Flair:</h3>
@@ -371,11 +316,7 @@ const CreatePost = () => {
                     />
                 )
                 : ""
-                // urlType === 'upload' && uploadFile !== null && uploadFile.type.includes('video') ? (
-                //   <ReactPlayer url={uploadURL} controls width={'100%'} />
-                // ) : ""
               }
-              {/* <TextField className="form-text-field" placeholder={'YouTube URL (Optional)'} value={postURL} onChange={(event)=>setPostURL(event.target.value)} /> */}
             </TabPanel>
           </TabContext>
         </Box>
@@ -402,12 +343,6 @@ const CreatePost = () => {
                   ></l-dot-spinner>
                 </div>
               </DialogContent>
-              {/* <DialogActions className="dialog-actions">
-                <div className="dialog-btns-container">
-                  <div className="dialog-btns" onClick={()=>navigate('/')}>Back to Home</div>
-                  <div className="dialog-btns" onClick={()=>navigate(`/post/${postID}`)}>View Post</div>
-                </div>
-              </DialogActions> */}
             </>
           )
           :
@@ -422,12 +357,6 @@ const CreatePost = () => {
                   {message}
                 </DialogContentText>
               </DialogContent>
-              {/* <DialogActions className="dialog-actions">
-                <div className="dialog-btns-container">
-                  <div className={`${theme}-bg dialog-btns`} onClick={()=>navigate('/')}>Back to Home</div>
-                  <div className={`${theme}-bg dialog-btns`} onClick={()=>navigate(`/post/${postID}`)}>View Post</div>
-                </div>
-              </DialogActions> */}
             </>
           )
           :

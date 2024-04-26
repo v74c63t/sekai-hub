@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import PostCondensed from '../../components/PostCondensed/PostCondensed'
 import { useOutletContext, useNavigate } from "react-router-dom";
-import { supabase } from '../../config/Client';
+import { supabase } from '../../config/SupabaseClient';
 import AddIcon from '@mui/icons-material/Add';
-import data from '../../data/data.json'
 import 'ldrs/ring2'
 import './Search.css'
 
@@ -23,12 +22,8 @@ function Search() {
 
   const [loading, setLoading] = useState(true)
 
-  // var initial = data.posts
-
   useEffect(() => {
     setLoading(true)
-    // setPosts(initial)
-    // setLoading(false)
     const fetchPosts = async() => {
       const {data} = await supabase
                           .from('posts')
@@ -46,9 +41,6 @@ function Search() {
       setLoading(true)
       setSortByFilter(event.target.id)
       if(event.target.id === 'newest') {
-        // var sortedPosts = posts
-        // sortedPosts.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
-        // setPosts(sortedPosts)
         if(filterByFilter !== null) {
           const {data} = await supabase
                               .from('posts')
@@ -68,9 +60,6 @@ function Search() {
         }
       }
       else if(event.target.id === 'most-popular') {
-        // var sortedPosts = posts
-        // sortedPosts.sort((a, b) => a.upvotes > b.upvotes ? -1 : 1)
-        // setPosts(sortedPosts)
         if(filterByFilter !== null) {
           const {data} = await supabase
                               .from('posts')
@@ -98,7 +87,6 @@ function Search() {
     const order = sortByFilter === 'newest' ? 'created_at' : 'upvotes'
     if(filterByFilter !== event.target.id) {
       setFilterByFilter(event.target.id)
-      // setPosts(initial.filter((post) => post.flair.toLowerCase() === event.target.id))
       const {data} = await supabase
                             .from('posts')
                             .select('id, created_at, title, upvotes, user_id, flair')
@@ -109,7 +97,6 @@ function Search() {
     }
     else {
       setFilterByFilter(null)
-      // setPosts(initial)
       const {data} = await supabase
                             .from('posts')
                             .select('id, created_at, title, upvotes, user_id, flair')

@@ -4,7 +4,6 @@ import App from './App.jsx'
 import './index.css'
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Navbar from './components/Navbar/Navbar.jsx';
-import { Link } from "react-router-dom";
 import UpdatePost from './pages/UpdatePost/UpdatePost.jsx';
 import PostDetail from './pages/PostDetail/PostDetail.jsx';
 import CreatePost from './pages/CreatePost/CreatePost.jsx';

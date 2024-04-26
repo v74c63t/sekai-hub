@@ -5,7 +5,6 @@ import { useState } from 'react'
 import { Icon } from '@iconify/react/dist/iconify.js'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
-// import { supabase } from '../../config/Client'
 
 const NavBar = () => {
   const [UID, setUID] = useState(nanoid(12))
@@ -32,55 +31,8 @@ const NavBar = () => {
         navigate(`/search/${query}`)
         setQuery('')
       }
-      
-      // setSearch(true)
-      // if(window.location.pathname !== '/') {
-      //   navigate('/')
-      // }
-      // setPosts(posts.filter((post) => post.title.includes(query.toLowerCase())))
-      // setQuery('')
     }
   }
-
-  // const handleSearch = async (event) => {
-  //   if(event.key === 'Enter') {
-  //     if(query.replace(/\s/g, '') !== '') {
-  //       setLoading(true)
-  //       if(window.location.pathname !== '/') {
-  //         navigate('/')
-  //       }
-  //       const order = sortByFilter === 'newest' ? 'created_at' : 'upvotes'
-  //       console.log(order)
-  //       console.log(filterByFilter)
-  //       if(filterByFilter !== null) {
-  //         const {data} = await supabase
-  //                             .from('posts')
-  //                             .select('id, created_at, title, upvotes, user_id, flair')
-  //                             .eq('flair', (filterByFilter.charAt(0).toUpperCase() + filterByFilter.slice(1)))
-  //                             .ilike('title', `%${query}%`)
-  //                             .order(order, {ascending: false})
-  //         // console.log(data)
-  //         setPosts(data)
-  //         setLoading(false)
-  //       }
-  //       else {
-  //         const {data} = await supabase
-  //                             .from('posts')
-  //                             .select('id, created_at, title, upvotes, user_id, flair')
-  //                             .ilike('title', `%${query}%`)
-  //                             .order(order, {ascending: false})
-  //         // console.log(data)
-  //         setPosts(data)
-  //         setLoading(false)
-  //       }
-  //       // const {data, error} = await supabase
-  //       //                 .from('posts')
-  //       //                 .select('id, created_at, title, upvotes, user_id, flair')
-  //       //                 .ilike('title', `%${query}%`)
-  //       // setPosts(data)
-  //     }
-  //   }
-  // }
 
   return (
     <div>
@@ -126,7 +78,6 @@ const NavBar = () => {
         </nav>
       </div>
       <div className="page">
-        {/* <img src="/src/assets/vs-logo.jpg" alt="group logo" height={60} width={'auto'} /> */}
         <Outlet context={[UID, theme]} />
       </div>
     </div>

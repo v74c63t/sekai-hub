@@ -2,7 +2,7 @@ import './UpdatePost.css'
 import { useOutletContext, useParams, useNavigate } from "react-router-dom";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -18,9 +18,8 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import ReactPlayer from 'react-player'
 import { Icon } from "@iconify/react/dist/iconify.js";
-import data from '../../data/data.json'
-import { supabase } from '../../config/Client';
-import { storage } from "../../config/Firebase";
+import { supabase } from '../../config/SupabaseClient';
+import { storage } from "../../config/FirebaseClient";
 import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage'
 import { v4 } from 'uuid'
 import Visibility from '@mui/icons-material/Visibility';
@@ -54,7 +53,7 @@ const UpdatePost = () => {
   const [oldPostURL, setOldPostURL] = useState('')
   const [uploadURL, setUploadURL] = useState('')
   const [uploaded, setUploaded] = useState(false)
-  // const [postID, setPostID] = useState(0)
+
   const [message, setMessage] = useState('')
   const [uploadFile, setUploadFile] = useState(null)
   const [filename, setFilename] = useState('')
@@ -76,35 +75,6 @@ const UpdatePost = () => {
   const handleSelectChange = (event) => {
     setURLType(event.target.value);
   };
-
-  // const posts = data.posts
-
-  // useEffect(() => {
-  //   // const res = posts.filter((post) => post.id === parseInt(id))
-  //   // if(res.length !== 0) {
-  //   //   setPostTitle(res[0].title)
-  //   //   setPostFlair(res[0].flair.toLowerCase())
-  //   //   setPostContent(res[0].content)
-  //   //   setPostURL(res[0].url)
-  //   // }
-  //   const fetchPost = async () => {
-  //     const {data} = await supabase
-  //                           .from('posts')
-  //                           .select()
-  //                           .eq('id', id)
-  //                           .single()
-  //     setPostTitle(data.title)
-  //     setPostFlair(data.flair.toLowerCase())
-  //     setPostContent(data.content)
-  //     setPostURL(data.url)
-  //     setOldPostURL(data.url)
-  //     setUploaded(data.uploaded)
-  //     if(data.video) {
-  //       setURLType('video')
-  //     }
-  //   }
-  //   fetchPost()
-  // }, [])
 
   const checkSecretKey = async () => {
     setSecretKeyLoading(true)
@@ -347,9 +317,6 @@ const UpdatePost = () => {
 
   const handleUpload = (event) => {
     const file = event.currentTarget.files[0]
-    // console.log(file.type)
-    // console.log(file.type.includes('image'))
-    // console.log(file.type.includes('video'))
     setUploadFile(file)
     setFilename(file.name)
     const reader = new FileReader()
@@ -362,7 +329,6 @@ const UpdatePost = () => {
       // get url from blob
       const url = window.URL.createObjectURL(blob);
       setUploadURL(url)
-      // setURLType('image')
     }
     reader.readAsArrayBuffer(file)
 
@@ -377,11 +343,6 @@ const UpdatePost = () => {
               <Box
                 className="form-container"
                 component="form"
-                // sx={{
-                //   '& .MuiTextField-root': { m: 1, width: '25ch' },
-                // }}
-                // noValidate
-                // autoComplete="off"
               >
                 <div className='flair-container'>
                   <h3 className='flair-header'>Post Flair:</h3>
@@ -487,11 +448,7 @@ const UpdatePost = () => {
                             />
                         )
                         : ""
-                        // urlType === 'upload' && uploadFile !== null && uploadFile.type.includes('video') ? (
-                        //   <ReactPlayer url={uploadURL} controls width={'100%'} />
-                        // ) : ""
                       }
-                      {/* <TextField className="form-text-field" placeholder={'YouTube URL (Optional)'} value={postURL} onChange={(event)=>setPostURL(event.target.value)} /> */}
                     </TabPanel>
                   </TabContext>
                 </Box>
@@ -532,12 +489,6 @@ const UpdatePost = () => {
                           {message}
                         </DialogContentText>
                       </DialogContent>
-                      {/* <DialogActions className="dialog-actions">
-                        <div className="dialog-btns-container">
-                          <div className={`${theme}-bg dialog-btns`} onClick={()=>navigate('/')}>Back to Home</div>
-                          <div className={`${theme}-bg dialog-btns`} onClick={()=>navigate(`/post/${postID}`)}>View Post</div>
-                        </div>
-                      </DialogActions> */}
                     </>
                   )
                   :
@@ -610,7 +561,6 @@ const UpdatePost = () => {
                     error={secretKeyErr}
                     helperText={secretKeyErr ? 'The secret key inputted is incorrect. Please try again.': ''}
                       />
-                  {/* </DialogContentText> */}
                 </DialogContent>
                 <DialogActions className="dialog-actions">
                   <div className="dialog-btns-container">

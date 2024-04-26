@@ -110,9 +110,6 @@
 }
 
 .secret-key-input {
-  /* text-align: center;
-  font-weight: bold !important;
-  font-size: 1.2rem !important; */
   margin: 0.2rem !important;
   background-color: rgb(238, 238, 238);
   width: 100%;
@@ -120,19 +117,8 @@
 
 .secret-key-dialog-btns{
   cursor: pointer;
-  /* display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center; */
   border: none;
-  /* border: 0.1rem black solid; */
   border-radius: 0.3rem;
-  /* background-color: var(--miku-color); */
-  /* background-color: var(--ln-color); */
-  /* background-color: var(--mmj-color); */
-  /* background-color: var(--vbs-color); */
-  /* background-color: var(--wxs-color); */
-  /* background-color: var(--n25-color); */
   color: white;
   font-size: 1.2rem;
   padding: 0.4rem 0.8rem;
@@ -140,11 +126,6 @@
 }
 
 .delete-dialog-btns-container {
-  /* display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between; */
-  /* width: 100%; */
   padding: 0.3rem;
   margin: 0;
 }
@@ -152,14 +133,7 @@
 .delete-dialog-btns{
   cursor: pointer;
   border: none;
-  /* border: 0.1rem black solid; */
   border-radius: 0.3rem;
-  /* background-color: var(--miku-color); */
-  /* background-color: var(--ln-color); */
-  /* background-color: var(--mmj-color); */
-  /* background-color: var(--vbs-color); */
-  /* background-color: var(--wxs-color); */
-  /* background-color: var(--n25-color); */
   color: white;
   padding: 0.4rem;;
 }

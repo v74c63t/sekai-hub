@@ -3,9 +3,8 @@ import './App.css'
 import { Link } from 'react-router-dom'
 import PostCondensed from './components/PostCondensed/PostCondensed'
 import { useOutletContext, useNavigate } from "react-router-dom";
-import { supabase } from './config/Client';
+import { supabase } from './config/SupabaseClient';
 import AddIcon from '@mui/icons-material/Add';
-import data from './data/data.json'
 import 'ldrs/ring2'
 
 function App() {
@@ -21,14 +20,8 @@ function App() {
 
   const [loading, setLoading] = useState(true)
 
-  const [query, setQuery] = useState('')
-
-  // var initial = data.posts
-
   useEffect(() => {
     setLoading(true)
-    // setPosts(initial)
-    // setLoading(false)
     const fetchPosts = async() => {
       const {data} = await supabase
                           .from('posts')
@@ -45,9 +38,6 @@ function App() {
       setLoading(true)
       setSortByFilter(event.target.id)
       if(event.target.id === 'newest') {
-        // var sortedPosts = posts
-        // sortedPosts.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
-        // setPosts(sortedPosts)
         if(filterByFilter !== null) {
           const {data} = await supabase
                               .from('posts')
@@ -55,7 +45,6 @@ function App() {
                               .eq('flair', (filterByFilter.charAt(0).toUpperCase() + filterByFilter.slice(1)))
                               .order('created_at', {ascending: false})
           setPosts(data)
-          // filterPosts(data)
         }
         else {
           const {data} = await supabase
@@ -63,13 +52,9 @@ function App() {
                               .select('id, created_at, title, upvotes, user_id, flair')
                               .order('created_at', {ascending: false})
           setPosts(data)
-          // filterPosts(data)
         }
       }
       else if(event.target.id === 'most-popular') {
-        // var sortedPosts = posts
-        // sortedPosts.sort((a, b) => a.upvotes > b.upvotes ? -1 : 1)
-        // setPosts(sortedPosts)
         if(filterByFilter !== null) {
           const {data} = await supabase
                               .from('posts')
@@ -77,7 +62,6 @@ function App() {
                               .eq('flair', (filterByFilter.charAt(0).toUpperCase() + filterByFilter.slice(1)))
                               .order('upvotes', {ascending: false})
           setPosts(data)
-          // filterPosts(data)
         }
         else {
           const {data} = await supabase
@@ -85,10 +69,8 @@ function App() {
                               .select('id, created_at, title, upvotes, user_id, flair')
                               .order('upvotes', {ascending: false})
           setPosts(data)
-          // filterPosts(data)
         }
       }
-      // filterPosts()
       setLoading(false)
     }
   }
@@ -98,43 +80,23 @@ function App() {
     const order = sortByFilter === 'newest' ? 'created_at' : 'upvotes'
     if(filterByFilter !== event.target.id) {
       setFilterByFilter(event.target.id)
-      // setPosts(initial.filter((post) => post.flair.toLowerCase() === event.target.id))
       const {data} = await supabase
                             .from('posts')
                             .select('id, created_at, title, upvotes, user_id, flair')
                             .eq('flair', (event.target.id.charAt(0).toUpperCase() + event.target.id.slice(1)))
                             .order(order, {ascending: false})
       setPosts(data)
-      // filterPosts(data)
     }
     else {
       setFilterByFilter(null)
-      // setPosts(initial)
       const {data} = await supabase
                             .from('posts')
                             .select('id, created_at, title, upvotes, user_id, flair')
                             .order(order, {ascending: false})
       setPosts(data)
-      // filterPosts(data)
     }
-    // filterPosts()
     setLoading(false)
   }
-
-  // const handleSearch = (event) => {
-  //   if(event.key == 'Enter') {
-  //     filterPosts(posts)
-  //   }
-  // }
-
-  // const filterPosts = (data) => {
-  //   if(query.replace(/\s/g, '') !== '' || data.length !== 0 || data !== null) {
-  //     setPosts(data.filter((post)=>post.title.includes(query)))
-  //   }
-  //   else {
-  //     setPosts(data)
-  //   }
-  // }
 
   return (
     <>
@@ -144,7 +106,6 @@ function App() {
           <h4 id='newest' className={sortByFilter === 'newest' ? `sort-flair ${theme}-bg active` : `sort-flair ${theme}-bg`} onClick={handleSort}>Newest</h4>
           <h4 id='most-popular' className={sortByFilter === 'most-popular' ? `sort-flair ${theme}-bg active` : `sort-flair ${theme}-bg`} onClick={handleSort}>Most Popular</h4>
         </div>
-        {/* <input className='search-test' type="text" placeholder="Search..." value={query} onChange={(event)=>setQuery(event.target.value)} onKeyDown={handleSearch} /> */}
         <div className='filter-container'>
           <h3 className='filter'>Filter By:</h3>
           <h4 id='discussion' className={filterByFilter !== null && filterByFilter === 'discussion' ? `filter-flair ${theme}-bg discussion active` : `filter-flair ${theme}-bg discussion`} onClick={handleFilter}>Discussion</h4>

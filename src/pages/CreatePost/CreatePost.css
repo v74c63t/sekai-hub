@@ -39,20 +39,8 @@
   border-radius: 0.5rem;
   font-size: 1.1rem;
   color: white;
-  /* background-color: var(--miku-color); */
-  /* background-color: var(--ln-color); */
-  /* background-color: var(--mmj-color); */
-  /* background-color: var(--vbs-color); */
-  /* background-color: var(--wxs-color); */
-  /* background-color: var(--n25-color); */
   cursor: pointer;
 }
-
-/* .dialog-actions {
-  text-transform: none;
-  display: flex;
-  justify-content: space-between;
-} */
 
 .dialog-btns-container {
   display: flex;
@@ -70,14 +58,7 @@
   justify-content: space-between;
   align-items: center;
   border: none;
-  /* border: 0.1rem black solid; */
   border-radius: 0.3rem;
-  /* background-color: var(--miku-color); */
-  /* background-color: var(--ln-color); */
-  /* background-color: var(--mmj-color); */
-  /* background-color: var(--vbs-color); */
-  /* background-color: var(--wxs-color); */
-  /* background-color: var(--n25-color); */
   color: white;
   padding: 0.4rem;
 }

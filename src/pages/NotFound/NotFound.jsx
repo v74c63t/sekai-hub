@@ -1,9 +1,9 @@
-import { Link, useOutletContext } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
 import './NotFound.css'
 import { useNavigate } from "react-router-dom";
 
 const NotFound = () => {
-  const [uid, theme] = useOutletContext()
+  const [UID, theme] = useOutletContext()
   const navigate = useNavigate()
 
   return (

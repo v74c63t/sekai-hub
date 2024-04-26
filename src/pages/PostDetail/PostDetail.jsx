@@ -1,14 +1,13 @@
 import { useParams } from 'react-router-dom'
 import './PostDetail.css'
 import { useEffect, useState } from 'react'
-import { supabase } from '../../config/Client'
+import { supabase } from '../../config/SupabaseClient'
 import { useOutletContext } from "react-router-dom";
 import { Icon } from '@iconify/react/dist/iconify.js';
 import { useNavigate } from 'react-router-dom';
 import Comment from '../../components/Comment/Comment';
 import ReactPlayer from 'react-player'
-import data from '../../data/data.json'
-import { storage } from "../../config/Firebase";
+import { storage } from "../../config/FirebaseClient";
 import { ref, deleteObject } from 'firebase/storage'
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -34,20 +33,12 @@ const PostDetail = () => {
 
   const [dialogPrompt, setDialogPrompt] = useState(false)
 
-  // const [change, setChange] = useState(null)
   const [secretKey, setSecretKey] = useState('')
   const [secretKeyErr, setSecretKeyErr] = useState(false)
   const [deleteSuccess, setDeleteSuccess] = useState(null)
   const [deleteLoading, setDeleteLoading] = useState(false)
- 
-  // const posts = data.posts
 
   useEffect(() => {
-    // const res = posts.filter((post) => post.id === parseInt(id))
-    // if(res.length !== 0) {
-    //   setPost(res[0])
-    //   setComments(res[0].comments)
-    // }
     const fetchPostInfo = async () => {
       const post = await supabase
                             .from('posts')
@@ -62,17 +53,7 @@ const PostDetail = () => {
       setComments(comments.data)
       setLoading(false)
     }
-    // const fetchPostComments = async () => {
-    //   const {data} = await supabase
-    //                         .from('comments')
-    //                         .select()
-    //                         .eq('post_id', id)
-    //   setComments(data)
-    //   // setLoading(false)
-    // }
     fetchPostInfo()
-    // fetchPostComments()
-    // setLoading(false)
   }, [])
 
   const handleSubmit = async (event) => {
@@ -97,9 +78,6 @@ const PostDetail = () => {
   }
 
   const handleUpdate = () => {
-    //TODO
-    console.log('prompt for secret key in update page instead')
-    console.log('redirect to update page')
     navigate(`/update/${id}`)
   }
 
@@ -107,14 +85,12 @@ const PostDetail = () => {
     if(post.uploaded) {
       const storageRef = ref(storage, post.url)
       deleteObject(storageRef).then(async () => {
-        // console.log('file deleted')
         await supabase
                 .from('posts')
                 .delete()
                 .eq('id', id)
         setDeleteLoading(false)
         setDeleteSuccess(true)
-        // navigate('/')
       })
       .catch((error) => {
         setDeleteLoading(false)
@@ -129,16 +105,7 @@ const PostDetail = () => {
               .eq('id', id)
       setDeleteLoading(false)
       setDeleteSuccess(true)
-      // navigate('/') 
     }
-    //TODO
-    // await supabase
-    //         .from('posts')
-    //         .delete()
-    //         .eq('id', id)
-    // navigate('/')
-    // console.log('prompt for secret key')
-    // console.log('delete post')
   }
 
   const handleCloseDialog = () => {
@@ -161,8 +128,6 @@ const PostDetail = () => {
       console.log('correct behavior for now')
       setSecretKeyErr(true)
       setDeleteLoading(false)
-      // console.log(change)
-      // navigate(`/update/${id}`, {state: {'sk': false}})
     }
   }
 
@@ -221,8 +186,6 @@ const PostDetail = () => {
             }
             <input className='add-comment' type="text" placeholder='Comment...' value={userComment} onChange={(event)=>setUserComment(event.target.value)} onKeyDown={handleSubmit} />
           </div>
-          {/* {
-            dialogPrompt ? ( */}
           <Dialog
             open={dialogPrompt}
             onClose={handleCloseDialog}
@@ -257,7 +220,6 @@ const PostDetail = () => {
                     <DialogContentText id="alert-dialog-description" className="dialog-content">
                       The post was successfully deleted. Click on the button below to return to the home page.
                     </DialogContentText>
-                    {/* </DialogContentText> */}
                   </DialogContent>
                   <DialogActions className="delete-dialog-actions">
                     <div className="delete-dialog-btns-container">
@@ -277,13 +239,7 @@ const PostDetail = () => {
                     <DialogContentText id="alert-dialog-description" className="dialog-content">
                       There was an issue with deleting the post. Please try again.
                     </DialogContentText>
-                    {/* </DialogContentText> */}
                   </DialogContent>
-                  {/* <DialogActions className="delete-dialog-actions">
-                    <div className="delete-dialog-btns-container">
-                      <div className={`${theme}-bg delete-dialog-btns`} onClick={handleCloseDialog}>Close</div>
-                    </div>
-                  </DialogActions> */}
                 </>
               )
               :
@@ -306,7 +262,6 @@ const PostDetail = () => {
                       error={secretKeyErr}
                       helperText={secretKeyErr ? 'The secret key inputted is incorrect. Please try again.': ''}
                         />
-                    {/* </DialogContentText> */}
                   </DialogContent>
                   <DialogActions className="dialog-actions">
                     <div className="dialog-btns-container">
@@ -318,8 +273,6 @@ const PostDetail = () => {
               )
             }
           </Dialog>
-            {/* ) : "" */}
-          {/* } */}
         </div>
       ) : ""}
     </>
