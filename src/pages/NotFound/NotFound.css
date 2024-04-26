@@ -5,6 +5,11 @@
   font-size: 1.2rem;
   color: white;
   cursor: pointer;
+  font-weight: 600;
+}
+
+.home-btn:hover {
+  color: rgb(211, 211, 211);
 }
 
 .header-404 {

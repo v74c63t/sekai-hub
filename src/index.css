@@ -114,27 +114,27 @@
   background-color: var(--n25-color);
 }
 
-.vs-bg.active, .vs-bg.fab:hover {
+.vs-bg.active, .vs-bg.fab:hover, .vs-bg.home-btn:hover {
   background-color: var(--miku-color-dark);
 }
 
-.ln-bg.active, .ln-bg.fab:hover {
+.ln-bg.active, .ln-bg.fab:hover, .ln-bg.home-btn:hover {
   background-color: var(--ln-color-dark);
 }
 
-.mmj-bg.active, .mmj-bg.fab:hover {
+.mmj-bg.active, .mmj-bg.fab:hover, .mmj-bg.home-btn:hover {
   background-color: var(--mmj-color-dark);
 }
 
-.vbs-bg.active, .vbs-bg.fab:hover {
+.vbs-bg.active, .vbs-bg.fab:hover, .vbs-bg.home-btn:hover {
   background-color: var(--vbs-color-dark);
 }
 
-.wxs-bg.active, .wxs-bg.fab:hover {
+.wxs-bg.active, .wxs-bg.fab:hover, .wxs-bg.home-btn:hover {
   background-color: var(--wxs-color-dark);
 }
 
-.n25-bg.active, .n25-bg.fab:hover {
+.n25-bg.active, .n25-bg.fab:hover, .n25-bg.home-btn:hover {
   background-color: var(--n25-color-dark);
 }
 
