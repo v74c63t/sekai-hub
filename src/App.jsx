@@ -54,16 +54,16 @@ function App() {
                               .select('id, created_at, title, upvotes, user_id, flair')
                               .eq('flair', (filterByFilter.charAt(0).toUpperCase() + filterByFilter.slice(1)))
                               .order('created_at', {ascending: false})
-          // setPosts(data)
-          filterPosts(data)
+          setPosts(data)
+          // filterPosts(data)
         }
         else {
           const {data} = await supabase
                               .from('posts')
                               .select('id, created_at, title, upvotes, user_id, flair')
                               .order('created_at', {ascending: false})
-          // setPosts(data)
-          filterPosts(data)
+          setPosts(data)
+          // filterPosts(data)
         }
       }
       else if(event.target.id === 'most-popular') {
@@ -76,16 +76,16 @@ function App() {
                               .select('id, created_at, title, upvotes, user_id, flair')
                               .eq('flair', (filterByFilter.charAt(0).toUpperCase() + filterByFilter.slice(1)))
                               .order('upvotes', {ascending: false})
-          // setPosts(data)
-          filterPosts(data)
+          setPosts(data)
+          // filterPosts(data)
         }
         else {
           const {data} = await supabase
                               .from('posts')
                               .select('id, created_at, title, upvotes, user_id, flair')
                               .order('upvotes', {ascending: false})
-          // setPosts(data)
-          filterPosts(data)
+          setPosts(data)
+          // filterPosts(data)
         }
       }
       // filterPosts()
