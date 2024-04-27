@@ -35,7 +35,7 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
--   [ ] A preview tab to allows users to preview their image or video while creating or updating a post
+-   [x] A preview tab to allows users to preview their image or video while creating or updating a post
 
 ## Video Walkthrough
 
