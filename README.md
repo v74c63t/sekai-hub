@@ -35,7 +35,7 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
--   [ ] List anything else that you added to improve the site's functionality!
+-   [ ] A preview tab to allows users to preview their image or video while creating or updating a post
 
 ## Video Walkthrough
 
