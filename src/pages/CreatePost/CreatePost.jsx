@@ -226,11 +226,12 @@ const CreatePost = () => {
           <h4 id='question' className={postFlair !== null && postFlair === 'question' ? `filter-flair ${theme}-bg question active` : `filter-flair ${theme}-bg question ${theme}-bg-hover`} onClick={() => setPostFlair('question')}>Question</h4>
           <h4 id='gameplay' className={postFlair !== null && postFlair === 'gameplay' ? `filter-flair ${theme}-bg gameplay active` : `filter-flair ${theme}-bg gameplay ${theme}-bg-hover`} onClick={() => setPostFlair('gameplay')}>Gameplay</h4>
         </div>
-        <TextField className="form-text-field" placeholder={'Title'} value={postTitle} onChange={(event)=>setPostTitle(event.target.value)} />
+        <TextField className="form-text-field" autoComplete="off" placeholder={'Title'} value={postTitle} onChange={(event)=>setPostTitle(event.target.value)} />
         <TextField 
           className="form-text-field" 
           multiline
           rows={10}
+          autoComplete="off"
           placeholder={'Content (Optional)'}
           value={postContent}
           onChange={(event)=>setPostContent(event.target.value)} />
@@ -240,6 +241,7 @@ const CreatePost = () => {
           placeholder={'Secret Key'} 
           value={secretKey} 
           variant={'outlined'}
+          autoComplete="off"
           onChange={(event)=>setSecretKey(event.target.value)} 
           endAdornment={
             <InputAdornment position="end">
@@ -286,6 +288,7 @@ const CreatePost = () => {
                     className="form-text-field" 
                     placeholder={'Image or Video URL (Optional)'} 
                     value={postURL} 
+                    autoComplete="off"
                     onChange={(event)=>setPostURL(event.target.value)} />
                 }
               </div>

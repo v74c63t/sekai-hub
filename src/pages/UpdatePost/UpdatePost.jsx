@@ -356,6 +356,7 @@ const UpdatePost = () => {
                 <TextField 
                   className="form-text-field"
                   placeholder={'Title'} 
+                  autoComplete="off"
                   value={postTitle} 
                   onChange={(event)=>setPostTitle(event.target.value)}
                   />
@@ -363,6 +364,7 @@ const UpdatePost = () => {
                   className="form-text-field" 
                   multiline
                   rows={10}
+                  autoComplete="off"
                   placeholder={'Content (Optional)'}
                   value={postContent}
                   onChange={(event)=>setPostContent(event.target.value)} />
@@ -371,6 +373,7 @@ const UpdatePost = () => {
                   className="form-text-field" 
                   placeholder={'Secret Key'} 
                   value={secretKey} 
+                  autoComplete="off"
                   variant={'outlined'}
                   onChange={(event)=>setSecretKey(event.target.value)} 
                   endAdornment={
@@ -418,6 +421,7 @@ const UpdatePost = () => {
                             className="form-text-field" 
                             placeholder={'Image or Video URL (Optional)'} 
                             value={postURL} 
+                            autoComplete="off"
                             onChange={(event)=>setPostURL(event.target.value)} />
                         }
                       </div>
@@ -557,7 +561,8 @@ const UpdatePost = () => {
                     FormHelperTextProps={{ style: { backgroundColor: 'white', padding: 0, margin: 0 }}}
                     className="secret-key-input" 
                     placeholder={'Secret Key'} 
-                    value={secretKeyInput} 
+                    value={secretKeyInput}
+                    autoComplete="off" 
                     onChange={(event)=>setSecretKeyInput(event.target.value)}
                     type='password'
                     error={secretKeyErr}

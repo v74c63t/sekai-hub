@@ -260,6 +260,7 @@ const PostDetail = () => {
                       className="secret-key-input" 
                       placeholder={'Secret Key'} 
                       value={secretKey} 
+                      autoComplete="off"
                       onChange={(event)=>setSecretKey(event.target.value)}
                       type='password'
                       error={secretKeyErr}
