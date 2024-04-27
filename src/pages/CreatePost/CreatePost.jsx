@@ -82,15 +82,19 @@ const CreatePost = () => {
       setLoading(false)
     }
     else if(postFlair === null) {
-      setMessage('Please assign a flair to the post.')
+      var errorMessage = 'Please assign a flair to the post.'
       if(secretKey === '') {
         errorMessage += ' Make sure to also input a secret key for the post.'
       }
+      setMessage(errorMessage)
       setError(true)
       setLoading(false)
     }
     else if(secretKey === '') {
-      errorMessage += 'Please a secret key for the post.'
+      var errorMessage = 'Please a secret key for the post.'
+      setMessage(errorMessage)
+      setError(true)
+      setLoading(false)
     }
     else {
       if(urlType === 'upload') {
