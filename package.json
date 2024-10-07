@@ -17,7 +17,7 @@
     "@mui/lab": "^5.0.0-alpha.170",
     "@mui/material": "^5.15.15",
     "@supabase/supabase-js": "^2.42.3",
-    "axios": "^1.6.8",
+    "axios": "^1.7.4",
     "firebase": "^10.11.0",
     "ldrs": "^1.0.1",
     "nanoid": "^5.0.7",
