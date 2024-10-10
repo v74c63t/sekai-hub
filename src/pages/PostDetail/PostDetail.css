@@ -1,145 +1,267 @@
 .post-detail {
-  background-color: white;
-  padding: 2rem 4rem;
-  border-radius: 1rem;
-  width: 70rem;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-  margin: 0 auto;
-  gap: 0.7rem;
+	background-color: white;
+	padding: 2rem 4rem;
+	border-radius: 1rem;
+	width: 70rem;
+	height: auto;
+	display: flex;
+	flex-direction: column;
+	text-align: left;
+	margin: 0 auto;
+	gap: 0.7rem;
 }
 
 .post-btns {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 0.1rem;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 0.1rem;
 }
 
-.upvote-container, .post-update-container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 0.5rem;
+.upvote-container,
+.post-update-container {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 0.5rem;
 }
 
-.edit-icon, .delete-icon, .upvotes-icon {
-  cursor: pointer;
-  user-select: none;
+.edit-icon,
+.delete-icon,
+.upvotes-icon {
+	cursor: pointer;
+	user-select: none;
 }
 
 .delete-icon {
-  color: red;
-  /* cursor: pointer; */
+	color: red;
+	/* cursor: pointer; */
 }
 
 .timestamp {
-  font-weight: 400;
-  font-size: 0.9rem;
-  padding: 0;
-  margin: 0;
+	font-weight: 400;
+	font-size: 0.9rem;
+	padding: 0;
+	margin: 0;
 }
 
-.post-detail-title{
-  font-weight: 700;
-  font-size: 1.5rem;
-  padding: 0;
-  margin: 0;
+.post-detail-title {
+	font-weight: 700;
+	font-size: 1.5rem;
+	padding: 0;
+	margin: 0;
 }
 
 .post-content {
-  font-weight: 500;
-  font-size: 1.1rem;
-  padding: 0;
-  margin: 0;
-  white-space: pre-wrap;
+	font-weight: 500;
+	font-size: 1.1rem;
+	padding: 0;
+	margin: 0;
+	white-space: pre-wrap;
 }
 
-.post-detail-upvotes{
-  font-weight: 400;
-  font-size: 1rem;
-  margin: 0;
-  padding: 0;
+.post-detail-upvotes {
+	font-weight: 400;
+	font-size: 1rem;
+	margin: 0;
+	padding: 0;
 }
 
 .comments-container {
-  background-color: rgb(238, 238, 238);
-  border-radius: 0.5rem;
-  padding: 0.5rem 0.8rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 0.3rem;
+	background-color: rgb(238, 238, 238);
+	border-radius: 0.5rem;
+	padding: 0.5rem 0.8rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 0.3rem;
 }
 
 .comment-header {
-  padding: 0;
-  margin: 0;
-  font-size: 1.2rem;
+	padding: 0;
+	margin: 0;
+	font-size: 1.2rem;
 }
 
 .add-comment {
-  margin-top: 0.3rem;
-  padding: 0.4rem;
-  font-size: 1rem;
+	margin-top: 0.3rem;
+	padding: 0.4rem;
+	font-size: 1rem;
 }
 
 .no-comments {
-  margin: 0;
-  padding: 0;
-  font-size: 1rem;
-  font-style: italic;
+	margin: 0;
+	padding: 0;
+	font-size: 1rem;
+	font-style: italic;
 }
 
 .secret-key-title {
-  text-align: center;
-  font-weight: bolder !important;
-  font-size: 1.7rem !important;
-  padding: 0.5rem !important;
-  margin: 0.5rem !important;
+	text-align: center;
+	font-weight: bolder !important;
+	font-size: 1.7rem !important;
+	padding: 0.5rem !important;
+	margin: 0.5rem !important;
 }
 
 .secret-key-content {
-  text-align: center;
-  font-weight: bold !important;
-  font-size: 1rem !important;
-  margin: 0.3rem !important;
-  margin-bottom: 1rem !important;
+	text-align: center;
+	font-weight: bold !important;
+	font-size: 1rem !important;
+	margin: 0.3rem !important;
+	margin-bottom: 1rem !important;
 }
 
 .secret-key-input {
-  margin: 0.2rem !important;
-  background-color: rgb(238, 238, 238);
-  width: 100%;
+	margin: 0.2rem !important;
+	background-color: rgb(238, 238, 238);
+	width: 100%;
 }
 
-.secret-key-dialog-btns{
-  cursor: pointer;
-  border: none;
-  border-radius: 0.3rem;
-  color: white;
-  font-size: 1.2rem;
-  padding: 0.4rem 0.8rem;
-  margin: 0.3rem;
+.secret-key-dialog-btns {
+	cursor: pointer;
+	border: none;
+	border-radius: 0.3rem;
+	color: white;
+	font-size: 1.2rem;
+	padding: 0.4rem 0.8rem;
+	margin: 0.3rem;
 }
 
 .delete-dialog-btns-container {
-  padding: 0.3rem;
-  margin: 0;
+	padding: 0.3rem;
+	margin: 0;
 }
 
-.delete-dialog-btns{
-  cursor: pointer;
-  border: none;
-  border-radius: 0.3rem;
-  color: white;
-  padding: 0.4rem;;
+.delete-dialog-btns {
+	cursor: pointer;
+	border: none;
+	border-radius: 0.3rem;
+	color: white;
+	padding: 0.4rem;
 }
 
 .delete-dialog-actions {
-  align-items: center !important;
-  justify-content: center !important;
+	align-items: center !important;
+	justify-content: center !important;
+}
+
+.player-wrapper {
+	position: relative;
+	padding-top: 56.25%;
+}
+
+.react-player {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+@media only screen and (max-width: 375px) {
+	.post-detail {
+		width: 90%;
+		padding: 0.7rem 1rem;
+	}
+	.timestamp {
+		font-size: 0.6rem;
+	}
+
+	.post-detail-title {
+		font-size: 1rem;
+	}
+
+	.post-content {
+		font-size: 0.6rem;
+	}
+
+	.post-detail-upvotes {
+		font-size: 0.7rem;
+	}
+
+	.comment-header {
+		font-size: 0.7rem;
+	}
+
+	.flair {
+		font-size: 0.6rem;
+		margin-left: auto;
+		padding: 0.1rem 0.5rem;
+	}
+
+	.add-comment {
+		font-size: 0.65rem;
+	}
+
+	.no-comments {
+		font-size: 0.65rem;
+	}
+
+	.post-img {
+		width: 100% !important;
+		height: auto !important;
+	}
+
+	.edit-icon,
+	.delete-icon,
+	.upvotes-icon {
+		width: 1rem;
+		height: 1rem;
+	}
+}
+
+@media only screen and (min-width: 376px) and (max-width: 768px) {
+	.post-detail {
+		width: 80%;
+		padding: 0.7rem 1.5rem;
+	}
+	.timestamp {
+		font-size: 0.8rem;
+	}
+
+	.post-detail-title {
+		font-size: 1.2rem;
+	}
+
+	.post-content {
+		font-size: 0.8rem;
+	}
+
+	.post-detail-upvotes {
+		font-size: 0.8rem;
+	}
+
+	.comment-header {
+		font-size: 0.9rem;
+	}
+
+	.flair {
+		font-size: 0.8rem;
+	}
+
+	.add-comment {
+		font-size: 0.8rem;
+	}
+
+	.no-comments {
+		font-size: 0.8rem;
+	}
+
+	.post-img {
+		width: 100% !important;
+		height: auto !important;
+	}
+
+	.edit-icon,
+	.delete-icon,
+	.upvotes-icon {
+		width: 1rem;
+		height: 1rem;
+	}
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+	.post-detail {
+		width: 40rem;
+	}
 }
