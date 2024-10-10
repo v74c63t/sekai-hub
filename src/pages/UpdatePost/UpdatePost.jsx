@@ -395,54 +395,56 @@ const UpdatePost = () => {
 					<Box className="form-container" component="form">
 						<div className="flair-container">
 							<h3 className="flair-header">Post Flair:</h3>
-							<h4
-								id="discussion"
-								className={
-									postFlair !== null &&
-									postFlair === "discussion"
-										? `filter-flair ${theme}-bg discussion active`
-										: `filter-flair ${theme}-bg discussion ${theme}-bg-hover`
-								}
-								onClick={() => setPostFlair("discussion")}
-							>
-								Discussion
-							</h4>
-							<h4
-								id="achievements"
-								className={
-									postFlair !== null &&
-									postFlair === "achievements"
-										? `filter-flair ${theme}-bg achievements active`
-										: `filter-flair ${theme}-bg achievements ${theme}-bg-hover`
-								}
-								onClick={() => setPostFlair("achievements")}
-							>
-								Achievements
-							</h4>
-							<h4
-								id="question"
-								className={
-									postFlair !== null &&
-									postFlair === "question"
-										? `filter-flair ${theme}-bg question active`
-										: `filter-flair ${theme}-bg question ${theme}-bg-hover`
-								}
-								onClick={() => setPostFlair("question")}
-							>
-								Question
-							</h4>
-							<h4
-								id="gameplay"
-								className={
-									postFlair !== null &&
-									postFlair === "gameplay"
-										? `filter-flair ${theme}-bg gameplay active`
-										: `filter-flair ${theme}-bg gameplay ${theme}-bg-hover`
-								}
-								onClick={() => setPostFlair("gameplay")}
-							>
-								Gameplay
-							</h4>
+							<div className="flair-choice">
+								<h4
+									id="discussion"
+									className={
+										postFlair !== null &&
+										postFlair === "discussion"
+											? `filter-flair ${theme}-bg discussion active`
+											: `filter-flair ${theme}-bg discussion ${theme}-bg-hover`
+									}
+									onClick={() => setPostFlair("discussion")}
+								>
+									Discussion
+								</h4>
+								<h4
+									id="achievements"
+									className={
+										postFlair !== null &&
+										postFlair === "achievements"
+											? `filter-flair ${theme}-bg achievements active`
+											: `filter-flair ${theme}-bg achievements ${theme}-bg-hover`
+									}
+									onClick={() => setPostFlair("achievements")}
+								>
+									Achievements
+								</h4>
+								<h4
+									id="question"
+									className={
+										postFlair !== null &&
+										postFlair === "question"
+											? `filter-flair ${theme}-bg question active`
+											: `filter-flair ${theme}-bg question ${theme}-bg-hover`
+									}
+									onClick={() => setPostFlair("question")}
+								>
+									Question
+								</h4>
+								<h4
+									id="gameplay"
+									className={
+										postFlair !== null &&
+										postFlair === "gameplay"
+											? `filter-flair ${theme}-bg gameplay active`
+											: `filter-flair ${theme}-bg gameplay ${theme}-bg-hover`
+									}
+									onClick={() => setPostFlair("gameplay")}
+								>
+									Gameplay
+								</h4>
+							</div>
 						</div>
 						<TextField
 							className="form-text-field"

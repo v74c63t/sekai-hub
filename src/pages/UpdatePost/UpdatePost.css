@@ -1,16 +1,30 @@
 .update-post-form {
-  background-color: white;
-  border-radius: 1rem;
-  padding: 2rem 2rem;
-  width: 40rem;
-  height: auto
+	background-color: white;
+	border-radius: 1rem;
+	padding: 2rem 2rem;
+	width: 40rem;
+	height: auto;
 }
 
 .update-post-btn {
-  padding: 0.8rem;
-  border: none;
-  border-radius: 0.5rem;
-  font-size: 1.1rem;
-  color: white;
-  cursor: pointer;
+	padding: 0.8rem;
+	border: none;
+	border-radius: 0.5rem;
+	font-size: 1.1rem;
+	color: white;
+	cursor: pointer;
+}
+
+@media only screen and (max-width: 375px) {
+	.update-post-form {
+		width: 90%;
+		padding: 0.7rem 1rem;
+	}
+}
+
+@media only screen and (min-width: 376px) and (max-width: 600px) {
+	.update-post-form {
+		width: 80%;
+		padding: 0.7rem 1.5rem;
+	}
 }
