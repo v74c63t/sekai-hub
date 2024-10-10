@@ -20,11 +20,21 @@
 		width: 90%;
 		padding: 0.7rem 1rem;
 	}
+
+	.update-post-btn {
+		padding: 0.6rem;
+		font-size: 0.9rem;
+	}
 }
 
 @media only screen and (min-width: 376px) and (max-width: 600px) {
 	.update-post-form {
 		width: 80%;
 		padding: 0.7rem 1.5rem;
+	}
+
+	.update-post-btn {
+		padding: 0.6rem;
+		font-size: 1rem;
 	}
 }
