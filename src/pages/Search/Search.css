@@ -1,25 +1,61 @@
 .search-header {
-  padding: 0;
-  margin: 0;
-  font-size: 1rem;
+	padding: 0;
+	margin: 0;
+	font-size: 1rem;
 }
 
 .search-container {
-  display: flex;
-  flex-direction: row;
-  gap: 0.5rem;
-  align-items: center;
+	display: flex;
+	flex-direction: row;
+	gap: 0.5rem;
+	align-items: center;
 }
 
 .query {
-  padding: 0 0.7rem;
-  margin: 0;
-  border-radius: 0.5rem;
-  font-size: 1rem;
-  color: white;
-  text-shadow: 0 0 0.1rem black, 0 0 0.07rem black;
-  text-overflow: ellipsis;
-  overflow:hidden;
-  white-space:nowrap;
-  max-width: 21rem;
+	padding: 0 0.7rem;
+	margin: 0;
+	border-radius: 0.5rem;
+	font-size: 1rem;
+	color: white;
+	text-shadow: 0 0 0.1rem black, 0 0 0.07rem black;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+	max-width: 21rem;
+}
+
+@media only screen and (max-width: 320px) {
+	.search-header {
+		font-size: 0.45rem;
+	}
+
+	.query {
+		padding: 0 0.3rem;
+		border-radius: 0.5rem;
+		font-size: 0.45rem;
+	}
+}
+
+@media only screen and (min-width: 321px) and (max-width: 400px) {
+	.search-header {
+		font-size: 0.6rem;
+	}
+
+	.query {
+		padding: 0 0.3rem;
+		border-radius: 0.5rem;
+		font-size: 0.475rem;
+	}
+}
+
+@media only screen and (min-width: 401px) and (max-width: 600px) {
+	.search-header {
+		font-size: 0.7rem;
+	}
+
+	.query {
+		padding: 0 0.3rem;
+		border-radius: 0.5rem;
+		font-size: 0.6rem;
+	}
 }
