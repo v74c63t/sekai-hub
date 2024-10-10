@@ -1,48 +1,107 @@
 .home-btn {
-  border: none;
-  border-radius: 1rem;
-  padding: 1rem;
-  font-size: 1.2rem;
-  color: white;
-  cursor: pointer;
-  font-weight: 600;
+	border: none;
+	border-radius: 1rem;
+	padding: 1rem;
+	font-size: 1.2rem;
+	color: white;
+	cursor: pointer;
+	font-weight: 600;
 }
 
 .home-btn:hover {
-  color: rgb(211, 211, 211);
+	color: rgb(211, 211, 211);
 }
 
 .header-404 {
-  font-size: 4rem;
-  font-weight: 800;
-  padding: 0;
-  margin: 0;
+	font-size: 4rem;
+	font-weight: 800;
+	padding: 0;
+	margin: 0;
 }
 
 .page-not-found {
-  font-size: 2.5rem;
-  font-weight: 700;
-  padding: 0;
-  margin: 0;
+	font-size: 2.5rem;
+	font-weight: 700;
+	padding: 0;
+	margin: 0;
 }
 
 .page-not-found-message {
-  font-size: 2rem;
-  font-weight: 600;
-  padding: 0;
-  margin: 0;
+	font-size: 2rem;
+	font-weight: 600;
+	padding: 0;
+	margin: 0;
 }
 
 .not-found-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  text-align: center;
-  gap: 2rem;
-  top: 50%;
-  left: 50%;
-  position: absolute;
-  transform: translate(-50%, -50%);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	text-align: center;
+	gap: 2rem;
+	top: 50%;
+	left: 50%;
+	position: absolute;
+	transform: translate(-50%, -50%);
 }
 
+@media only screen and (max-width: 375px) {
+	.home-btn {
+		padding: 0.7rem;
+		font-size: 0.9rem;
+	}
+
+	.header-404 {
+		font-size: 2.5rem;
+	}
+
+	.page-not-found {
+		font-size: 1.5rem;
+	}
+
+	.page-not-found-message {
+		font-size: 1rem;
+	}
+
+	.not-found-container {
+		gap: 1rem;
+	}
+}
+
+@media only screen and (min-width: 376px) and (max-width: 600px) {
+	.home-btn {
+		padding: 0.8rem;
+		font-size: 1rem;
+	}
+
+	.header-404 {
+		font-size: 3rem;
+	}
+
+	.page-not-found {
+		font-size: 1.8rem;
+	}
+	.page-not-found-message {
+		font-size: 1.3rem;
+	}
+	.not-found-container {
+		gap: 1.2rem;
+	}
+}
+
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+	.header-404 {
+		font-size: 3.5rem;
+	}
+
+	.page-not-found {
+		font-size: 2rem;
+	}
+	.page-not-found-message {
+		font-size: 1.5rem;
+	}
+	.not-found-container {
+		gap: 1.5rem;
+	}
+}
