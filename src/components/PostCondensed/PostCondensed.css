@@ -1,40 +1,94 @@
 .post {
-  background-color: white;
-  border-radius: 0.7rem;
-  margin: 0.5rem;
-  padding: 1rem;
-  text-align: left;
-  width: 80rem;
+	background-color: white;
+	border-radius: 0.7rem;
+	margin: 0.5rem;
+	padding: 1rem;
+	text-align: left;
+	width: 80rem;
+	height: auto;
 }
 
-.posted-time, .post-title, .upvotes {
-  margin: 0.8rem 0;
+.posted-time,
+.post-title,
+.upvotes {
+	margin: 0.8rem 0;
 }
 
 .posted-time {
-  font-size: 0.9rem;
-  font-weight: 400;
+	font-size: 0.9rem;
+	font-weight: 400;
 }
 
 .post-title {
-  font-size: 1.2rem;
-  margin: 0.8rem 0;
+	font-size: 1.2rem;
+	margin: 0.8rem 0;
 }
 
 .upvotes {
-  font-size: 0.9rem;
+	font-size: 0.9rem;
 }
 
 .post-link {
-  text-decoration: none;
-  color: black;
+	text-decoration: none;
+	color: black;
 }
 
 .flair {
-  padding: 0.1rem 0.7rem;
-  margin-left: 0.3rem;
-  border-radius: 0.5rem;
-  font-size: 1rem;
-  color: white;
-  text-shadow: 0 0 0.1rem black, 0 0 0.07rem black;
+	padding: 0.1rem 0.7rem;
+	margin-left: 0.3rem;
+	border-radius: 0.5rem;
+	font-size: 1rem;
+	color: white;
+	text-shadow: 0 0 0.1rem black, 0 0 0.07rem black;
+}
+
+@media only screen and (max-width: 375px) {
+	.post {
+		width: 95%;
+		padding: 0.7rem;
+	}
+	.posted-time {
+		font-size: 0.6rem;
+	}
+
+	.post-title {
+		font-size: 0.9rem;
+	}
+
+	.upvotes {
+		font-size: 0.5rem;
+	}
+
+	.flair {
+		font-size: 0.6rem;
+		margin-left: auto;
+		padding: 0.1rem 0.5rem;
+	}
+}
+
+@media only screen and (min-width: 376px) and (max-width: 768px) {
+	.post {
+		width: 90%;
+	}
+	.posted-time {
+		font-size: 0.8rem;
+	}
+
+	.post-title {
+		font-size: 1.2rem;
+	}
+
+	.upvotes {
+		font-size: 0.7rem;
+	}
+
+	.flair {
+		font-size: 0.8rem;
+	}
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+	.post {
+		width: 40rem;
+	}
 }
