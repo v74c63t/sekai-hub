@@ -1,135 +1,225 @@
 .create-post-form {
-  background-color: white;
-  border-radius: 1rem;
-  padding: 2rem 2rem;
-  width: 40rem;
-  height: auto;
+	background-color: white;
+	border-radius: 1rem;
+	padding: 2rem 2rem;
+	width: 40rem;
+	height: auto;
 }
 
 .form-container {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  gap: 1rem;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	gap: 1rem;
 }
 
 .flair-container {
-  display: flex;
-  flex-direction: row;
-  gap: 1rem;
-  padding: 0;
-  margin: 0;
-  align-items: center;
+	display: flex;
+	flex-direction: row;
+	gap: 1rem;
+	padding: 0;
+	margin: 0;
+	align-items: center;
 }
 
 .flair-header {
-  padding: 0;
-  margin: 0;
-  font-size: 1.2rem;
+	padding: 0;
+	margin: 0;
+	font-size: 1.2rem;
 }
 
 .form-text-field {
-  background-color: rgb(238, 238, 238);
-  width: 100%;
+	background-color: rgb(238, 238, 238);
+	width: 100%;
 }
 
 .create-post-btn {
-  padding: 0.8rem;
-  border: none;
-  border-radius: 0.5rem;
-  font-size: 1.1rem;
-  color: white;
-  cursor: pointer;
+	padding: 0.8rem;
+	border: none;
+	border-radius: 0.5rem;
+	font-size: 1.1rem;
+	color: white;
+	cursor: pointer;
 }
 
 .dialog-btns-container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  margin: 0;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	margin: 0;
 }
 
-.dialog-btns{
-  cursor: pointer;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  border: none;
-  border-radius: 0.3rem;
-  color: white;
-  padding: 0.4rem;
+.dialog-btns {
+	cursor: pointer;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	border: none;
+	border-radius: 0.3rem;
+	color: white;
+	padding: 0.4rem;
 }
 
 .dialog-title {
-  text-align: center;
-  font-weight: bolder !important;
-  font-size: 1.7rem !important;
-  padding: 0 !important;
-  margin: 0.5rem !important;
+	text-align: center;
+	font-weight: bolder !important;
+	font-size: 1.7rem !important;
+	padding: 0 !important;
+	margin: 0.5rem !important;
 }
 
 .dialog-content {
-  text-align: center;
-  font-weight: bold !important;
-  font-size: 1.2rem !important;
+	text-align: center;
+	font-weight: bold !important;
+	font-size: 1.2rem !important;
 }
 
 .spinner-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-  margin-bottom: 1rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 1rem;
+	margin-bottom: 1rem;
 }
 
 .dialog-title-loading {
-  text-align: center;
-  font-weight: bolder !important;
-  font-size: 2rem !important;
-  padding: 0.8rem !important;
-  margin-top: 1rem !important;
+	text-align: center;
+	font-weight: bolder !important;
+	font-size: 2rem !important;
+	padding: 0.8rem !important;
+	margin-top: 1rem !important;
 }
 
 .url-tab-container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin: 0;
-  padding: 0;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin: 0;
+	padding: 0;
 }
 
 .no-url-message {
-  padding: 0;
-  margin: 0;
-  font-size: 1rem;
+	padding: 0;
+	margin: 0;
+	font-size: 1rem;
 }
 
 .close-icon {
-  top: 10%;
-  right: 3%;
-  position: absolute;
-  cursor: pointer;
-  user-select: none;
+	top: 10%;
+	right: 3%;
+	position: absolute;
+	cursor: pointer;
+	user-select: none;
 }
 
 .upload-btn {
-  font-size: 1rem;
-  border-radius: 0.5rem;
-  padding: 0.5rem;
-  margin: 0.5rem;
-  color: white;
-  cursor: pointer;
+	font-size: 1rem;
+	border-radius: 0.5rem;
+	padding: 0.5rem;
+	margin: 0.5rem;
+	color: white;
+	cursor: pointer;
 }
 
 .file-input {
-  display: none;
+	display: none;
 }
 
 .selected-file {
-  width: 53%;
-  margin: 0.1rem;
-  height: auto;
+	width: 53%;
+	margin: 0.1rem;
+	height: auto;
+}
+
+.flair-choice {
+	display: flex;
+	flex-direction: row;
+	gap: 1rem;
+}
+
+@media only screen and (max-width: 375px) {
+	.create-post-form {
+		width: 90%;
+		padding: 0.7rem 1rem;
+	}
+
+	.flair-header {
+		font-size: 0.8rem;
+	}
+
+	.flair-container {
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
+	.flair-choice {
+		gap: 0.5rem;
+	}
+
+	.upload-tab-header {
+		font-size: 0.55rem !important;
+	}
+
+	.no-url-message {
+		font-size: 0.75rem;
+	}
+
+	.url-tab-container {
+		flex-direction: column;
+	}
+
+	.create-post-btn {
+		padding: 0.6rem;
+		font-size: 0.9rem;
+	}
+
+	.upload-btn {
+		font-size: 0.7rem;
+	}
+}
+
+@media only screen and (min-width: 376px) and (max-width: 600px) {
+	.create-post-form {
+		width: 80%;
+		padding: 0.7rem 1.5rem;
+	}
+
+	.flair-container {
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
+	.flair-header {
+		font-size: 1rem;
+	}
+
+	.upload-tab-header {
+		font-size: 0.75rem !important;
+	}
+
+	.no-url-message {
+		font-size: 0.9rem;
+	}
+
+	.url-tab-container {
+		flex-direction: column;
+	}
+
+	.create-post-btn {
+		padding: 0.6rem;
+		font-size: 1rem;
+	}
+
+	.upload-btn {
+		font-size: 0.8rem;
+	}
+}
+
+@media only screen and (min-width: 601px) and (max-width: 768px) {
+	.upload-tab-header {
+		font-size: 0.85rem !important;
+	}
 }

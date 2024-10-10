@@ -1,366 +1,413 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+	line-height: 1.5;
+	font-weight: 400;
 
-  background-color: rgb(238, 238, 238);
+	background-color: rgb(238, 238, 238);
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
 
-  --vs-color: #00cdba;
-  --miku-color: #33CCBA;
-  --rin-color: #FFCC11;
-  --len-color: #FFEE12;
-  --kagamine-color: #FFDD12; /* A mix of the Kagamine's individual colors */
-  --luka-color: #FFBACC;
-  --meiko-color: #DE4444;
-  --kaito-color: #3367CD;
+	--vs-color: #00cdba;
+	--miku-color: #33ccba;
+	--rin-color: #ffcc11;
+	--len-color: #ffee12;
+	--kagamine-color: #ffdd12; /* A mix of the Kagamine's individual colors */
+	--luka-color: #ffbacc;
+	--meiko-color: #de4444;
+	--kaito-color: #3367cd;
 
-  --vs-color-dark: #1faea1;
-  --miku-color-dark: #4ab5a8;
-  --rin-color-dark: #dbb835;
-  --len-color-dark: #dbd036;
-  --kagamine-color-dark: #dbc436; /* A mix of the Kagamine's individual colors */
-  --luka-color-dark: #f5c4d1;
-  --meiko-color-dark: #c75b5b;
-  --kaito-color-dark: #4a6eb6;
+	--vs-color-dark: #1faea1;
+	--miku-color-dark: #4ab5a8;
+	--rin-color-dark: #dbb835;
+	--len-color-dark: #dbd036;
+	--kagamine-color-dark: #dbc436; /* A mix of the Kagamine's individual colors */
+	--luka-color-dark: #f5c4d1;
+	--meiko-color-dark: #c75b5b;
+	--kaito-color-dark: #4a6eb6;
 
-  --ln-color: #4455DD;
-  --ichika-color: #33AAEE;
-  --saki-color: #FFDD45;
-  --honami-color: #EE6666;
-  --shiho-color:  #BBDE22;
+	--ln-color: #4455dd;
+	--ichika-color: #33aaee;
+	--saki-color: #ffdd45;
+	--honami-color: #ee6666;
+	--shiho-color: #bbde22;
 
-  --ln-color-dark: #5b67c6;
-  --ichika-color-dark: #4fa2d2;
-  --saki-color-dark: #e3cb61;
-  --honami-color-dark: #da7a7a;
-  --shiho-color-dark:  #a9c23e;
+	--ln-color-dark: #5b67c6;
+	--ichika-color-dark: #4fa2d2;
+	--saki-color-dark: #e3cb61;
+	--honami-color-dark: #da7a7a;
+	--shiho-color-dark: #a9c23e;
 
-  --mmj-color: #6CCB20;
-  --minori-color: #FFCDAC;
-  --haruka-color:  #99CDFF;
-  --airi-color:  #FFA9CC;
-  --shizuku-color:  #9AEEDE;
+	--mmj-color: #6ccb20;
+	--minori-color: #ffcdac;
+	--haruka-color: #99cdff;
+	--airi-color: #ffa9cc;
+	--shizuku-color: #9aeede;
 
-  --mmj-color-dark: #6fb13a;
-  --minori-color-dark: #f3d0b8;
-  --haruka-color-dark:  #a8cdf0;
-  --airi-color-dark:  #f2b6ce;
-  --shizuku-color-dark:  #a7e1d6;
+	--mmj-color-dark: #6fb13a;
+	--minori-color-dark: #f3d0b8;
+	--haruka-color-dark: #a8cdf0;
+	--airi-color-dark: #f2b6ce;
+	--shizuku-color-dark: #a7e1d6;
 
-  --vbs-color: #EE1166;
-  --kohane-color: #FF679A;
-  --an-color: #00BBDC;
-  --akito-color: #FF7721;
-  --touya-color: #0077DD;
+	--vbs-color: #ee1166;
+	--kohane-color: #ff679a;
+	--an-color: #00bbdc;
+	--akito-color: #ff7721;
+	--touya-color: #0077dd;
 
-  --vbs-color-dark: #cd326e;
-  --kohane-color-dark: #e87ea1;
-  --an-color-dark: #21a4bb;
-  --akito-color-dark: #de7e42;
-  --touya-color-dark: #2174bc;
+	--vbs-color-dark: #cd326e;
+	--kohane-color-dark: #e87ea1;
+	--an-color-dark: #21a4bb;
+	--akito-color-dark: #de7e42;
+	--touya-color-dark: #2174bc;
 
-  --wxs-color: #FF9900;
-  --tsukasa-color: #FFBB00;
-  --emu-color: #FF66BC;
-  --nene-color: #34DD9A;
-  --rui-color: #BB88ED;
+	--wxs-color: #ff9900;
+	--tsukasa-color: #ffbb00;
+	--emu-color: #ff66bc;
+	--nene-color: #34dd9a;
+	--rui-color: #bb88ed;
 
-  --wxs-color-dark: #d99126;
-  --tsukasa-color-dark: #d9a926;
-  --emu-color-dark: #e87db9;
-  --nene-color-dark: #4dc495;
-  --rui-color-dark: #bb97de;
+	--wxs-color-dark: #d99126;
+	--tsukasa-color-dark: #d9a926;
+	--emu-color-dark: #e87db9;
+	--nene-color-dark: #4dc495;
+	--rui-color-dark: #bb97de;
 
-  --n25-color: #884499;
-  --kanade-color: #BB6588;
-  --mafuyu-color: #8889CC;
-  --ena-color: #CCAA87;
-  --mizuki-color: #E4A8CA;
+	--n25-color: #884499;
+	--kanade-color: #bb6588;
+	--mafuyu-color: #8889cc;
+	--ena-color: #ccaa87;
+	--mizuki-color: #e4a8ca;
 
-  --n25-color-dark: #80518c;
-  --kanade-color-dark: #ae728a;
-  --mafuyu-color-dark: #9293c2;
-  --ena-color-dark: #c2aa91;
-  --mizuki-color-dark: #dbb1c9;
+	--n25-color-dark: #80518c;
+	--kanade-color-dark: #ae728a;
+	--mafuyu-color-dark: #9293c2;
+	--ena-color-dark: #c2aa91;
+	--mizuki-color-dark: #dbb1c9;
 
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 .vs-bg {
-  background-color: var(--miku-color);
+	background-color: var(--miku-color);
 }
 
 .ln-bg {
-  background-color: var(--ln-color);
+	background-color: var(--ln-color);
 }
 
 .mmj-bg {
-  background-color: var(--mmj-color);
+	background-color: var(--mmj-color);
 }
 
 .vbs-bg {
-  background-color: var(--vbs-color);
+	background-color: var(--vbs-color);
 }
 
 .wxs-bg {
-  background-color: var(--wxs-color);
+	background-color: var(--wxs-color);
 }
 
 .n25-bg {
-  background-color: var(--n25-color);
+	background-color: var(--n25-color);
 }
 
-.vs-bg.active, .vs-bg.fab:hover, .vs-bg.home-btn:hover, .vs-bg-hover:hover {
-  background-color: var(--miku-color-dark);
+.vs-bg.active,
+.vs-bg.fab:hover,
+.vs-bg.home-btn:hover,
+.vs-bg-hover:hover {
+	background-color: var(--miku-color-dark);
 }
 
-.ln-bg.active, .ln-bg.fab:hover, .ln-bg.home-btn:hover, .ln-bg-hover:hover {
-  background-color: var(--ln-color-dark);
+.ln-bg.active,
+.ln-bg.fab:hover,
+.ln-bg.home-btn:hover,
+.ln-bg-hover:hover {
+	background-color: var(--ln-color-dark);
 }
 
-.mmj-bg.active, .mmj-bg.fab:hover, .mmj-bg.home-btn:hover, .mmj-bg-hover:hover {
-  background-color: var(--mmj-color-dark);
+.mmj-bg.active,
+.mmj-bg.fab:hover,
+.mmj-bg.home-btn:hover,
+.mmj-bg-hover:hover {
+	background-color: var(--mmj-color-dark);
 }
 
-.vbs-bg.active, .vbs-bg.fab:hover, .vbs-bg.home-btn:hover, .vbs-bg-hover:hover {
-  background-color: var(--vbs-color-dark);
+.vbs-bg.active,
+.vbs-bg.fab:hover,
+.vbs-bg.home-btn:hover,
+.vbs-bg-hover:hover {
+	background-color: var(--vbs-color-dark);
 }
 
-.wxs-bg.active, .wxs-bg.fab:hover, .wxs-bg.home-btn:hover, .wxs-bg-hover:hover {
-  background-color: var(--wxs-color-dark);
+.wxs-bg.active,
+.wxs-bg.fab:hover,
+.wxs-bg.home-btn:hover,
+.wxs-bg-hover:hover {
+	background-color: var(--wxs-color-dark);
 }
 
-.n25-bg.active, .n25-bg.fab:hover, .n25-bg.home-btn:hover, .n25-bg-hover:hover {
-  background-color: var(--n25-color-dark);
+.n25-bg.active,
+.n25-bg.fab:hover,
+.n25-bg.home-btn:hover,
+.n25-bg-hover:hover {
+	background-color: var(--n25-color-dark);
 }
 
-.vs-bg-hover:hover, .ln-bg-hover:hover, .mmj-bg-hover:hover, .vbs-bg-hover:hover, .wxs-bg-hover:hover, .n25-bg-hover:hover {
-  color: rgb(211, 211, 211);
+.vs-bg-hover:hover,
+.ln-bg-hover:hover,
+.mmj-bg-hover:hover,
+.vbs-bg-hover:hover,
+.wxs-bg-hover:hover,
+.n25-bg-hover:hover {
+	color: rgb(211, 211, 211);
 }
 
 .vs {
-  color: var(--miku-color);
+	color: var(--miku-color);
 }
 
 .ln {
-  color: var(--ln-color);
+	color: var(--ln-color);
 }
 
 .mmj {
-  color: var(--mmj-color);
+	color: var(--mmj-color);
 }
 
 .vbs {
-  color: var(--vbs-color);
+	color: var(--vbs-color);
 }
 
 .wxs {
-  color: var(--wxs-color);
+	color: var(--wxs-color);
 }
 
 .n25 {
-  color: var(--n25-color);
+	color: var(--n25-color);
 }
 
 .vs-bg.discussion {
-  background-color: var(--kagamine-color);
+	background-color: var(--kagamine-color);
 }
 
-.vs-bg.discussion.active, .vs-bg-hover.discussion:hover {
-  background-color: var(--kagamine-color-dark); 
+.vs-bg.discussion.active,
+.vs-bg-hover.discussion:hover {
+	background-color: var(--kagamine-color-dark);
 }
 
 .vs-bg.achievements {
-  background-color: var(--luka-color);
+	background-color: var(--luka-color);
 }
 
-.vs-bg.achievements.active, .vs-bg-hover.achievements:hover {
-  background-color: var(--luka-color-dark);
+.vs-bg.achievements.active,
+.vs-bg-hover.achievements:hover {
+	background-color: var(--luka-color-dark);
 }
 
 .vs-bg.question {
-  background-color: var(--meiko-color);
+	background-color: var(--meiko-color);
 }
 
-.vs-bg.question.active, .vs-bg-hover.question:hover {
-  background-color: var(--meiko-color-dark);
+.vs-bg.question.active,
+.vs-bg-hover.question:hover {
+	background-color: var(--meiko-color-dark);
 }
 
 .vs-bg.gameplay {
-  background-color: var(--kaito-color);
+	background-color: var(--kaito-color);
 }
 
-.vs-bg.gameplay.active, .vs-bg-hover.gameplay:hover {
-  background-color: var(--kaito-color-dark);
+.vs-bg.gameplay.active,
+.vs-bg-hover.gameplay:hover {
+	background-color: var(--kaito-color-dark);
 }
 
 .ln-bg.discussion {
-  background-color: var(--ichika-color);
+	background-color: var(--ichika-color);
 }
 
-.ln-bg.discussion.active, .ln-bg-hover.discussion:hover {
-  background-color: var(--ichika-color-dark); 
+.ln-bg.discussion.active,
+.ln-bg-hover.discussion:hover {
+	background-color: var(--ichika-color-dark);
 }
 
 .ln-bg.achievements {
-  background-color: var(--saki-color);
+	background-color: var(--saki-color);
 }
 
-.ln-bg.achievements.active, .ln-bg-hover.achievements:hover {
-  background-color: var(--saki-color-dark);
+.ln-bg.achievements.active,
+.ln-bg-hover.achievements:hover {
+	background-color: var(--saki-color-dark);
 }
 
 .ln-bg.question {
-  background-color: var(--honami-color);
+	background-color: var(--honami-color);
 }
 
-.ln-bg.question.active, .ln-bg-hover.question:hover {
-  background-color: var(--honami-color-dark);
+.ln-bg.question.active,
+.ln-bg-hover.question:hover {
+	background-color: var(--honami-color-dark);
 }
 
 .ln-bg.gameplay {
-  background-color: var(--shiho-color);
+	background-color: var(--shiho-color);
 }
 
-.ln-bg.gameplay.active, .ln-bg-hover.gameplay:hover {
-  background-color: var(--shiho-color-dark);
+.ln-bg.gameplay.active,
+.ln-bg-hover.gameplay:hover {
+	background-color: var(--shiho-color-dark);
 }
 
 .mmj-bg.discussion {
-  background-color: var(--minori-color);
+	background-color: var(--minori-color);
 }
 
-.mmj-bg.discussion.active, .mmj-bg-hover.discussion:hover {
-  background-color: var(--minori-color-dark); 
+.mmj-bg.discussion.active,
+.mmj-bg-hover.discussion:hover {
+	background-color: var(--minori-color-dark);
 }
 
 .mmj-bg.achievements {
-  background-color: var(--haruka-color);
+	background-color: var(--haruka-color);
 }
 
-.mmj-bg.achievements.active, .mmj-bg-hover.achievements:hover {
-  background-color: var(--haruka-color-dark);
+.mmj-bg.achievements.active,
+.mmj-bg-hover.achievements:hover {
+	background-color: var(--haruka-color-dark);
 }
 
 .mmj-bg.question {
-  background-color: var(--airi-color);
+	background-color: var(--airi-color);
 }
 
-.mmj-bg.question.active, .mmj-bg-hover.question:hover {
-  background-color: var(--airi-color-dark);
+.mmj-bg.question.active,
+.mmj-bg-hover.question:hover {
+	background-color: var(--airi-color-dark);
 }
 
 .mmj-bg.gameplay {
-  background-color: var(--shizuku-color);
+	background-color: var(--shizuku-color);
 }
 
-.mmj-bg.gameplay.active, .mmj-bg-hover.gameplay:hover {
-  background-color: var(--shizuku-color-dark);
+.mmj-bg.gameplay.active,
+.mmj-bg-hover.gameplay:hover {
+	background-color: var(--shizuku-color-dark);
 }
 
 .vbs-bg.discussion {
-  background-color: var(--kohane-color);
+	background-color: var(--kohane-color);
 }
 
-.vbs-bg.discussion.active, .vbs-bg-hover.discussion:hover {
-  background-color: var(--kohane-color-dark); 
+.vbs-bg.discussion.active,
+.vbs-bg-hover.discussion:hover {
+	background-color: var(--kohane-color-dark);
 }
 
 .vbs-bg.achievements {
-  background-color: var(--an-color);
+	background-color: var(--an-color);
 }
 
-.vbs-bg.achievements.active, .vbs-bg-hover.achievements:hover {
-  background-color: var(--an-color-dark);
+.vbs-bg.achievements.active,
+.vbs-bg-hover.achievements:hover {
+	background-color: var(--an-color-dark);
 }
 
 .vbs-bg.question {
-  background-color: var(--akito-color);
+	background-color: var(--akito-color);
 }
 
-.vbs-bg.question.active, .vbs-bg-hover.question:hover {
-  background-color: var(--akito-color-dark);
+.vbs-bg.question.active,
+.vbs-bg-hover.question:hover {
+	background-color: var(--akito-color-dark);
 }
 
 .vbs-bg.gameplay {
-  background-color: var(--touya-color);
+	background-color: var(--touya-color);
 }
 
-.vbs-bg.achievements.active, .vbs-bg-hover.gameplay:hover {
-  background-color: var(--touya-color-dark);
+.vbs-bg.achievements.active,
+.vbs-bg-hover.gameplay:hover {
+	background-color: var(--touya-color-dark);
 }
 
 .wxs-bg.discussion {
-  background-color: var(--tsukasa-color);
+	background-color: var(--tsukasa-color);
 }
 
-.wxs-bg.discussion.active, .wxs-bg-hover.discussion:hover {
-  background-color: var(--tsukasa-color-dark); 
+.wxs-bg.discussion.active,
+.wxs-bg-hover.discussion:hover {
+	background-color: var(--tsukasa-color-dark);
 }
 
 .wxs-bg.achievements {
-  background-color: var(--emu-color);
+	background-color: var(--emu-color);
 }
 
-.wxs-bg.achievements.active, .wxs-bg-hover.achievements:hover {
-  background-color: var(--emu-color-dark);
+.wxs-bg.achievements.active,
+.wxs-bg-hover.achievements:hover {
+	background-color: var(--emu-color-dark);
 }
 
 .wxs-bg.question {
-  background-color: var(--nene-color);
+	background-color: var(--nene-color);
 }
 
-.wxs-bg.question.active, .wxs-bg-hover.question:hover {
-  background-color: var(--nene-color-dark);
+.wxs-bg.question.active,
+.wxs-bg-hover.question:hover {
+	background-color: var(--nene-color-dark);
 }
 
 .wxs-bg.gameplay {
-  background-color: var(--rui-color);
+	background-color: var(--rui-color);
 }
 
-.wxs-bg.gameplay.active, .wxs-bg-hover.gameplay:hover {
-  background-color: var(--rui-color-dark);
+.wxs-bg.gameplay.active,
+.wxs-bg-hover.gameplay:hover {
+	background-color: var(--rui-color-dark);
 }
 
 .n25-bg.discussion {
-  background-color: var(--kanade-color);
+	background-color: var(--kanade-color);
 }
 
-.n25-bg.discussion.active, .n25-bg-hover.discussion:hover {
-  background-color: var(--kanade-color-dark); 
+.n25-bg.discussion.active,
+.n25-bg-hover.discussion:hover {
+	background-color: var(--kanade-color-dark);
 }
 
 .n25-bg.achievements {
-  background-color: var(--mafuyu-color);
+	background-color: var(--mafuyu-color);
 }
 
-.n25-bg.achievements.active, .n25-bg-hover.achievements:hover {
-  background-color: var(--mafuyu-color-dark);
+.n25-bg.achievements.active,
+.n25-bg-hover.achievements:hover {
+	background-color: var(--mafuyu-color-dark);
 }
 
 .n25-bg.question {
-  background-color: var(--ena-color);
+	background-color: var(--ena-color);
 }
 
-.n25-bg.question.active, .n25-bg-hover.question:hover {
-  background-color: var(--ena-color-dark);
+.n25-bg.question.active,
+.n25-bg-hover.question:hover {
+	background-color: var(--ena-color-dark);
 }
 
 .n25-bg.gameplay {
-  background-color: var(--mizuki-color);
+	background-color: var(--mizuki-color);
 }
 
-.n25-bg.gameplay.active, .n25-bg-hover.gameplay:hover {
-  background-color: var(--mizuki-color-dark);
+.n25-bg.gameplay.active,
+.n25-bg-hover.gameplay:hover {
+	background-color: var(--mizuki-color-dark);
 }
 
 body {
-  margin: 0;
-  display: flex;
-  min-width: 320px;
-  min-height: 100vh;
+	margin: 0;
+	display: flex;
+	min-width: 320px;
+	min-height: 100vh;
 }
