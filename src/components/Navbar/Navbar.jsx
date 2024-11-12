@@ -15,6 +15,8 @@ const NavBar = () => {
 
 	const [query, setQuery] = useState("");
 
+	const [searchMenu, setSearchMenu] = useState(false);
+
 	const navigate = useNavigate();
 
 	const open = Boolean(anchorEl);
@@ -25,11 +27,16 @@ const NavBar = () => {
 		setAnchorEl(null);
 	};
 
+	const handleSearchMenu = () => {
+		setSearchMenu(!searchMenu);
+	};
+
 	const handleSearch = (event) => {
 		if (event.key === "Enter") {
 			if (query.replace(/\s/g, "") !== "") {
 				navigate(`/search/${query}`);
 				setQuery("");
+				setSearchMenu(false);
 			}
 		}
 	};
@@ -173,6 +180,14 @@ const NavBar = () => {
 						</Menu>
 					</div>
 					<div className="mobile-user-info">
+						{/* <div className="mobile-search"> */}
+						<Icon
+							icon="material-symbols:search"
+							width={28}
+							height={28}
+							onClick={handleSearchMenu}
+						/>
+						{/* </div> */}
 						<Icon
 							className="settings-icon"
 							icon="fluent:text-grammar-settings-24-filled"
@@ -279,6 +294,35 @@ const NavBar = () => {
 							</MenuItem>
 						</Menu>
 					</div>
+					{searchMenu ? (
+						<div className="search-menu">
+							{/* <XMarkIcon
+							className="text-white h-10 w-10 fixed top-0 right-0 m-8"
+							onClick={handleCloseMenu}
+						/> */}
+							{/* <div className="mobile-search-container"> */}
+							<Icon
+								className="close-icon"
+								icon="weui:back-filled"
+								onClick={handleSearchMenu}
+							/>
+							{/* <div className="mobile-search-container"> */}
+							<input
+								className="mobile-search"
+								type="text"
+								placeholder="Search..."
+								value={query}
+								onChange={(event) =>
+									setQuery(event.target.value)
+								}
+								onKeyDown={handleSearch}
+							/>
+							{/* </div> */}
+						</div>
+					) : (
+						// </div>
+						""
+					)}
 				</nav>
 			</div>
 			<div className="page">
