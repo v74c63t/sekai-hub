@@ -61,6 +61,16 @@ const PostDetail = () => {
 		fetchPostInfo();
 	}, []);
 
+	const date = new Date(post.created_at);
+
+	const dateString = date.toLocaleDateString("en-US", {
+		day: "numeric",
+		month: "long",
+		year: "numeric",
+		hour: "numeric",
+		minute: "2-digit",
+	});
+
 	const handleSubmit = async (event) => {
 		if (event.key === "Enter") {
 			if (userComment.replace(/\s/g, "") !== "") {
@@ -150,7 +160,7 @@ const PostDetail = () => {
 				<div className="post-detail">
 					<h4 className="timestamp">
 						Posted by <span className={theme}>@{post.user_id}</span>{" "}
-						on {post.created_at}
+						on {dateString}
 					</h4>
 					<h3 className="post-detail-title">
 						{post.title}{" "}
