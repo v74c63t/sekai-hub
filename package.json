@@ -20,7 +20,7 @@
     "axios": "^1.7.4",
     "firebase": "^10.11.0",
     "ldrs": "^1.0.1",
-    "nanoid": "^5.0.7",
+    "nanoid": ">=5.0.9",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-player": "^2.16.0",
