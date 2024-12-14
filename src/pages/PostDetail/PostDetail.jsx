@@ -61,9 +61,9 @@ const PostDetail = () => {
 		fetchPostInfo();
 	}, []);
 
-	const date = new Date(post.created_at);
+	const date = new Date(post?.created_at);
 
-	const dateString = date.toLocaleDateString("en-US", {
+	const dateString = date?.toLocaleDateString("en-US", {
 		day: "numeric",
 		month: "long",
 		year: "numeric",
@@ -184,19 +184,16 @@ const PostDetail = () => {
 							className="post-img"
 						/>
 					) : (post.url !== "") & post.video ? (
-						// <ReactPlayer
-						// 	url={post.url}
-						// 	controls
-						// 	className="post-vid"
-						// />
-						<div className="player-wrapper">
-							<ReactPlayer
-								url={post.url}
-								className="react-player"
-								width="100%"
-								height="100%"
-								controls
-							/>
+						<div className="video-container">
+							<div className="player-wrapper">
+								<ReactPlayer
+									url={post.url}
+									className="react-player"
+									width="100%"
+									height="100%"
+									controls
+								/>
+							</div>
 						</div>
 					) : (
 						""
