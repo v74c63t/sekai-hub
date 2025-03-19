@@ -17,7 +17,7 @@
     "@mui/lab": "^5.0.0-alpha.170",
     "@mui/material": "^5.15.15",
     "@supabase/supabase-js": "^2.42.3",
-    "axios": "^1.7.4",
+    "axios": "^1.8.2",
     "firebase": "^10.11.0",
     "ldrs": "^1.0.1",
     "nanoid": ">=5.0.9",
@@ -30,11 +30,11 @@
   "devDependencies": {
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
-    "@vitejs/plugin-react": "^4.2.1",
+    "@vitejs/plugin-react": "^4.3.4",
     "eslint": "^8.57.0",
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
-    "vite": "^5.4.14"
+    "vite": "^6.2.2"
   }
 }
