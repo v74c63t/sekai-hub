@@ -16,15 +16,15 @@
     "@mui/icons-material": "^5.15.15",
     "@mui/lab": "^5.0.0-alpha.170",
     "@mui/material": "^5.15.15",
-    "@supabase/supabase-js": "^2.42.3",
-    "axios": "^1.8.2",
-    "firebase": "^10.11.0",
+    "@supabase/supabase-js": "^2.99.2",
+    "axios": "^1.13.5",
+    "firebase": "^12.10.0",
     "ldrs": "^1.0.1",
     "nanoid": ">=5.0.9",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-player": "^2.16.0",
-    "react-router-dom": "^6.22.3",
+    "react-router-dom": "^6.30.3",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
@@ -35,6 +35,6 @@
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
-    "vite": "^6.3.5"
+    "vite": "^6.4.1"
   }
 }
